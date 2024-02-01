@@ -1,0 +1,21 @@
+object Form1: TForm1
+  Left = 513
+  Height = 725
+  Top = 222
+  Width = 1175
+  Caption = 'Form1'
+  ClientHeight = 725
+  ClientWidth = 1175
+  OnCreate = FormCreate
+  OnShow = FormShow
+  LCLVersion = '2.2.4.0'
+  object CloseButton: TButton
+    Left = 936
+    Height = 25
+    Top = 582
+    Width = 75
+    Caption = 'CloseButton'
+    OnClick = CloseButtonClick
+    TabOrder = 0
+  end
+end

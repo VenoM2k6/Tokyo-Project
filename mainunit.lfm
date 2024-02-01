@@ -1,8 +1,34 @@
 object Form1: TForm1
-  Left = 256
-  Height = 240
-  Top = 145
-  Width = 320
+  Left = 513
+  Height = 725
+  Top = 222
+  Width = 1175
   Caption = 'Form1'
+  ClientHeight = 725
+  ClientWidth = 1175
+  OnCreate = FormCreate
+  OnShow = FormShow
   LCLVersion = '2.2.4.0'
+  object CloseButton: TButton
+    Left = 936
+    Height = 25
+    Top = 582
+    Width = 75
+    Caption = 'CloseButton'
+    OnClick = CloseButtonClick
+    TabOrder = 0
+  end
+  object StringGrid1: TStringGrid
+    Left = 64
+    Height = 252
+    Top = 224
+    Width = 417
+    TabOrder = 1
+  end
+  object Image1: TImage
+    Left = 552
+    Height = 424
+    Top = 104
+    Width = 568
+  end
 end
