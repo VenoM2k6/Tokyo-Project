@@ -1,21 +1,37 @@
 object Form1: TForm1
-  Left = 513
-  Height = 725
-  Top = 222
-  Width = 1175
+  Left = 177
+  Height = 906
+  Top = 36
+  Width = 1722
   Caption = 'Form1'
-  ClientHeight = 725
-  ClientWidth = 1175
+  ClientHeight = 0
+  ClientWidth = 0
+  DesignTimePPI = 120
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '2.2.4.0'
-  object CloseButton: TButton
-    Left = 936
-    Height = 25
-    Top = 582
-    Width = 75
-    Caption = 'CloseButton'
-    OnClick = CloseButtonClick
+  LCLVersion = '2.2.6.0'
+  object closeButton: TButton
+    Left = 920
+    Height = 31
+    Top = 728
+    Width = 94
+    Caption = 'Close'
+    OnClick = closeButtonClick
     TabOrder = 0
+  end
+  object graph: TImage
+    Left = 600
+    Height = 530
+    Top = 184
+    Width = 710
+  end
+  object values: TStringGrid
+    Left = 1320
+    Height = 672
+    Top = 128
+    Width = 586
+    ColCount = 100
+    RowCount = 100
+    TabOrder = 1
   end
 end
