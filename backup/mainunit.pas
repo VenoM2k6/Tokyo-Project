@@ -13,12 +13,22 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    Berechnen: TButton;
+    GraphErstellen: TButton;
     closeButton: TButton;
+    Masse: TEdit;
+    Federkonstante: TEdit;
+    Elongation: TEdit;
     graph: TImage;
     values: TStringGrid;
+    procedure BerechnenClick(Sender: TObject);
     procedure closeButtonClick(Sender: TObject);
+    procedure ElongationClick(Sender: TObject);
+    procedure FederkonstanteClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure GraphErstellenClick(Sender: TObject);
+    procedure MasseClick(Sender: TObject);
   private
 
   public
@@ -69,12 +79,60 @@ procedure TForm1.FormShow(Sender: TObject);
 begin
   WindowState := wsMaximized;
 end;
+
+procedure TForm1.GraphErstellenClick(Sender: TObject);
+var j: integer;
+begin
+   for j:=0 to 399 do begin
+       with graph do begin
+          canvas.Pixels[j+1, round(strtofloat(values.cells[1, j])*100000)] := clred;
+       end;
+   end;
+end;
+procedure TForm1.BerechnenClick(Sender: TObject);
+
+var i: integer;
+    m,D,y,v,a,t: real;
+begin
+m := strtofloat(Masse.Text);
+D := strtofloat(Federkonstante.Text);
+y := strtofloat(Elongation.Text);
+
+for i:=0 to 399 do begin
+         t := 0.01;
+         a := -(D/m)*y;
+         v := a*t;
+         y := y+v*t;
+         with values do begin
+            cells[1, i] := floattostr(y);
+            cells[2, i] := floattostr(v);
+            cells[3, i] := floattostr(a);
+         end;
+    end;
+
+end;
+
 //Anfang Button Procedures
+
+procedure TForm1.MasseClick(Sender: TObject);
+begin
+  Masse.text := '';
+end;
+
 procedure TForm1.closeButtonClick(Sender: TObject);
 begin
   close;
 end;
 
+procedure TForm1.ElongationClick(Sender: TObject);
+begin
+  Elongation.text := '';
+end;
+
+procedure TForm1.FederkonstanteClick(Sender: TObject);
+begin
+  Federkonstante.text := '';
+end;
 
 end.
 

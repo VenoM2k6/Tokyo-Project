@@ -1,21 +1,82 @@
 object Form1: TForm1
-  Left = 513
+  Left = 247
   Height = 725
-  Top = 222
-  Width = 1175
+  Top = 154
+  Width = 1378
   Caption = 'Form1'
   ClientHeight = 725
-  ClientWidth = 1175
+  ClientWidth = 1378
   OnCreate = FormCreate
   OnShow = FormShow
   LCLVersion = '2.2.4.0'
-  object CloseButton: TButton
-    Left = 936
+  object closeButton: TButton
+    Left = 736
     Height = 25
     Top = 582
     Width = 75
-    Caption = 'CloseButton'
-    OnClick = CloseButtonClick
+    Caption = 'Close'
+    OnClick = closeButtonClick
     TabOrder = 0
+  end
+  object graph: TImage
+    Left = 480
+    Height = 424
+    Top = 147
+    Width = 568
+  end
+  object values: TStringGrid
+    Left = 1056
+    Height = 538
+    Top = 102
+    Width = 469
+    BorderStyle = bsNone
+    ColCount = 100
+    RowCount = 400
+    TabOrder = 1
+  end
+  object Masse: TEdit
+    Left = 64
+    Height = 23
+    Top = 136
+    Width = 88
+    OnClick = MasseClick
+    TabOrder = 2
+    Text = 'Masse'
+  end
+  object Federkonstante: TEdit
+    Left = 64
+    Height = 23
+    Top = 168
+    Width = 88
+    OnClick = FederkonstanteClick
+    TabOrder = 3
+    Text = 'Federkonstante'
+  end
+  object Elongation: TEdit
+    Left = 64
+    Height = 23
+    Top = 200
+    Width = 88
+    OnClick = ElongationClick
+    TabOrder = 4
+    Text = 'Elongation'
+  end
+  object Berechnen: TButton
+    Left = 64
+    Height = 25
+    Top = 232
+    Width = 88
+    Caption = 'Berechnen'
+    OnClick = BerechnenClick
+    TabOrder = 5
+  end
+  object GraphErstellen: TButton
+    Left = 64
+    Height = 25
+    Top = 264
+    Width = 88
+    Caption = 'Graph erstellen'
+    OnClick = GraphErstellenClick
+    TabOrder = 6
   end
 end
