@@ -20,6 +20,7 @@ type
     Federkonstante: TEdit;
     Elongation: TEdit;
     graph: TImage;
+    selectType: TRadioGroup;
     values: TStringGrid;
     procedure BerechnenClick(Sender: TObject);
     procedure closeButtonClick(Sender: TObject);
@@ -65,14 +66,6 @@ begin
   values.height := (screen.height div 3)*2;
   values.left := Round((graph.width+graph.left)*1.05);
   values.top := screen.height div 2 - values.height div 2;
-
-  with graph do begin
-     for i:=1 to graph.width do begin
-        for j:=1 to graph.Height do begin
-           canvas.pixels[i, j]:=clwhite;
-        end;
-     end;
-  end;
 end;
 
 procedure TForm1.FormShow(Sender: TObject);
@@ -83,9 +76,9 @@ end;
 procedure TForm1.GraphErstellenClick(Sender: TObject);
 var j: integer;
 begin
-   for j:=0 to 399 do begin
+   for j:=0 to 9999 do begin
        with graph do begin
-          canvas.Pixels[j+1, graph.height div 2 + round(strtofloat(values.cells[1, j])*100000)] := clred;
+          canvas.Pixels[j+1, graph.height div 2 + round(strtofloat(values.cells[1, j])*10000)] := clred;
        end;
    end;
 end;
@@ -97,11 +90,12 @@ begin
 m := strtofloat(Masse.Text);
 D := strtofloat(Federkonstante.Text);
 y := strtofloat(Elongation.Text);
+v := 0;
 
-for i:=0 to 399 do begin
-         t := 0.01;
+for i:=0 to 9999 do begin
+         t := 0.001;
          a := -(D/m)*y;
-         v := a*t;
+         v := v+a*t;
          y := y+v*t;
          with values do begin
             cells[1, i] := floattostr(y);

@@ -12,7 +12,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="39"/>
+        <UsageCount Value="40"/>
       </Unit>
       <Unit>
         <Filename Value="mainunit.pas"/>
@@ -22,9 +22,10 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainUnit"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="90"/>
-        <CursorPos X="15" Y="105"/>
-        <UsageCount Value="39"/>
+        <TopLine Value="62"/>
+        <CursorPos Y="84"/>
+        <FoldState Value=" T3iQ03011 PME0y"/>
+        <UsageCount Value="40"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>

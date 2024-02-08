@@ -31,7 +31,7 @@ object Form1: TForm1
     Width = 469
     BorderStyle = bsNone
     ColCount = 100
-    RowCount = 400
+    RowCount = 10000
     TabOrder = 1
   end
   object Masse: TEdit
