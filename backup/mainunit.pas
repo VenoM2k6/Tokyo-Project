@@ -20,15 +20,19 @@ type
     Federkonstante: TEdit;
     Elongation: TEdit;
     graph: TImage;
+    Daempfung: TEdit;
+    selectType: TRadioGroup;
     values: TStringGrid;
     procedure BerechnenClick(Sender: TObject);
     procedure closeButtonClick(Sender: TObject);
+    procedure DaempfungClick(Sender: TObject);
     procedure ElongationClick(Sender: TObject);
     procedure FederkonstanteClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure GraphErstellenClick(Sender: TObject);
     procedure MasseClick(Sender: TObject);
+    procedure selectTypeClick(Sender: TObject);
   private
 
   public
@@ -84,14 +88,16 @@ end;
 procedure TForm1.BerechnenClick(Sender: TObject);
 
 var i: integer;
-    m,D,y,v,a,t: real;
+    m,D,y,k,v,a,t: real;
 begin
-m := strtofloat(Masse.Text);
-D := strtofloat(Federkonstante.Text);
-y := strtofloat(Elongation.Text);
-v := 0;
 
-for i:=0 to 9999 do begin
+if selectType.ItemIndex = 0 then begin
+  m := strtofloat(Masse.Text);
+  D := strtofloat(Federkonstante.Text);
+  y := strtofloat(Elongation.Text);
+  v := 0;
+
+  for i:=0 to 9999 do begin
          t := 0.001;
          a := -(D/m)*y;
          v := v+a*t;
@@ -102,6 +108,51 @@ for i:=0 to 9999 do begin
             cells[3, i] := floattostr(a);
          end;
     end;
+end;
+if selectType.ItemIndex = 1 then begin
+
+  m := strtofloat(Masse.Text);
+  D := strtofloat(Federkonstante.Text);
+  y := strtofloat(Elongation.Text);
+  k := strtofloat(Daempfung.text);
+  v := 0;
+
+  for i:=0 to 9999 do begin
+         t := 0.001;
+         a := -(D*y+k*v)/m;
+         v := v+a*t;
+         y := y+v*t;
+         with values do begin
+            cells[1, i] := floattostr(y);
+            cells[2, i] := floattostr(v);
+            cells[3, i] := floattostr(a);
+         end;
+    end;
+end;
+
+Elongation.text := 'Elongation';
+Masse.text := 'Masse';
+Federkonstante.text := 'Federkonstante';
+Daempfung.text := 'Dämpfung';
+end;
+procedure TForm1.selectTypeClick(Sender: TObject);
+begin
+  if selectType.ItemIndex = 0 then begin
+     Elongation.visible := true;
+     Masse.visible := true;
+     Federkonstante.visible := true;
+     Berechnen.visible := true;
+     GraphErstellen.visible := true;
+     Daempfung.visible := false;
+  end;
+  if selectType.ItemIndex = 1 then begin
+     Elongation.visible := true;
+     Masse.visible := true;
+     Federkonstante.visible := true;
+     Daempfung.visible := true;
+     Berechnen.visible := true;
+     GraphErstellen.visible := true;
+  end;
 
 end;
 
@@ -115,6 +166,11 @@ end;
 procedure TForm1.closeButtonClick(Sender: TObject);
 begin
   close;
+end;
+
+procedure TForm1.DaempfungClick(Sender: TObject);
+begin
+   Daempfung.text := '';
 end;
 
 procedure TForm1.ElongationClick(Sender: TObject);
