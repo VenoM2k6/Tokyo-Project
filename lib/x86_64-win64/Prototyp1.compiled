@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
-  <Compiler Value="C:\lazarus\fpc\3.2.2\bin\x86_64-win64\fpc.exe" Date="1429738194"/>
-  <Params Value=" -MObjFPC -Scghi -O1 -gw2 -godwarfsets -gl -WG -l -vewnhibq -FiC:\Users\meist\Desktop\Tokyo-Project\lib\x86_64-win64 -FuC:\lazarus\lcl\units\x86_64-win64\win32 -FuC:\lazarus\lcl\units\x86_64-win64 -FuC:\lazarus\components\freetype\lib\x86_64-win64 -FuC:\lazarus\components\lazutils\lib\x86_64-win64 -FuC:\lazarus\packager\units\x86_64-win64 -FuC:\Users\meist\Desktop\Tokyo-Project\ -FUC:\Users\meist\Desktop\Tokyo-Project\lib\x86_64-win64\ -FEC:\Users\meist\Desktop\Tokyo-Project\ -oC:\Users\meist\Desktop\Tokyo-Project\Prototyp1.exe -dLCL -dLCLwin32 Prototyp1.lpr"/>
+  <Compiler Value="C:\lazarus\fpc\3.2.2\bin\x86_64-win64\fpc.exe" Date="1449425326"/>
+  <Params Value=" -MObjFPC -Scghi -O1 -gw2 -godwarfsets -gl -WG -l -vewnhibq -FiC:\Users\meist\OneDrive\Desktop\Tokyo-Project\lib\x86_64-win64 -FuC:\lazarus\lcl\units\x86_64-win64\win32 -FuC:\lazarus\lcl\units\x86_64-win64 -FuC:\lazarus\components\freetype\lib\x86_64-win64 -FuC:\lazarus\components\lazutils\lib\x86_64-win64 -FuC:\lazarus\packager\units\x86_64-win64 -FuC:\Users\meist\OneDrive\Desktop\Tokyo-Project\ -FUC:\Users\meist\OneDrive\Desktop\Tokyo-Project\lib\x86_64-win64\ -FEC:\Users\meist\OneDrive\Desktop\Tokyo-Project\ -oC:\Users\meist\OneDrive\Desktop\Tokyo-Project\Prototyp1.exe -dLCL -dLCLwin32 Prototyp1.lpr"/>
 </CONFIG>

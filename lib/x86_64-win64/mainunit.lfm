@@ -1,92 +1,93 @@
 object Form1: TForm1
-  Left = 545
-  Height = 725
-  Top = 252
-  Width = 1378
+  Left = 34
+  Height = 906
+  Top = 86
+  Width = 1722
   Caption = 'Form1'
-  ClientHeight = 725
-  ClientWidth = 1378
+  ClientHeight = 0
+  ClientWidth = 0
+  DesignTimePPI = 120
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '2.2.4.0'
+  LCLVersion = '2.2.6.0'
   object closeButton: TButton
-    Left = 736
-    Height = 25
-    Top = 582
-    Width = 75
+    Left = 920
+    Height = 31
+    Top = 728
+    Width = 94
     Caption = 'Close'
     OnClick = closeButtonClick
     TabOrder = 0
   end
   object graph: TImage
-    Left = 480
-    Height = 424
-    Top = 147
-    Width = 568
+    Left = 600
+    Height = 530
+    Top = 184
+    Width = 710
   end
   object values: TStringGrid
-    Left = 1056
-    Height = 538
-    Top = 102
-    Width = 469
+    Left = 1320
+    Height = 672
+    Top = 128
+    Width = 402
     BorderStyle = bsNone
     ColCount = 100
     RowCount = 10000
     TabOrder = 1
   end
   object Masse: TEdit
-    Left = 64
-    Height = 23
-    Top = 104
-    Width = 88
+    Left = 80
+    Height = 28
+    Top = 130
+    Width = 110
     OnClick = MasseClick
     TabOrder = 2
     Text = 'Masse'
     Visible = False
   end
   object Federkonstante: TEdit
-    Left = 64
-    Height = 23
-    Top = 168
-    Width = 88
+    Left = 80
+    Height = 28
+    Top = 210
+    Width = 110
     OnClick = FederkonstanteClick
     TabOrder = 3
     Text = 'Federkonstante'
     Visible = False
   end
   object Elongation: TEdit
-    Left = 64
-    Height = 23
-    Top = 200
-    Width = 88
+    Left = 80
+    Height = 28
+    Top = 250
+    Width = 110
     OnClick = ElongationClick
     TabOrder = 4
     Text = 'Elongation'
     Visible = False
   end
   object Berechnen: TButton
-    Left = 64
-    Height = 25
-    Top = 232
-    Width = 88
+    Left = 80
+    Height = 31
+    Top = 290
+    Width = 110
     Caption = 'Berechnen'
     OnClick = BerechnenClick
     TabOrder = 5
   end
   object GraphErstellen: TButton
-    Left = 64
-    Height = 25
-    Top = 264
-    Width = 88
+    Left = 80
+    Height = 31
+    Top = 330
+    Width = 110
     Caption = 'Graph erstellen'
     OnClick = GraphErstellenClick
     TabOrder = 6
   end
   object selectType: TRadioGroup
-    Left = 184
-    Height = 105
-    Top = 102
-    Width = 185
+    Left = 230
+    Height = 131
+    Top = 128
+    Width = 231
     AutoFill = True
     Caption = 'Wähle die Art der Schwingung'
     ChildSizing.LeftRightSpacing = 6
@@ -96,8 +97,8 @@ object Form1: TForm1
     ChildSizing.ShrinkVertical = crsScaleChilds
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 1
-    ClientHeight = 85
-    ClientWidth = 181
+    ClientHeight = 106
+    ClientWidth = 227
     Items.Strings = (
       'Ungedämpftes Federpendel'
       'Gedämpftes Federpendel'
@@ -106,10 +107,10 @@ object Form1: TForm1
     TabOrder = 7
   end
   object Daempfung: TEdit
-    Left = 64
-    Height = 23
-    Top = 136
-    Width = 88
+    Left = 80
+    Height = 28
+    Top = 170
+    Width = 110
     OnClick = DaempfungClick
     TabOrder = 8
     Text = 'Dämpfungskonstante'

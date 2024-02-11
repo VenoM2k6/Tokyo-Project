@@ -65,9 +65,9 @@ begin
   closeButton.Left := screen.width div 2 - closeButton.width div 2;
   closeButton.Top := Round((graph.top + graph.height)*1.05);
 
-  values.width := Round((screen.width - (graph.left+graph.width))*0.76);
+  values.width := Round((screen.width - (graph.left+graph.width)));
   values.height := (screen.height div 3)*2;
-  values.left := Round((graph.width+graph.left)*1.05);
+  values.left := Round((graph.width+graph.left));
   values.top := screen.height div 2 - values.height div 2;
 end;
 
@@ -81,7 +81,12 @@ var j: integer;
 begin
    for j:=0 to 9999 do begin
        with graph do begin
-          canvas.Pixels[j+1, graph.height div 2 + round(strtofloat(values.cells[1, j])*10000)] := clred;
+          if selectType.itemindex := 0 then begin
+             canvas.Pixels[j+1, graph.height div 2 + round(strtofloat(values.cells[1, j])*10000)] := clred;
+          end;
+          if selectType.itemindex := 1 then begin
+             canvas.Pixels[j+1, graph.height div 2 + round(strtofloat(values.cells[1, j])*10000)] := clblue;
+          end;
        end;
    end;
 end;
@@ -153,7 +158,10 @@ begin
      Berechnen.visible := true;
      GraphErstellen.visible := true;
   end;
-
+  Elongation.text := 'Elongation';
+  Masse.text := 'Masse';
+  Federkonstante.text := 'Federkonstante';
+  Daempfung.text := 'Dämpfung';
 end;
 
 //Anfang Button Procedures

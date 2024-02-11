@@ -22,22 +22,19 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainUnit"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="122"/>
-        <CursorPos X="33" Y="159"/>
-        <FoldState Value=" T3kY034 PCK0@"/>
+        <TopLine Value="74"/>
+        <CursorPos X="108" Y="88"/>
+        <FoldState Value=" T3iA0I126 Pek60 T0jUXJm"/>
+        <ComponentState Value="1"/>
         <UsageCount Value="41"/>
         <Bookmarks Count="1">
-          <Item0 Y="93" ID="9"/>
+          <Item0 Y="98" ID="9"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="mainunit.pas"/>
-        <Caret Line="46" TopLine="14"/>
-      </Position>
       <Position>
         <Filename Value="mainunit.pas"/>
         <Caret Line="45" TopLine="14"/>
@@ -153,6 +150,10 @@
       <Position>
         <Filename Value="mainunit.pas"/>
         <Caret Line="124" Column="21" TopLine="100"/>
+      </Position>
+      <Position>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="92" Column="24" TopLine="49"/>
       </Position>
     </JumpHistory>
     <RunParams>
