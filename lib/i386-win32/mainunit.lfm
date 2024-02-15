@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 247
+  Left = 393
   Height = 725
-  Top = 154
+  Top = 141
   Width = 1378
   Caption = 'Form1'
   ClientHeight = 725
@@ -26,40 +26,72 @@ object Form1: TForm1
   end
   object values: TStringGrid
     Left = 1056
-    Height = 538
-    Top = 102
-    Width = 469
+    Height = 522
+    Top = 112
+    Width = 322
     BorderStyle = bsNone
-    ColCount = 100
-    RowCount = 400
+    Font.CharSet = ANSI_CHARSET
+    Font.Name = 'Yu Gothic UI Semibold'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentFont = False
+    RowCount = 10001
     TabOrder = 1
   end
   object Masse: TEdit
     Left = 64
     Height = 23
-    Top = 136
+    Top = 104
     Width = 88
+    AutoSize = False
+    BorderStyle = bsNone
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -13
+    Font.Name = 'Yu Gothic'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     OnClick = MasseClick
+    ParentFont = False
     TabOrder = 2
-    Text = 'Masse'
+    Text = 'Masse:'
+    Visible = False
   end
   object Federkonstante: TEdit
     Left = 64
     Height = 23
     Top = 168
     Width = 88
+    AutoSize = False
+    BorderStyle = bsNone
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -13
+    Font.Name = 'Yu Gothic'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     OnClick = FederkonstanteClick
+    ParentFont = False
     TabOrder = 3
-    Text = 'Federkonstante'
+    Text = 'Federkonstante:'
+    Visible = False
   end
   object Elongation: TEdit
     Left = 64
     Height = 23
     Top = 200
     Width = 88
+    AutoSize = False
+    BorderStyle = bsNone
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -13
+    Font.Name = 'Yu Gothic'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     OnClick = ElongationClick
+    ParentFont = False
     TabOrder = 4
-    Text = 'Elongation'
+    Text = 'Elongation:'
+    Visible = False
   end
   object Berechnen: TButton
     Left = 64
@@ -67,7 +99,14 @@ object Form1: TForm1
     Top = 232
     Width = 88
     Caption = 'Berechnen'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -13
+    Font.Name = 'Yu Gothic UI Semibold'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
     OnClick = BerechnenClick
+    ParentFont = False
     TabOrder = 5
   end
   object GraphErstellen: TButton
@@ -76,7 +115,70 @@ object Form1: TForm1
     Top = 264
     Width = 88
     Caption = 'Graph erstellen'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -13
+    Font.Name = 'Yu Gothic UI Semibold'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
     OnClick = GraphErstellenClick
+    ParentFont = False
     TabOrder = 6
+  end
+  object selectType: TRadioGroup
+    Left = 184
+    Height = 105
+    Top = 102
+    Width = 185
+    AutoFill = True
+    Caption = 'Wähle die Art der Schwingung'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 85
+    ClientWidth = 181
+    Font.CharSet = ANSI_CHARSET
+    Font.Name = 'Yu Gothic UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    Items.Strings = (
+      'Ungedämpftes Federpendel'
+      'Gedämpftes Federpendel'
+    )
+    OnClick = selectTypeClick
+    ParentFont = False
+    TabOrder = 7
+  end
+  object Daempfung: TEdit
+    Left = 64
+    Height = 23
+    Top = 136
+    Width = 88
+    AutoSize = False
+    BorderStyle = bsNone
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -13
+    Font.Name = 'Yu Gothic'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    OnClick = DaempfungClick
+    ParentFont = False
+    TabOrder = 8
+    Text = 'Dämpfungskonstante:'
+    Visible = False
+  end
+  object Topper: TPanel
+    Left = 232
+    Height = 50
+    Top = 256
+    Width = 170
+    Color = clActiveCaption
+    ParentColor = False
+    TabOrder = 9
   end
 end
