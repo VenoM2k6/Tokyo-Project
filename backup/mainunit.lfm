@@ -181,4 +181,52 @@ object Form1: TForm1
     ParentColor = False
     TabOrder = 9
   end
+  object sizeUp: TButton
+    Left = 344
+    Height = 25
+    Top = 392
+    Width = 88
+    Caption = 'Vergrößern'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -13
+    Font.Name = 'Yu Gothic UI Semibold'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    OnClick = sizeUpClick
+    ParentFont = False
+    TabOrder = 10
+  end
+  object sizeDown: TButton
+    Left = 344
+    Height = 25
+    Top = 368
+    Width = 88
+    Caption = 'Verkleinern'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -13
+    Font.Name = 'Yu Gothic UI Semibold'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    OnClick = sizeDownClick
+    ParentFont = False
+    TabOrder = 11
+  end
+  object clearGraph: TButton
+    Left = 344
+    Height = 25
+    Top = 416
+    Width = 88
+    Caption = 'Clear'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -13
+    Font.Name = 'Yu Gothic UI Semibold'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    OnClick = clearGraphClick
+    ParentFont = False
+    TabOrder = 12
+  end
 end

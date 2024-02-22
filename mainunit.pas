@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Grids,
-  ExtCtrls, ComCtrls;
+  ExtCtrls, ComCtrls, Types;
 
 type
 
@@ -14,17 +14,21 @@ type
 
   TForm1 = class(TForm)
     Berechnen: TButton;
+    sizeUp: TButton;
     GraphErstellen: TButton;
     closeButton: TButton;
+    sizeDown: TButton;
     Masse: TEdit;
     Federkonstante: TEdit;
     Elongation: TEdit;
     graph: TImage;
     Daempfung: TEdit;
+    clearGraph: TButton;
     Topper: TPanel;
     selectType: TRadioGroup;
     values: TStringGrid;
     procedure BerechnenClick(Sender: TObject);
+    procedure clearGraphClick(Sender: TObject);
     procedure closeButtonClick(Sender: TObject);
     procedure DaempfungClick(Sender: TObject);
     procedure ElongationClick(Sender: TObject);
@@ -34,10 +38,12 @@ type
     procedure GraphErstellenClick(Sender: TObject);
     procedure MasseClick(Sender: TObject);
     procedure selectTypeClick(Sender: TObject);
+    procedure sizeDownClick(Sender: TObject);
+    procedure sizeUpClick(Sender: TObject);
   private
 
   public
-
+    var sm,sD,sy, sk, m,D,y,k,v,a,zoom: real;
   end;
 
 var
@@ -48,12 +54,12 @@ implementation
 
 {$R *.lfm}
 
-
-
 { TForm1 }
 //Anfang Form Procedures
 procedure TForm1.FormCreate(Sender: TObject);
 begin
+  sk := 0;
+  zoom := 1;
   height := screen.height;
   width := screen.width;
 
@@ -68,7 +74,7 @@ begin
 
   values.width := Round((screen.width - (graph.left+graph.width))) + screen.width div 20;
   values.height := (screen.height div 3)*2;
-  values.left := Round((graph.width+graph.left)) + values.width div 5;
+  values.left := Round((graph.width+graph.left));
   values.top := screen.height div 2 - values.height div 2;
   values.DefaultColWidth := values.DefaultColWidth * 2;
 
@@ -126,20 +132,20 @@ begin
    for j:=0 to 19998 do begin
        with graph do begin
           if selectType.itemindex = 0 then begin
-             canvas.Pixels[j+1, graph.height div 2 + round(strtofloat(values.cells[1, j])*10000)] := clred;
+             canvas.Pixels[j+1, graph.height div 2 + round(strtofloat(values.cells[1, j])*1000)] := clred;
           end;
           if selectType.itemindex = 1 then begin
-             canvas.Pixels[j+1, graph.height div 2 + round(strtofloat(values.cells[1, j])*10000)] := clblue;
+             canvas.Pixels[j+1, graph.height div 2 + round(strtofloat(values.cells[1, j])*1000)] := clblue;
           end;
        end;
    end;
 end;
+
 procedure TForm1.BerechnenClick(Sender: TObject);
 
 var i: integer;
-    m,D,y,k,v,a,t, tsum: real;
+    t, tsum: real;
 begin
-
 if selectType.ItemIndex = 0 then begin
   m := strtofloat(Masse.Text);
   D := strtofloat(Federkonstante.Text);
@@ -147,7 +153,7 @@ if selectType.ItemIndex = 0 then begin
   v := 0;
   tsum := 0;
   for i:=0 to 19998 do begin
-         t := 0.0005;
+         t := 0.005;
          a := -(D/m)*y;
          v := v+a*t;
          y := y+v*t;
@@ -169,7 +175,7 @@ if selectType.ItemIndex = 1 then begin
   v := 0;
   tsum := 0;
   for i:=0 to 19998 do begin
-         t := 0.0005;
+         t := 0.005;
          a := -(D*y+k*v)/m;
          v := v+a*t;
          y := y+v*t;
@@ -183,11 +189,23 @@ if selectType.ItemIndex = 1 then begin
     end;
 end;
 
+sm := strtofloat(Masse.Text);
+sD := strtofloat(Federkonstante.Text);
+sy := strtofloat(Elongation.Text);
+if selectType.itemindex = 1 then begin
+      sk := strtofloat(Daempfung.Text);
+   end;
 Elongation.text := 'Elongation';
 Masse.text := 'Masse';
 Federkonstante.text := 'Federkonstante';
 Daempfung.text := 'Dämpfung';
 end;
+
+procedure TForm1.clearGraphClick(Sender: TObject);
+begin
+   graph.picture := nil;
+end;
+
 procedure TForm1.selectTypeClick(Sender: TObject);
 begin
   if selectType.ItemIndex = 0 then begin
@@ -210,6 +228,125 @@ begin
   Masse.text := 'Masse';
   Federkonstante.text := 'Federkonstante';
   Daempfung.text := 'Dämpfung';
+end;
+
+procedure TForm1.sizeDownClick(Sender: TObject);
+var
+      j:integer;
+      i: integer;
+      t, tsum: real;
+   begin
+     y := sy;
+     D := sD;
+     m := sm;
+     k := sk;
+     graph.Picture:=nil;
+     zoom := zoom - 0.1;
+     if selectType.ItemIndex = 0 then begin
+       v := 0;
+       tsum := 0;
+         for i:=0 to 19998 do begin
+                t := 0.005*(1/zoom);
+                a := -(D/m)*y;
+                v := v+a*t;
+                y := y+v*t;
+                tsum := tsum + t;
+                with values do begin
+                   cells[0, i] := floattostr(tsum);
+                   cells[1, i] := floattostr(y);
+                   cells[2, i] := floattostr(v);
+                   cells[3, i] := floattostr(a);
+                end;
+           end;
+       end;
+     if selectType.ItemIndex = 1 then begin
+       v := 0;
+       tsum := 0;
+       for i:=0 to 19998 do begin
+              t := 0.005*(1/zoom);
+              a := -(D*y+k*v)/m;
+              v := v+a*t;
+              y := y+v*t;
+              tsum := tsum + t;
+              with values do begin
+                 cells[0, i] := floattostr(tsum);
+                 cells[1, i] := floattostr(y);
+                 cells[2, i] := floattostr(v);
+                 cells[3, i] := floattostr(a);
+              end;
+         end;
+         end;
+
+     for j:=0 to 19998 do begin
+        with graph do begin
+           if selectType.itemindex = 0 then begin
+              canvas.Pixels[j+1, graph.height div 2 + round(strtofloat(values.cells[1, j])*1000*zoom)] := clred;
+           end;
+           if selectType.itemindex = 1 then begin
+              canvas.Pixels[j+1, graph.height div 2 + round(strtofloat(values.cells[1, j])*1000*zoom)] := clblue;
+           end;
+        end;
+    end;
+end;
+
+procedure TForm1.sizeUpClick(Sender: TObject);
+   var
+       j:integer;
+       i: integer;
+       t, tsum: real;
+    begin
+      y := sy;
+      D := sD;
+      m := sm;
+      k := sk;
+      graph.Picture:=nil;
+      zoom := zoom + 0.1;
+      if selectType.ItemIndex = 0 then begin
+        v := 0;
+        tsum := 0;
+          for i:=0 to 19998 do begin
+                 t := 0.005*(1/zoom);
+                 a := -(D/m)*y;
+                 v := v+a*t;
+                 y := y+v*t;
+                 tsum := tsum + t;
+                 with values do begin
+                    cells[0, i] := floattostr(tsum);
+                    cells[1, i] := floattostr(y);
+                    cells[2, i] := floattostr(v);
+                    cells[3, i] := floattostr(a);
+                 end;
+            end;
+        end;
+      if selectType.ItemIndex = 1 then begin
+
+        v := 0;
+        tsum := 0;
+        for i:=0 to 19998 do begin
+               t := 0.005*(1/zoom);
+               a := -(D*y+k*v)/m;
+               v := v+a*t;
+               y := y+v*t;
+               tsum := tsum + t;
+               with values do begin
+                  cells[0, i] := floattostr(tsum);
+                  cells[1, i] := floattostr(y);
+                  cells[2, i] := floattostr(v);
+                  cells[3, i] := floattostr(a);
+               end;
+          end;
+          end;
+
+      for j:=0 to 19998 do begin
+         with graph do begin
+            if selectType.itemindex = 0 then begin
+               canvas.Pixels[j+1, graph.height div 2 + round(strtofloat(values.cells[1, j])*1000*zoom)] := clred;
+            end;
+            if selectType.itemindex = 1 then begin
+               canvas.Pixels[j+1, graph.height div 2 + round(strtofloat(values.cells[1, j])*1000*zoom)] := clblue;
+            end;
+         end;
+     end;
 end;
 
 //Anfang Button Procedures
