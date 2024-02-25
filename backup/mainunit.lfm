@@ -1,34 +1,35 @@
 object Form1: TForm1
-  Left = 393
-  Height = 725
-  Top = 141
-  Width = 1378
+  Left = 391
+  Height = 819
+  Top = 626
+  Width = 1659
   Caption = 'Form1'
-  ClientHeight = 725
-  ClientWidth = 1378
+  ClientHeight = 819
+  ClientWidth = 1659
+  DesignTimePPI = 120
   OnCreate = FormCreate
   OnShow = FormShow
-  LCLVersion = '2.2.4.0'
+  LCLVersion = '2.2.6.0'
   object closeButton: TButton
-    Left = 736
-    Height = 25
-    Top = 582
-    Width = 75
+    Left = 920
+    Height = 31
+    Top = 728
+    Width = 94
     Caption = 'Close'
     OnClick = closeButtonClick
     TabOrder = 0
   end
   object graph: TImage
-    Left = 480
-    Height = 424
-    Top = 147
-    Width = 568
+    Left = 600
+    Height = 530
+    Top = 184
+    Width = 710
   end
   object values: TStringGrid
-    Left = 1056
-    Height = 522
-    Top = 112
-    Width = 322
+    Left = 1320
+    Height = 652
+    Top = 140
+    Width = 402
     BorderStyle = bsNone
     Font.CharSet = ANSI_CHARSET
     Font.Name = 'Yu Gothic UI Semibold'
@@ -40,14 +41,14 @@ object Form1: TForm1
     TabOrder = 1
   end
   object Masse: TEdit
-    Left = 64
-    Height = 23
-    Top = 104
-    Width = 88
+    Left = 80
+    Height = 29
+    Top = 130
+    Width = 110
     AutoSize = False
     BorderStyle = bsNone
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -13
+    Font.Height = -16
     Font.Name = 'Yu Gothic'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -58,14 +59,14 @@ object Form1: TForm1
     Visible = False
   end
   object Federkonstante: TEdit
-    Left = 64
-    Height = 23
-    Top = 168
-    Width = 88
+    Left = 80
+    Height = 29
+    Top = 210
+    Width = 110
     AutoSize = False
     BorderStyle = bsNone
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -13
+    Font.Height = -16
     Font.Name = 'Yu Gothic'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -76,14 +77,14 @@ object Form1: TForm1
     Visible = False
   end
   object Elongation: TEdit
-    Left = 64
-    Height = 23
-    Top = 200
-    Width = 88
+    Left = 80
+    Height = 29
+    Top = 250
+    Width = 110
     AutoSize = False
     BorderStyle = bsNone
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -13
+    Font.Height = -16
     Font.Name = 'Yu Gothic'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -94,13 +95,13 @@ object Form1: TForm1
     Visible = False
   end
   object Berechnen: TButton
-    Left = 64
-    Height = 25
-    Top = 232
-    Width = 88
+    Left = 80
+    Height = 31
+    Top = 290
+    Width = 110
     Caption = 'Berechnen'
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -13
+    Font.Height = -16
     Font.Name = 'Yu Gothic UI Semibold'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -110,13 +111,13 @@ object Form1: TForm1
     TabOrder = 5
   end
   object GraphErstellen: TButton
-    Left = 64
-    Height = 25
-    Top = 264
-    Width = 88
+    Left = 80
+    Height = 31
+    Top = 330
+    Width = 110
     Caption = 'Graph erstellen'
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -13
+    Font.Height = -16
     Font.Name = 'Yu Gothic UI Semibold'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -126,10 +127,10 @@ object Form1: TForm1
     TabOrder = 6
   end
   object selectType: TRadioGroup
-    Left = 184
-    Height = 105
-    Top = 102
-    Width = 185
+    Left = 230
+    Height = 131
+    Top = 128
+    Width = 231
     AutoFill = True
     Caption = 'Wähle die Art der Schwingung'
     ChildSizing.LeftRightSpacing = 6
@@ -139,8 +140,8 @@ object Form1: TForm1
     ChildSizing.ShrinkVertical = crsScaleChilds
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 1
-    ClientHeight = 85
-    ClientWidth = 181
+    ClientHeight = 106
+    ClientWidth = 227
     Font.CharSet = ANSI_CHARSET
     Font.Name = 'Yu Gothic UI'
     Font.Pitch = fpVariable
@@ -155,14 +156,14 @@ object Form1: TForm1
     TabOrder = 7
   end
   object Daempfung: TEdit
-    Left = 64
-    Height = 23
-    Top = 136
-    Width = 88
+    Left = 80
+    Height = 29
+    Top = 170
+    Width = 110
     AutoSize = False
     BorderStyle = bsNone
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -13
+    Font.Height = -16
     Font.Name = 'Yu Gothic'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -173,22 +174,22 @@ object Form1: TForm1
     Visible = False
   end
   object Topper: TPanel
-    Left = 232
-    Height = 50
-    Top = 256
-    Width = 170
+    Left = 290
+    Height = 62
+    Top = 320
+    Width = 212
     Color = clActiveCaption
     ParentColor = False
     TabOrder = 9
   end
   object sizeUp: TButton
-    Left = 344
-    Height = 25
-    Top = 392
-    Width = 88
+    Left = 470
+    Height = 31
+    Top = 652
+    Width = 110
     Caption = 'Vergrößern'
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -13
+    Font.Height = -16
     Font.Name = 'Yu Gothic UI Semibold'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -198,13 +199,13 @@ object Form1: TForm1
     TabOrder = 10
   end
   object sizeDown: TButton
-    Left = 344
-    Height = 25
-    Top = 368
-    Width = 88
+    Left = 470
+    Height = 31
+    Top = 622
+    Width = 110
     Caption = 'Verkleinern'
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -13
+    Font.Height = -16
     Font.Name = 'Yu Gothic UI Semibold'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -214,13 +215,13 @@ object Form1: TForm1
     TabOrder = 11
   end
   object clearGraph: TButton
-    Left = 344
-    Height = 25
-    Top = 416
-    Width = 88
+    Left = 470
+    Height = 31
+    Top = 682
+    Width = 110
     Caption = 'Clear'
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -13
+    Font.Height = -16
     Font.Name = 'Yu Gothic UI Semibold'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -228,5 +229,72 @@ object Form1: TForm1
     OnClick = clearGraphClick
     ParentFont = False
     TabOrder = 12
+  end
+  object Tutorial: TButton
+    Left = 547
+    Height = 31
+    Top = 46
+    Width = 94
+    Caption = 'Tutorial'
+    TabOrder = 13
+    Visible = False
+  end
+  object Settings: TButton
+    Left = 656
+    Height = 31
+    Top = 46
+    Width = 94
+    Caption = 'Settings'
+    TabOrder = 14
+    Visible = False
+  end
+  object Weiter: TButton
+    Left = 768
+    Height = 31
+    Top = 46
+    Width = 94
+    Caption = 'Continue'
+    OnClick = WeiterClick
+    TabOrder = 15
+    Visible = False
+  end
+  object CloseMenu: TButton
+    Left = 872
+    Height = 31
+    Top = 46
+    Width = 94
+    Caption = 'Close'
+    OnClick = CloseMenuClick
+    TabOrder = 16
+    Visible = False
+  end
+  object Zwischenmenu: TButton
+    Left = 784
+    Height = 31
+    Top = 728
+    Width = 120
+    Caption = 'Zwischenmenü'
+    OnClick = ZwischenmenuClick
+    TabOrder = 17
+  end
+  object Panel2: TPanel
+    Left = 288
+    Height = 63
+    Top = 400
+    Width = 213
+    Color = clSkyBlue
+    ParentColor = False
+    TabOrder = 18
+    Visible = False
+  end
+  object Panel3: TPanel
+    Left = 290
+    Height = 63
+    Top = 496
+    Width = 213
+    Color = clMedGray
+    ParentColor = False
+    TabOrder = 19
+    Visible = False
   end
 end

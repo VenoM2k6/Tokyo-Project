@@ -14,6 +14,13 @@ type
 
   TForm1 = class(TForm)
     Berechnen: TButton;
+    Panel3: TPanel;
+    Panel2: TPanel;
+    Zwischenmenu: TButton;
+    Tutorial: TButton;
+    Settings: TButton;
+    Weiter: TButton;
+    CloseMenu: TButton;
     sizeUp: TButton;
     GraphErstellen: TButton;
     closeButton: TButton;
@@ -30,6 +37,7 @@ type
     procedure BerechnenClick(Sender: TObject);
     procedure clearGraphClick(Sender: TObject);
     procedure closeButtonClick(Sender: TObject);
+    procedure CloseMenuClick(Sender: TObject);
     procedure DaempfungClick(Sender: TObject);
     procedure ElongationClick(Sender: TObject);
     procedure FederkonstanteClick(Sender: TObject);
@@ -40,6 +48,8 @@ type
     procedure selectTypeClick(Sender: TObject);
     procedure sizeDownClick(Sender: TObject);
     procedure sizeUpClick(Sender: TObject);
+    procedure WeiterClick(Sender: TObject);
+    procedure ZwischenmenuClick(Sender: TObject);
   private
 
   public
@@ -71,6 +81,11 @@ begin
   closeButton.Height := screen.height div 15;
   closeButton.Left := screen.width div 2 - closeButton.width div 2;
   closeButton.Top := Round((graph.top + graph.height)*1.05);
+
+  Zwischenmenu.Width := screen.width div 15;
+  Zwischenmenu.Height := screen.height div 15;
+  Zwischenmenu.Left := screen.width div 2 - Zwischenmenu.width div 2 - CloseButton.Width + 2;;
+  Zwischenmenu.Top := Round((graph.top + graph.height)*1.05);
 
   values.width := Round((screen.width - (graph.left+graph.width))) + screen.width div 20;
   values.height := (screen.height div 3)*2;
@@ -349,6 +364,62 @@ procedure TForm1.sizeUpClick(Sender: TObject);
      end;
 end;
 
+procedure TForm1.WeiterClick(Sender: TObject);
+begin
+  Tutorial.Visible := false;
+  Settings.visible := false;
+  Weiter.visible := false;
+  CloseMenu.visible := false;
+  Panel2.visible := false;
+  Panel3.visible := false;
+end;
+
+procedure TForm1.ZwischenmenuClick(Sender: TObject);
+begin
+
+  Tutorial.visible := true;
+  Settings.visible := true;
+  Weiter.visible := true;
+  CloseMenu.Visible := true;
+  Panel2.visible := true;
+  Panel3.visible := true;
+
+  Panel3.height := screen.height;
+  Panel3.width := screen.Width;
+  Panel3.Top := 0;
+  Panel3.Left := 0;
+
+  Panel2.height := screen.height div 2;
+  Panel2.Top := screen.height div 2 - Panel2.height div 2;
+  Panel2.width :=  screen.width div 2;
+  Panel2.Left := screen.width div 2 - Panel2.width div 2;
+  Panel2.BringToFront;
+
+  Tutorial.Width := screen.width div 5;
+  Tutorial.Height := screen.height div 12;
+  Tutorial.Left := screen.width div 2 - Tutorial.width div 2;
+  Tutorial.Top := screen.height div 2 - Panel2.height div 2+ Tutorial.height;
+  Tutorial.bringtofront;
+
+  Settings.Width := screen.width div 5;
+  Settings.Height := screen.height div 12;
+  Settings.Left := screen.width div 2 - Settings.width div 2;
+  Settings.Top := screen.height div 2 - Panel2.height div 2+ Settings.height*2;
+  Settings.bringtofront;
+
+  Weiter.Width := screen.width div 5;
+  Weiter.Height := screen.height div 12;
+  Weiter.Left := screen.width div 2 - Weiter.width div 2;
+  Weiter.Top := screen.height div 2 - Panel2.height div 2+ Settings.height*3;
+  Weiter.bringtofront;
+
+  CloseMenu.Width := screen.width div 5;
+  CloseMenu.Height := screen.height div 12;
+  CloseMenu.Left := screen.width div 2 - CloseMenu.width div 2;
+  CloseMenu.Top := screen.height div 2 - Panel2.height div 2 + Settings.height*4;
+  CloseMenu.bringtofront;
+end;
+
 //Anfang Button Procedures
 
 procedure TForm1.MasseClick(Sender: TObject);
@@ -357,6 +428,11 @@ begin
 end;
 
 procedure TForm1.closeButtonClick(Sender: TObject);
+begin
+  close;
+end;
+
+procedure TForm1.CloseMenuClick(Sender: TObject);
 begin
   close;
 end;
