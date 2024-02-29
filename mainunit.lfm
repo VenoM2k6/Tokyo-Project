@@ -1,10 +1,10 @@
 object Form1: TForm1
   Left = 262
-  Height = 655
-  Top = 109
+  Height = 1008
+  Top = 0
   Width = 1327
   Caption = 'Form1'
-  ClientHeight = 655
+  ClientHeight = 1008
   ClientWidth = 1327
   OnCreate = FormCreate
   OnShow = FormShow
@@ -147,9 +147,10 @@ object Form1: TForm1
     Font.Quality = fqDraft
     Font.Style = [fsBold]
     Items.Strings = (
-      'Ungedämpftes Fadenpendel'
-      'Gedämpftes Federpendel'
       'Ungedämpftes Federpendel'
+      'Gedämpftes Federpendel'
+      'Ungedämpftes Fadenpendel'
+      'Gedämpftes Fadenpendel'
     )
     OnClick = selectTypeClick
     ParentFont = False
@@ -183,9 +184,9 @@ object Form1: TForm1
     TabOrder = 9
   end
   object sizeUp: TButton
-    Left = 376
+    Left = 144
     Height = 25
-    Top = 522
+    Top = 832
     Width = 88
     Caption = 'Vergrößern'
     Font.CharSet = ANSI_CHARSET
@@ -199,9 +200,9 @@ object Form1: TForm1
     TabOrder = 10
   end
   object sizeDown: TButton
-    Left = 376
+    Left = 144
     Height = 25
-    Top = 498
+    Top = 808
     Width = 88
     Caption = 'Verkleinern'
     Font.CharSet = ANSI_CHARSET
@@ -215,9 +216,9 @@ object Form1: TForm1
     TabOrder = 11
   end
   object clearGraph: TButton
-    Left = 376
+    Left = 144
     Height = 25
-    Top = 546
+    Top = 856
     Width = 88
     Caption = 'Clear'
     Font.CharSet = ANSI_CHARSET
