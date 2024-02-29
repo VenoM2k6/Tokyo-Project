@@ -14,6 +14,8 @@ type
 
   TForm1 = class(TForm)
     Berechnen: TButton;
+    Ortsfaktor: TEdit;
+    Laenge: TEdit;
     Panel3: TPanel;
     Panel2: TPanel;
     Zwischenmenu: TButton;
@@ -44,7 +46,9 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure GraphErstellenClick(Sender: TObject);
+    procedure LaengeClick(Sender: TObject);
     procedure MasseClick(Sender: TObject);
+    procedure OrtsfaktorClick(Sender: TObject);
     procedure selectTypeClick(Sender: TObject);
     procedure sizeDownClick(Sender: TObject);
     procedure sizeUpClick(Sender: TObject);
@@ -53,7 +57,7 @@ type
   private
 
   public
-    var sm,sD,sy, sk, m,D,y,k,v,a,zoom: real;
+    var sm,sD,sy, sk, m,D,y,l,g,k,v,a,zoom: real;
   end;
 
 var
@@ -132,6 +136,16 @@ begin
   GraphErstellen.left := Berechnen.left;
   GraphErstellen.width := Berechnen.width;
   GraphErstellen.top := Berechnen.top + Berechnen.height;
+
+  Laenge.height := Elongation.height;
+  Laenge.width := Elongation.width;
+  Laenge.top := Elongation.top + Laenge.height;
+  Laenge.left := Elongation.left;
+
+  Ortsfaktor.height := Elongation.height;
+  Ortsfaktor.width := Elongation.width;
+  Ortsfaktor.top := Laenge.top + Ortsfaktor.height;
+  Ortsfaktor.left := Laenge.left;
 end;
 
 procedure TForm1.FormShow(Sender: TObject);
@@ -140,7 +154,6 @@ begin
   values.rowcount:=19999;
   values.colcount:=4;
 end;
-
 procedure TForm1.GraphErstellenClick(Sender: TObject);
 var j: integer;
 begin
@@ -152,75 +165,103 @@ begin
           if selectType.itemindex = 1 then begin
              canvas.Pixels[j+1, graph.height div 2 + round(strtofloat(values.cells[1, j])*1000)] := clblue;
           end;
+          if selectType.itemindex = 2 then begin
+             canvas.Pixels[j+1, graph.height div 2 + round(strtofloat(values.cells[1, j])*1000)] := clyellow;
+          end;
        end;
    end;
 end;
-
 procedure TForm1.BerechnenClick(Sender: TObject);
 
 var i: integer;
     t, tsum: real;
 begin
-if selectType.ItemIndex = 0 then begin
-  m := strtofloat(Masse.Text);
-  D := strtofloat(Federkonstante.Text);
-  y := strtofloat(Elongation.Text);
-  v := 0;
-  tsum := 0;
-  for i:=0 to 19998 do begin
-         t := 0.005;
-         a := -(D/m)*y;
-         v := v+a*t;
-         y := y+v*t;
-         tsum := tsum + t;
-         with values do begin
-            cells[0, i] := floattostr(tsum);
-            cells[1, i] := floattostr(y);
-            cells[2, i] := floattostr(v);
-            cells[3, i] := floattostr(a);
-         end;
-    end;
-end;
-if selectType.ItemIndex = 1 then begin
+  if selectType.ItemIndex = 0 then begin
+    m := strtofloat(Masse.Text);
+    D := strtofloat(Federkonstante.Text);
+    y := strtofloat(Elongation.Text);
+    v := 0;
+    tsum := 0;
+    for i:=0 to 19998 do begin
+           t := 0.005;
+           a := -(D/m)*y;
+           v := v+a*t;
+           y := y+v*t;
+           tsum := tsum + t;
+           with values do begin
+              cells[0, i] := floattostr(tsum);
+              cells[1, i] := floattostr(y);
+              cells[2, i] := floattostr(v);
+              cells[3, i] := floattostr(a);
+           end;
+      end;
+  end;
+  if selectType.ItemIndex = 1 then begin
+    m := strtofloat(Masse.Text);
+    D := strtofloat(Federkonstante.Text);
+    y := strtofloat(Elongation.Text);
+    k := strtofloat(Daempfung.text);
+    v := 0;
+    tsum := 0;
+    for i:=0 to 19998 do begin
+           t := 0.005;
+           a := -(D*y+k*v)/m;
+           v := v+a*t;
+           y := y+v*t;
+           tsum := tsum + t;
+           with values do begin
+              cells[0, i] := floattostr(tsum);
+              cells[1, i] := floattostr(y);
+              cells[2, i] := floattostr(v);
+              cells[3, i] := floattostr(a);
+           end;
+      end;
+  end;
+  if selectType.ItemIndex = 2 then begin
+    m := strtofloat(Masse.Text);
+    y := strtofloat(Elongation.Text);
+    l := strtofloat(Laenge.Text);
+    g := strtofloat(Ortsfaktor.Text);
+    v := 0;
+    D := (m*g)/l;
+    tsum := 0;
+    for i:=0 to 19998 do begin
+           t := 0.005;
+           a := -(D/m)*y;
+           v := v+a*t;
+           y := y+v*t;
+           tsum := tsum + t;
+           with values do begin
+              cells[0, i] := floattostr(tsum);
+              cells[1, i] := floattostr(y);
+              cells[2, i] := floattostr(v);
+              cells[3, i] := floattostr(a);
+           end;
+      end;
+  end;
 
-  m := strtofloat(Masse.Text);
-  D := strtofloat(Federkonstante.Text);
-  y := strtofloat(Elongation.Text);
-  k := strtofloat(Daempfung.text);
-  v := 0;
-  tsum := 0;
-  for i:=0 to 19998 do begin
-         t := 0.005;
-         a := -(D*y+k*v)/m;
-         v := v+a*t;
-         y := y+v*t;
-         tsum := tsum + t;
-         with values do begin
-            cells[0, i] := floattostr(tsum);
-            cells[1, i] := floattostr(y);
-            cells[2, i] := floattostr(v);
-            cells[3, i] := floattostr(a);
-         end;
-    end;
-end;
 
-sm := strtofloat(Masse.Text);
-sD := strtofloat(Federkonstante.Text);
-sy := strtofloat(Elongation.Text);
-if selectType.itemindex = 1 then begin
-      sk := strtofloat(Daempfung.Text);
-   end;
-Elongation.text := 'Elongation';
-Masse.text := 'Masse';
-Federkonstante.text := 'Federkonstante';
-Daempfung.text := 'Dämpfung';
-end;
+  sm := strtofloat(Masse.Text);
+  sD := D;
+  sy := strtofloat(Elongation.Text);
+  if not selectType.Itemindex = 2 then begin
+      D := strtofloat(Federkonstante.Text);
+      end;
+  if selectType.itemindex = 1 then begin
+        sk := strtofloat(Daempfung.Text);
+     end;
 
+  Elongation.text := 'Elongation: ';
+  Masse.text := 'Masse: ';
+  Federkonstante.text := 'Federkonstante: ';
+  Daempfung.text := 'Dämpfung: ';
+  Laenge.text := 'Länge: ';
+  Ortsfaktor.text := 'Ortsfaktor: ';
+end;
 procedure TForm1.clearGraphClick(Sender: TObject);
 begin
    graph.picture := nil;
 end;
-
 procedure TForm1.selectTypeClick(Sender: TObject);
 begin
   if selectType.ItemIndex = 0 then begin
@@ -239,12 +280,22 @@ begin
      Berechnen.visible := true;
      GraphErstellen.visible := true;
   end;
-  Elongation.text := 'Elongation';
-  Masse.text := 'Masse';
-  Federkonstante.text := 'Federkonstante';
-  Daempfung.text := 'Dämpfung';
+  if selectType.ItemIndex = 2 then begin
+     Elongation.visible := true;
+     Masse.visible := true;
+     Federkonstante.visible := true;
+     Laenge.visible := true;
+     Ortsfaktor.visible := true;
+     Berechnen.visible := true;
+     GraphErstellen.visible := true;
+  end;
+  Elongation.text := 'Elongation: ';
+  Masse.text := 'Masse: ';
+  Federkonstante.text := 'Federkonstante: ';
+  Daempfung.text := 'Dämpfung: ';
+  Laenge.text := 'Länge: ';
+  Ortsfaktor.text := 'Ortsfaktor';
 end;
-
 procedure TForm1.sizeDownClick(Sender: TObject);
 var
       j:integer;
@@ -291,7 +342,23 @@ var
               end;
          end;
          end;
-
+     if selectType.ItemIndex = 0 then begin
+       v := 0;
+       tsum := 0;
+         for i:=0 to 19998 do begin
+                t := 0.005*(1/zoom);
+                a := -(D/m)*y;
+                v := v+a*t;
+                y := y+v*t;
+                tsum := tsum + t;
+                with values do begin
+                   cells[0, i] := floattostr(tsum);
+                   cells[1, i] := floattostr(y);
+                   cells[2, i] := floattostr(v);
+                   cells[3, i] := floattostr(a);
+                end;
+           end;
+       end;
      for j:=0 to 19998 do begin
         with graph do begin
            if selectType.itemindex = 0 then begin
@@ -300,10 +367,12 @@ var
            if selectType.itemindex = 1 then begin
               canvas.Pixels[j+1, graph.height div 2 + round(strtofloat(values.cells[1, j])*1000*zoom)] := clblue;
            end;
+           if selectType.itemindex = 2  then begin
+              canvas.Pixels[j+1, graph.height div 2 + round(strtofloat(values.cells[1, j])*1000*zoom)] := clyellow;
+           end;
         end;
     end;
 end;
-
 procedure TForm1.sizeUpClick(Sender: TObject);
    var
        j:integer;
@@ -316,6 +385,8 @@ procedure TForm1.sizeUpClick(Sender: TObject);
       k := sk;
       graph.Picture:=nil;
       zoom := zoom + 0.1;
+
+
       if selectType.ItemIndex = 0 then begin
         v := 0;
         tsum := 0;
@@ -351,6 +422,23 @@ procedure TForm1.sizeUpClick(Sender: TObject);
                end;
           end;
           end;
+      if selectType.ItemIndex = 2 then begin
+        v := 0;
+        tsum := 0;
+          for i:=0 to 19998 do begin
+                 t := 0.005*(1/zoom);
+                 a := -(D/m)*y;
+                 v := v+a*t;
+                 y := y+v*t;
+                 tsum := tsum + t;
+                 with values do begin
+                    cells[0, i] := floattostr(tsum);
+                    cells[1, i] := floattostr(y);
+                    cells[2, i] := floattostr(v);
+                    cells[3, i] := floattostr(a);
+                 end;
+            end;
+        end;
 
       for j:=0 to 19998 do begin
          with graph do begin
@@ -360,10 +448,12 @@ procedure TForm1.sizeUpClick(Sender: TObject);
             if selectType.itemindex = 1 then begin
                canvas.Pixels[j+1, graph.height div 2 + round(strtofloat(values.cells[1, j])*1000*zoom)] := clblue;
             end;
+            if selectType.itemindex = 2 then begin
+               canvas.Pixels[j+1, graph.height div 2 + round(strtofloat(values.cells[1, j])*1000*zoom)] := clyellow;
+            end;
          end;
      end;
 end;
-
 procedure TForm1.WeiterClick(Sender: TObject);
 begin
   Tutorial.Visible := false;
@@ -373,11 +463,8 @@ begin
   Panel2.visible := false;
   Panel3.visible := false;
 end;
-
 procedure TForm1.ZwischenmenuClick(Sender: TObject);
 begin
-  Panel2.AlphaBlend := True;
-  Panel2.AlphaBlendValue := 128;
 
   Tutorial.visible := true;
   Settings.visible := true;
@@ -424,9 +511,17 @@ end;
 
 //Anfang Button Procedures
 
+procedure TForm1.LaengeClick(Sender: TObject);
+begin
+   Laenge.text := '';
+end;
 procedure TForm1.MasseClick(Sender: TObject);
 begin
   Masse.text := '';
+end;
+procedure TForm1.OrtsfaktorClick(Sender: TObject);
+begin
+  Ortsfaktor.text := '';
 end;
 
 procedure TForm1.closeButtonClick(Sender: TObject);

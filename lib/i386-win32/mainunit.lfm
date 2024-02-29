@@ -1,11 +1,11 @@
 object Form1: TForm1
-  Left = 393
-  Height = 725
-  Top = 141
-  Width = 1378
+  Left = 262
+  Height = 655
+  Top = 109
+  Width = 1327
   Caption = 'Form1'
-  ClientHeight = 725
-  ClientWidth = 1378
+  ClientHeight = 655
+  ClientWidth = 1327
   OnCreate = FormCreate
   OnShow = FormShow
   LCLVersion = '2.2.4.0'
@@ -147,8 +147,9 @@ object Form1: TForm1
     Font.Quality = fqDraft
     Font.Style = [fsBold]
     Items.Strings = (
-      'Ungedämpftes Federpendel'
+      'Ungedämpftes Fadenpendel'
       'Gedämpftes Federpendel'
+      'Ungedämpftes Federpendel'
     )
     OnClick = selectTypeClick
     ParentFont = False
@@ -182,9 +183,9 @@ object Form1: TForm1
     TabOrder = 9
   end
   object sizeUp: TButton
-    Left = 344
+    Left = 376
     Height = 25
-    Top = 392
+    Top = 522
     Width = 88
     Caption = 'Vergrößern'
     Font.CharSet = ANSI_CHARSET
@@ -198,9 +199,9 @@ object Form1: TForm1
     TabOrder = 10
   end
   object sizeDown: TButton
-    Left = 344
+    Left = 376
     Height = 25
-    Top = 368
+    Top = 498
     Width = 88
     Caption = 'Verkleinern'
     Font.CharSet = ANSI_CHARSET
@@ -214,9 +215,9 @@ object Form1: TForm1
     TabOrder = 11
   end
   object clearGraph: TButton
-    Left = 344
+    Left = 376
     Height = 25
-    Top = 416
+    Top = 546
     Width = 88
     Caption = 'Clear'
     Font.CharSet = ANSI_CHARSET
@@ -228,5 +229,108 @@ object Form1: TForm1
     OnClick = clearGraphClick
     ParentFont = False
     TabOrder = 12
+  end
+  object Tutorial: TButton
+    Left = 440
+    Height = 25
+    Top = 37
+    Width = 75
+    Caption = 'Tutorial'
+    TabOrder = 13
+    Visible = False
+  end
+  object Settings: TButton
+    Left = 525
+    Height = 25
+    Top = 37
+    Width = 75
+    Caption = 'Settings'
+    TabOrder = 14
+    Visible = False
+  end
+  object Weiter: TButton
+    Left = 614
+    Height = 25
+    Top = 37
+    Width = 75
+    Caption = 'Continue'
+    OnClick = WeiterClick
+    TabOrder = 15
+    Visible = False
+  end
+  object CloseMenu: TButton
+    Left = 698
+    Height = 25
+    Top = 37
+    Width = 75
+    Caption = 'Close'
+    OnClick = CloseMenuClick
+    TabOrder = 16
+    Visible = False
+  end
+  object Zwischenmenu: TButton
+    Left = 627
+    Height = 25
+    Top = 582
+    Width = 96
+    Caption = 'Zwischenmenü'
+    OnClick = ZwischenmenuClick
+    TabOrder = 17
+  end
+  object Panel2: TPanel
+    Left = 230
+    Height = 50
+    Top = 320
+    Width = 170
+    Color = clSkyBlue
+    ParentColor = False
+    TabOrder = 18
+    Visible = False
+  end
+  object Panel3: TPanel
+    Left = 224
+    Height = 50
+    Top = 408
+    Width = 170
+    Color = clMedGray
+    ParentColor = False
+    TabOrder = 19
+    Visible = False
+  end
+  object Ortsfaktor: TEdit
+    Left = 64
+    Height = 23
+    Top = 72
+    Width = 88
+    AutoSize = False
+    BorderStyle = bsNone
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -13
+    Font.Name = 'Yu Gothic'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    OnClick = OrtsfaktorClick
+    ParentFont = False
+    TabOrder = 20
+    Text = 'Ortstaktor:'
+    Visible = False
+  end
+  object Laenge: TEdit
+    Left = 64
+    Height = 23
+    Top = 40
+    Width = 88
+    AutoSize = False
+    BorderStyle = bsNone
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -13
+    Font.Name = 'Yu Gothic'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    OnClick = LaengeClick
+    ParentFont = False
+    TabOrder = 21
+    Text = 'Länge'
+    Visible = False
   end
 end
