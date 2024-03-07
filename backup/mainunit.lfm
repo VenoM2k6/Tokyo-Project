@@ -1,23 +1,15 @@
 object Form1: TForm1
-  Left = 262
+  Left = 378
   Height = 1008
-  Top = 0
+  Top = 126
   Width = 1327
   Caption = 'Form1'
-  ClientHeight = 1008
+  ClientHeight = 988
   ClientWidth = 1327
+  Menu = MainMenu1
   OnCreate = FormCreate
   OnShow = FormShow
   LCLVersion = '2.2.4.0'
-  object closeButton: TButton
-    Left = 736
-    Height = 25
-    Top = 582
-    Width = 75
-    Caption = 'Close'
-    OnClick = closeButtonClick
-    TabOrder = 0
-  end
   object graph: TImage
     Left = 480
     Height = 424
@@ -37,7 +29,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     RowCount = 10001
-    TabOrder = 1
+    TabOrder = 0
   end
   object Masse: TEdit
     Left = 64
@@ -53,7 +45,7 @@ object Form1: TForm1
     Font.Quality = fqDraft
     OnClick = MasseClick
     ParentFont = False
-    TabOrder = 2
+    TabOrder = 1
     Text = 'Masse:'
     Visible = False
   end
@@ -71,7 +63,7 @@ object Form1: TForm1
     Font.Quality = fqDraft
     OnClick = FederkonstanteClick
     ParentFont = False
-    TabOrder = 3
+    TabOrder = 2
     Text = 'Federkonstante:'
     Visible = False
   end
@@ -89,7 +81,7 @@ object Form1: TForm1
     Font.Quality = fqDraft
     OnClick = ElongationClick
     ParentFont = False
-    TabOrder = 4
+    TabOrder = 3
     Text = 'Elongation:'
     Visible = False
   end
@@ -107,7 +99,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     OnClick = BerechnenClick
     ParentFont = False
-    TabOrder = 5
+    TabOrder = 4
   end
   object GraphErstellen: TButton
     Left = 64
@@ -123,7 +115,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     OnClick = GraphErstellenClick
     ParentFont = False
-    TabOrder = 6
+    TabOrder = 5
   end
   object selectType: TRadioGroup
     Left = 184
@@ -154,7 +146,7 @@ object Form1: TForm1
     )
     OnClick = selectTypeClick
     ParentFont = False
-    TabOrder = 7
+    TabOrder = 6
   end
   object Daempfung: TEdit
     Left = 64
@@ -170,7 +162,7 @@ object Form1: TForm1
     Font.Quality = fqDraft
     OnClick = DaempfungClick
     ParentFont = False
-    TabOrder = 8
+    TabOrder = 7
     Text = 'Dämpfungskonstante:'
     Visible = False
   end
@@ -181,7 +173,7 @@ object Form1: TForm1
     Width = 170
     Color = clActiveCaption
     ParentColor = False
-    TabOrder = 9
+    TabOrder = 8
   end
   object sizeUp: TButton
     Left = 144
@@ -197,7 +189,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     OnClick = sizeUpClick
     ParentFont = False
-    TabOrder = 10
+    TabOrder = 9
   end
   object sizeDown: TButton
     Left = 144
@@ -213,7 +205,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     OnClick = sizeDownClick
     ParentFont = False
-    TabOrder = 11
+    TabOrder = 10
   end
   object clearGraph: TButton
     Left = 144
@@ -229,7 +221,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     OnClick = clearGraphClick
     ParentFont = False
-    TabOrder = 12
+    TabOrder = 11
   end
   object Tutorial: TButton
     Left = 440
@@ -237,7 +229,7 @@ object Form1: TForm1
     Top = 37
     Width = 75
     Caption = 'Tutorial'
-    TabOrder = 13
+    TabOrder = 12
     Visible = False
   end
   object Settings: TButton
@@ -246,7 +238,8 @@ object Form1: TForm1
     Top = 37
     Width = 75
     Caption = 'Settings'
-    TabOrder = 14
+    OnClick = SettingsClick
+    TabOrder = 13
     Visible = False
   end
   object Weiter: TButton
@@ -256,7 +249,7 @@ object Form1: TForm1
     Width = 75
     Caption = 'Continue'
     OnClick = WeiterClick
-    TabOrder = 15
+    TabOrder = 14
     Visible = False
   end
   object CloseMenu: TButton
@@ -264,9 +257,9 @@ object Form1: TForm1
     Height = 25
     Top = 37
     Width = 75
-    Caption = 'Close'
+    Caption = 'Exit'
     OnClick = CloseMenuClick
-    TabOrder = 16
+    TabOrder = 15
     Visible = False
   end
   object Zwischenmenu: TButton
@@ -276,7 +269,7 @@ object Form1: TForm1
     Width = 96
     Caption = 'Zwischenmenü'
     OnClick = ZwischenmenuClick
-    TabOrder = 17
+    TabOrder = 16
   end
   object Panel2: TPanel
     Left = 230
@@ -285,7 +278,7 @@ object Form1: TForm1
     Width = 170
     Color = clSkyBlue
     ParentColor = False
-    TabOrder = 18
+    TabOrder = 17
     Visible = False
   end
   object Panel3: TPanel
@@ -295,7 +288,7 @@ object Form1: TForm1
     Width = 170
     Color = clMedGray
     ParentColor = False
-    TabOrder = 19
+    TabOrder = 18
     Visible = False
   end
   object Ortsfaktor: TEdit
@@ -312,7 +305,7 @@ object Form1: TForm1
     Font.Quality = fqDraft
     OnClick = OrtsfaktorClick
     ParentFont = False
-    TabOrder = 20
+    TabOrder = 19
     Text = 'Ortstaktor:'
     Visible = False
   end
@@ -330,8 +323,28 @@ object Form1: TForm1
     Font.Quality = fqDraft
     OnClick = LaengeClick
     ParentFont = False
-    TabOrder = 21
+    TabOrder = 20
     Text = 'Länge'
     Visible = False
+  end
+  object MainMenu1: TMainMenu
+    Left = 328
+    Top = 544
+    object xclear: TMenuItem
+      Caption = 'Clear'
+      OnClick = clearGraphClick
+    end
+    object Help: TMenuItem
+      Caption = 'Help'
+      OnClick = HelpClick
+    end
+    object settings2: TMenuItem
+      Caption = 'Settings'
+      OnClick = SettingsClick
+    end
+    object xexit: TMenuItem
+      Caption = 'Exit'
+      OnClick = xexitClick
+    end
   end
 end

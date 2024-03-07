@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Grids,
-  ExtCtrls, ComCtrls, Types;
+  ExtCtrls, ComCtrls, Menus, Types;
 
 type
 
@@ -14,6 +14,11 @@ type
 
   TForm1 = class(TForm)
     Berechnen: TButton;
+    MainMenu1: TMainMenu;
+    xclear: TMenuItem;
+    Help: TMenuItem;
+    settings2: TMenuItem;
+    xexit: TMenuItem;
     Ortsfaktor: TEdit;
     Laenge: TEdit;
     Panel3: TPanel;
@@ -25,7 +30,6 @@ type
     CloseMenu: TButton;
     sizeUp: TButton;
     GraphErstellen: TButton;
-    closeButton: TButton;
     sizeDown: TButton;
     Masse: TEdit;
     Federkonstante: TEdit;
@@ -46,13 +50,17 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure GraphErstellenClick(Sender: TObject);
+    procedure HelpClick(Sender: TObject);
     procedure LaengeClick(Sender: TObject);
     procedure MasseClick(Sender: TObject);
     procedure OrtsfaktorClick(Sender: TObject);
     procedure selectTypeClick(Sender: TObject);
+    procedure settings2Click(Sender: TObject);
+    procedure SettingsClick(Sender: TObject);
     procedure sizeDownClick(Sender: TObject);
     procedure sizeUpClick(Sender: TObject);
     procedure WeiterClick(Sender: TObject);
+    procedure xexitClick(Sender: TObject);
     procedure ZwischenmenuClick(Sender: TObject);
   private
 
@@ -81,14 +89,10 @@ begin
   graph.height := screen.height div 2;
   graph.top := screen.height div 2 - graph.height div 2;
   graph.left := screen.width div 2 - graph.width div 2;
-  closeButton.Width := screen.width div 15;
-  closeButton.Height := screen.height div 15;
-  closeButton.Left := screen.width div 2 - closeButton.width div 2;
-  closeButton.Top := Round((graph.top + graph.height)*1.05);
 
   Zwischenmenu.Width := screen.width div 15;
   Zwischenmenu.Height := screen.height div 15;
-  Zwischenmenu.Left := screen.width div 2 - Zwischenmenu.width div 2 - CloseButton.Width + 2;;
+  Zwischenmenu.Left := screen.width div 2 - Zwischenmenu.width ;;
   Zwischenmenu.Top := Round((graph.top + graph.height)*1.05);
 
   values.width := Round((screen.width - (graph.left+graph.width))) + screen.width div 20;
@@ -146,15 +150,24 @@ begin
   Ortsfaktor.width := Elongation.width;
   Ortsfaktor.top := Laenge.top + Ortsfaktor.height;
   Ortsfaktor.left := Laenge.left;
+
+
 end;
 procedure TForm1.FormShow(Sender: TObject);
+var
+  i,j:integer;
 begin
   WindowState := wsMaximized;
   values.rowcount:=19999;
   values.colcount:=4;
+  for i:=1 to graph.width do begin
+     for j:=1 to graph.height do begin
+        graph.canvas.Pixels[i, j] := clwhite;
+     end;
+  end;
 end;
 procedure TForm1.GraphErstellenClick(Sender: TObject);
-var j: integer;
+var i,j: integer;
 begin
    for j:=0 to 19998 do begin
        with graph do begin
@@ -173,6 +186,13 @@ begin
        end;
    end;
 end;
+procedure TForm1.HelpClick(Sender: TObject);
+begin
+  ShowMessage ('Folgt demnächst');
+end;
+
+
+
 procedure TForm1.BerechnenClick(Sender: TObject);
 
 var i: integer;
@@ -284,7 +304,11 @@ begin
 end;
 procedure TForm1.clearGraphClick(Sender: TObject);
 begin
-   graph.picture := nil;
+   for i:=1 to graph.width do begin
+     for j:=1 to graph.height do begin
+        graph.canvas.Pixels[i, j] := clwhite;
+     end;
+  end;
 end;
 procedure TForm1.selectTypeClick(Sender: TObject);
 begin
@@ -312,7 +336,7 @@ begin
   if selectType.ItemIndex = 2 then begin
      Elongation.visible := true;
      Masse.visible := true;
-     Federkonstante.visible := true;
+     Federkonstante.visible := false;
      Laenge.visible := true;
      Ortsfaktor.visible := true;
      Berechnen.visible := true;
@@ -322,7 +346,7 @@ begin
   if selectType.ItemIndex = 3 then begin
      Elongation.visible := true;
      Masse.visible := true;
-     Federkonstante.visible := true;
+     Federkonstante.visible := false;
      Laenge.visible := true;
      Ortsfaktor.visible := true;
      Berechnen.visible := true;
@@ -337,6 +361,18 @@ begin
   Laenge.text := 'Länge: ';
   Ortsfaktor.text := 'Ortsfaktor: ';
 end;
+
+procedure TForm1.settings2Click(Sender: TObject);
+begin
+
+end;
+
+
+procedure TForm1.SettingsClick(Sender: TObject);
+begin
+   showmessage('Folgt demnächst');
+end;
+
 procedure TForm1.sizeDownClick(Sender: TObject);
 var
       j:integer;
@@ -434,13 +470,13 @@ var
     end;
 end;
 end;
-
 procedure TForm1.sizeUpClick(Sender: TObject);
    var
        j:integer;
        i: integer;
        t, tsum: real;
     begin
+
       y := sy;
       D := sD;
       m := sm;
@@ -544,6 +580,12 @@ begin
   Panel2.visible := false;
   Panel3.visible := false;
 end;
+
+procedure TForm1.xexitClick(Sender: TObject);
+begin
+  close;
+end;
+
 procedure TForm1.ZwischenmenuClick(Sender: TObject);
 begin
 
@@ -600,6 +642,7 @@ procedure TForm1.MasseClick(Sender: TObject);
 begin
   Masse.text := '';
 end;
+
 procedure TForm1.OrtsfaktorClick(Sender: TObject);
 begin
   Ortsfaktor.text := '';
