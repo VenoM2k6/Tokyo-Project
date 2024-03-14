@@ -5,13 +5,14 @@ unit main;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Menus, Grids;
 
 type
 
   { TmainProgram }
 
   TmainProgram = class(TForm)
+    Calculate: TButton;
     collapse1: TButton;
     collapse2: TButton;
     collapse3: TButton;
@@ -78,6 +79,7 @@ type
     locationFactor7: TEdit;
     locationFactor8: TEdit;
     locationFactor9: TEdit;
+    MainMenu1: TMainMenu;
     mass1: TEdit;
     mass2: TEdit;
     mass3: TEdit;
@@ -86,6 +88,20 @@ type
     mass6: TEdit;
     mass7: TEdit;
     mass8: TEdit;
+    StringGrid1: TStringGrid;
+    Tutorial: TMenuItem;
+    Settings: TMenuItem;
+    CloseMenu: TMenuItem;
+    Programcontrol: TMenuItem;
+    nameFunction1: TEdit;
+    nameFunction2: TEdit;
+    nameFunction3: TEdit;
+    nameFunction4: TEdit;
+    nameFunction5: TEdit;
+    nameFunction6: TEdit;
+    nameFunction7: TEdit;
+    nameFunction8: TEdit;
+    nameFunction9: TEdit;
     setType: TComboBox;
     deleteAll: TButton;
     createNewFunction: TButton;
@@ -104,12 +120,15 @@ type
     setType6: TComboBox;
     setType7: TComboBox;
     setType8: TComboBox;
+    procedure CalculateClick(Sender: TObject);
+    procedure CloseMenuClick(Sender: TObject);
     procedure collapseClick(Sender: TObject);
     procedure createNewFunctionClick(Sender: TObject);
     procedure deleteAllClick(Sender: TObject);
     procedure editClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ListBox1Click(Sender: TObject);
+    procedure RefreshClick(Sender: TObject);
   private
 
   public
@@ -134,6 +153,11 @@ end;
 procedure TmainProgram.ListBox1Click(Sender: TObject);
 begin
 
+end;
+
+procedure TmainProgram.RefreshClick(Sender: TObject);
+begin
+  ShowMessage ('Flogt demnächst');
 end;
 
 procedure TmainProgram.createNewFunctionClick(Sender: TObject);
@@ -206,6 +230,22 @@ procedure TmainProgram.collapseClick(Sender: TObject);
 begin
    function1.height := 31;
    edit.visible := true;
+end;
+
+procedure TmainProgram.CloseMenuClick(Sender: TObject);
+begin
+  close;
+end;
+
+procedure TmainProgram.CalculateClick(Sender: TObject);
+var count: integer;
+begin
+  with StringGrid1 do begin
+    for count := 1 to 199 do begin
+      cells [0, count] := floattostr (count);
+    end;
+
+  end;
 end;
 
 
