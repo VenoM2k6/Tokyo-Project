@@ -1,7 +1,7 @@
 object mainProgram: TmainProgram
   Left = 310
   Height = 682
-  Top = 124
+  Top = 131
   Width = 1478
   Caption = 'Main Program'
   ClientHeight = 662
@@ -100,6 +100,7 @@ object mainProgram: TmainProgram
       Height = 23
       Top = 51
       Width = 67
+      OnChange = locationFactor1Change
       TabOrder = 7
       Text = 'Location Factor:'
     end
@@ -954,7 +955,7 @@ object mainProgram: TmainProgram
     Left = 1032
     Height = 430
     Top = 112
-    Width = 328
+    Width = 400
     RowCount = 200
     TabOrder = 20
     ColWidths = (
@@ -988,6 +989,56 @@ object mainProgram: TmainProgram
     Caption = 'Calculate'
     OnClick = CalculateClick
     TabOrder = 21
+  end
+  object RecommendationMasse: TLabel
+    Left = 11
+    Height = 15
+    Top = 8
+    Width = 160
+    Caption = 'Recommandation Mass: 0 < 1 '
+    ParentColor = False
+  end
+  object RecommandationLength: TLabel
+    Left = 193
+    Height = 15
+    Top = 8
+    Width = 179
+    Caption = ' Recommandation Length: 0 < 0,5'
+    ParentColor = False
+  end
+  object RecommandationFetherkonstant: TLabel
+    Left = 392
+    Height = 15
+    Top = 8
+    Width = 231
+    Caption = 'Recommandation Fether Konstant: 30 < 100'
+    ParentColor = False
+  end
+  object RecommandationElongation: TLabel
+    Left = 644
+    Height = 15
+    Top = 8
+    Width = 187
+    Caption = 'Recommandation Elongation: 0 < 1'
+    ParentColor = False
+    OnClick = RecommandationElongationClick
+  end
+  object RecommandationLocationFactor: TLabel
+    Left = 848
+    Height = 15
+    Top = 8
+    Width = 207
+    Caption = 'Recommandation Location Factor: 9,81'
+    ParentColor = False
+    OnClick = RecommandationLocationFactorClick
+  end
+  object RecommandationDamping: TLabel
+    Left = 1072
+    Height = 15
+    Top = 8
+    Width = 188
+    Caption = 'Recommandation Damping: 0 < 0,3'
+    ParentColor = False
   end
   object MainMenu1: TMainMenu
     Left = 70

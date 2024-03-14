@@ -63,6 +63,12 @@ type
     function7: TGroupBox;
     function8: TGroupBox;
     function9: TGroupBox;
+    RecommendationMasse: TLabel;
+    RecommandationLength: TLabel;
+    RecommandationFetherkonstant: TLabel;
+    RecommandationElongation: TLabel;
+    RecommandationLocationFactor: TLabel;
+    RecommandationDamping: TLabel;
     length2: TEdit;
     length3: TEdit;
     length4: TEdit;
@@ -88,6 +94,7 @@ type
     mass6: TEdit;
     mass7: TEdit;
     mass8: TEdit;
+    Refresh: TMenuItem;
     StringGrid1: TStringGrid;
     Tutorial: TMenuItem;
     Settings: TMenuItem;
@@ -127,6 +134,9 @@ type
     procedure deleteAllClick(Sender: TObject);
     procedure editClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure locationFactor1Change(Sender: TObject);
+    procedure RecommandationLocationFactorClick(Sender: TObject);
+    procedure RecommandationElongationClick(Sender: TObject);
     procedure ListBox1Click(Sender: TObject);
     procedure RefreshClick(Sender: TObject);
   private
@@ -148,6 +158,21 @@ implementation
 procedure TmainProgram.FormCreate(Sender: TObject);
 begin
   WindowState := wsmaximized;
+end;
+
+procedure TmainProgram.locationFactor1Change(Sender: TObject);
+begin
+
+end;
+
+procedure TmainProgram.RecommandationLocationFactorClick(Sender: TObject);
+begin
+
+end;
+
+procedure TmainProgram.RecommandationElongationClick(Sender: TObject);
+begin
+
 end;
 
 procedure TmainProgram.ListBox1Click(Sender: TObject);
