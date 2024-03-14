@@ -1,10 +1,10 @@
 object mainProgram: TmainProgram
-  Left = 310
-  Height = 682
-  Top = 131
+  Left = 499
+  Height = 630
+  Top = 167
   Width = 1478
   Caption = 'Main Program'
-  ClientHeight = 662
+  ClientHeight = 610
   ClientWidth = 1478
   Menu = MainMenu1
   OnCreate = FormCreate
@@ -954,7 +954,7 @@ object mainProgram: TmainProgram
   object StringGrid1: TStringGrid
     Left = 1032
     Height = 430
-    Top = 112
+    Top = 96
     Width = 400
     RowCount = 200
     TabOrder = 20
@@ -1040,6 +1040,13 @@ object mainProgram: TmainProgram
     Caption = 'Recommandation Damping: 0 < 0,3'
     ParentColor = False
   end
+  object Graph: TImage
+    Left = 1016
+    Height = 90
+    Top = 563
+    Width = 90
+    OnClick = GraphClick
+  end
   object MainMenu1: TMainMenu
     Left = 70
     Top = 51
@@ -1051,9 +1058,9 @@ object mainProgram: TmainProgram
     end
     object Programcontrol: TMenuItem
       Caption = 'Programcontrol'
-      object Refresh: TMenuItem
-        Caption = 'Refresh'
-        OnClick = RefreshClick
+      object RefreshMenu: TMenuItem
+        Caption = 'RefreshMenu'
+        OnClick = RefreshMenuClick
       end
       object CloseMenu: TMenuItem
         Caption = 'Close'

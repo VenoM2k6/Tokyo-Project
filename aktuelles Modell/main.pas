@@ -5,7 +5,8 @@ unit main;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Menus, Grids;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Menus, Grids,
+  ExtCtrls;
 
 type
 
@@ -63,6 +64,7 @@ type
     function7: TGroupBox;
     function8: TGroupBox;
     function9: TGroupBox;
+    Graph: TImage;
     RecommendationMasse: TLabel;
     RecommandationLength: TLabel;
     RecommandationFetherkonstant: TLabel;
@@ -94,6 +96,7 @@ type
     mass6: TEdit;
     mass7: TEdit;
     mass8: TEdit;
+    RefreshMenu: TMenuItem;
     StringGrid1: TStringGrid;
     Tutorial: TMenuItem;
     Settings: TMenuItem;
@@ -133,11 +136,12 @@ type
     procedure deleteAllClick(Sender: TObject);
     procedure editClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure GraphClick(Sender: TObject);
     procedure locationFactor1Change(Sender: TObject);
     procedure RecommandationLocationFactorClick(Sender: TObject);
     procedure RecommandationElongationClick(Sender: TObject);
     procedure ListBox1Click(Sender: TObject);
-    procedure RefreshClick(Sender: TObject);
+    procedure RefreshMenuClick(Sender: TObject);
   private
 
   public
@@ -157,6 +161,11 @@ implementation
 procedure TmainProgram.FormCreate(Sender: TObject);
 begin
   WindowState := wsmaximized;
+end;
+
+procedure TmainProgram.GraphClick(Sender: TObject);
+begin
+
 end;
 
 procedure TmainProgram.locationFactor1Change(Sender: TObject);
@@ -179,7 +188,7 @@ begin
 
 end;
 
-procedure TmainProgram.RefreshClick(Sender: TObject);
+procedure TmainProgram.RefreshMenuClick(Sender: TObject);
 begin
   ShowMessage ('Flogt demnächst');
 end;
