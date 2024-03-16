@@ -1,7 +1,7 @@
 object mainProgram: TmainProgram
-  Left = 151
+  Left = 66
   Height = 788
-  Top = 233
+  Top = 188
   Width = 1848
   Caption = 'Main Program'
   ClientHeight = 763
@@ -33,7 +33,9 @@ object mainProgram: TmainProgram
       Left = 24
       Height = 28
       Top = 40
-      Width = 84
+      Width = 152
+      OnClick = mass1Click
+      OnEditingDone = mass1EditingDone
       TabOrder = 0
       Text = 'Mass'
     end
@@ -76,7 +78,9 @@ object mainProgram: TmainProgram
       Left = 24
       Height = 28
       Top = 64
-      Width = 84
+      Width = 152
+      OnClick = length1Click
+      OnEditingDone = length1EditingDone
       TabOrder = 4
       Text = 'Length'
     end
@@ -84,31 +88,39 @@ object mainProgram: TmainProgram
       Left = 24
       Height = 28
       Top = 88
-      Width = 120
+      Width = 152
+      OnClick = featherKonstant1Click
+      OnEditingDone = featherKonstant1EditingDone
       TabOrder = 5
       Text = 'Feather Konstant'
     end
     object elongation1: TEdit
-      Left = 152
+      Left = 192
       Height = 28
       Top = 40
-      Width = 84
+      Width = 160
+      OnClick = elongation1Click
+      OnEditingDone = elongation1EditingDone
       TabOrder = 6
       Text = 'Elongation'
     end
     object locationFactor1: TEdit
-      Left = 152
+      Left = 192
       Height = 28
       Top = 64
-      Width = 116
+      Width = 160
+      OnClick = locationFactor1Click
+      OnEditingDone = locationFactor1EditingDone
       TabOrder = 7
       Text = 'Location Factor'
     end
     object damping1: TEdit
-      Left = 152
+      Left = 192
       Height = 28
       Top = 88
-      Width = 84
+      Width = 160
+      OnClick = damping1Click
+      OnEditingDone = damping1EditingDone
       TabOrder = 8
       Text = 'Damping'
     end
@@ -116,7 +128,7 @@ object mainProgram: TmainProgram
       Left = 24
       Height = 28
       Top = 8
-      Width = 84
+      Width = 124
       OnClick = nameFunction1Click
       OnEditingDone = nameFunction1EditingDone
       TabOrder = 9
@@ -146,9 +158,11 @@ object mainProgram: TmainProgram
       Left = 24
       Height = 28
       Top = 40
-      Width = 84
+      Width = 144
+      OnClick = mass2Click
+      OnEditingDone = mass2EditingDone
       TabOrder = 0
-      Text = 'Mass:'
+      Text = 'Mass'
     end
     object collapse2: TButton
       Left = 288
@@ -189,47 +203,57 @@ object mainProgram: TmainProgram
       Left = 24
       Height = 28
       Top = 64
-      Width = 84
+      Width = 144
+      OnClick = length2Click
+      OnEditingDone = length2EditingDone
       TabOrder = 4
-      Text = 'Length:'
+      Text = 'Length'
     end
     object featherKonstant2: TEdit
       Left = 24
       Height = 28
       Top = 88
-      Width = 84
+      Width = 144
+      OnClick = featherKonstant2Click
+      OnEditingDone = featherKonstant2EditingDone
       TabOrder = 5
       Text = 'Feather Konstant'
     end
     object elongation2: TEdit
-      Left = 112
+      Left = 192
       Height = 28
       Top = 40
-      Width = 84
+      Width = 160
+      OnClick = elongation2Click
+      OnEditingDone = elongation2EditingDone
       TabOrder = 6
-      Text = 'Elongation:'
+      Text = 'Elongation'
     end
     object locationFactor2: TEdit
-      Left = 112
+      Left = 192
       Height = 28
       Top = 64
-      Width = 84
+      Width = 160
+      OnClick = locationFactor2Click
+      OnEditingDone = locationFactor2EditingDone
       TabOrder = 7
-      Text = 'Location Factor:'
+      Text = 'Location Factor'
     end
     object damping2: TEdit
-      Left = 112
+      Left = 192
       Height = 28
       Top = 88
-      Width = 84
+      Width = 160
+      OnClick = damping2Click
+      OnEditingDone = damping2EditingDone
       TabOrder = 8
-      Text = 'Damping:'
+      Text = 'Damping'
     end
     object nameFunction2: TEdit
       Left = 24
       Height = 28
       Top = 8
-      Width = 84
+      Width = 128
       OnClick = nameFunction2Click
       OnEditingDone = nameFunction2EditingDone
       TabOrder = 9
@@ -250,9 +274,11 @@ object mainProgram: TmainProgram
       Left = 24
       Height = 28
       Top = 40
-      Width = 84
+      Width = 144
+      OnClick = mass3Click
+      OnEditingDone = mass3EditingDone
       TabOrder = 0
-      Text = 'Mass:'
+      Text = 'Mass'
     end
     object collapse3: TButton
       Left = 288
@@ -294,47 +320,57 @@ object mainProgram: TmainProgram
       Left = 24
       Height = 28
       Top = 64
-      Width = 84
+      Width = 144
+      OnClick = length3Click
+      OnEditingDone = length3EditingDone
       TabOrder = 4
-      Text = 'Length:'
+      Text = 'Length'
     end
     object featherKonstant3: TEdit
       Left = 24
       Height = 28
       Top = 88
-      Width = 84
+      Width = 144
+      OnClick = featherKonstant3Click
+      OnEditingDone = featherKonstant3EditingDone
       TabOrder = 5
       Text = 'Feather Konstant'
     end
     object elongation3: TEdit
-      Left = 112
+      Left = 192
       Height = 28
       Top = 40
-      Width = 84
+      Width = 160
+      OnClick = elongation3Click
+      OnEditingDone = elongation3EditingDone
       TabOrder = 6
-      Text = 'Elongation:'
+      Text = 'Elongation'
     end
     object locationFactor3: TEdit
-      Left = 112
+      Left = 192
       Height = 28
       Top = 64
-      Width = 84
+      Width = 160
+      OnClick = locationFactor3Click
+      OnEditingDone = locationFactor3EditingDone
       TabOrder = 7
-      Text = 'Location Factor:'
+      Text = 'Location Factor'
     end
     object damping3: TEdit
-      Left = 112
+      Left = 192
       Height = 28
       Top = 88
-      Width = 84
+      Width = 160
+      OnClick = damping3Click
+      OnEditingDone = damping3EditingDone
       TabOrder = 8
-      Text = 'Damping:'
+      Text = 'Damping'
     end
     object nameFunction3: TEdit
       Left = 24
       Height = 28
       Top = 8
-      Width = 84
+      Width = 124
       OnClick = nameFunction3Click
       OnEditingDone = nameFunction3EditingDone
       TabOrder = 9
@@ -446,8 +482,7 @@ object mainProgram: TmainProgram
     object Programcontrol: TMenuItem
       Caption = 'Programcontrol'
       object RefreshMenu: TMenuItem
-        Caption = 'RefreshMenu'
-        OnClick = RefreshMenuClick
+        Caption = 'Refresh'
       end
       object CloseMenu: TMenuItem
         Caption = 'Close'
