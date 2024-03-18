@@ -1,144 +1,42 @@
 object mainProgram: TmainProgram
-  Left = 499
-  Height = 630
-  Top = 167
-  Width = 1478
+  Left = 345
+  Height = 724
+  Top = 158
+  Width = 1627
   Caption = 'Main Program'
-  ClientHeight = 610
-  ClientWidth = 1478
+  ClientHeight = 704
+  ClientWidth = 1627
   Menu = MainMenu1
   OnCreate = FormCreate
   LCLVersion = '2.2.4.0'
   object createNewFunction: TButton
-    Left = 40
+    Left = 13
     Height = 50
-    Top = 248
+    Top = 45
     Width = 171
     Caption = 'Create New Function'
     OnClick = createNewFunctionClick
     TabOrder = 0
   end
   object function1: TGroupBox
-    Left = 26
+    Left = 24
     Height = 147
-    Top = 96
+    Top = 115
     Width = 320
     Caption = 'Function'
     ClientHeight = 127
     ClientWidth = 316
     TabOrder = 1
     Visible = False
-    object mass: TEdit
-      Left = 19
-      Height = 23
-      Top = 32
-      Width = 67
-      TabOrder = 0
-      Text = 'Mass:'
-    end
-    object collapse: TButton
-      Left = 230
-      Height = 25
-      Top = 102
-      Width = 82
-      Caption = 'collapse'
-      OnClick = collapseClick
-      TabOrder = 1
-    end
-    object setType: TComboBox
-      Left = 147
-      Height = 23
-      Top = 6
-      Width = 166
-      ItemHeight = 15
-      Items.Strings = (
-        'undamped spring pendulum'
-        'damped spring pendulum'
-        'undamped thread pendulum'
-        'damped thread pendulum'
-      )
-      ReadOnly = True
-      TabOrder = 2
-      Text = 'Choose an oscillationtype'
-    end
-    object edit: TButton
-      Left = 230
-      Height = 25
-      Top = -19
-      Width = 82
-      Caption = 'edit'
-      OnClick = editClick
-      TabOrder = 3
-      Visible = False
-    end
-    object length1: TEdit
-      Left = 19
-      Height = 23
-      Top = 51
-      Width = 67
-      TabOrder = 4
-      Text = 'Length:'
-    end
-    object featherKonstant1: TEdit
-      Left = 19
-      Height = 23
-      Top = 70
-      Width = 67
-      TabOrder = 5
-      Text = 'Feather Konstant'
-    end
-    object elongation1: TEdit
-      Left = 90
-      Height = 23
-      Top = 32
-      Width = 67
-      TabOrder = 6
-      Text = 'Elongation:'
-    end
-    object locationFactor1: TEdit
-      Left = 90
-      Height = 23
-      Top = 51
-      Width = 67
-      OnChange = locationFactor1Change
-      TabOrder = 7
-      Text = 'Location Factor:'
-    end
-    object damping1: TEdit
-      Left = 90
-      Height = 23
-      Top = 70
-      Width = 67
-      TabOrder = 8
-      Text = 'Damping:'
-    end
-  end
-  object deleteAll: TButton
-    Left = 40
-    Height = 50
-    Top = 349
-    Width = 171
-    Caption = 'Delete All'
-    OnClick = deleteAllClick
-    TabOrder = 2
-  end
-  object function2: TGroupBox
-    Left = 352
-    Height = 147
-    Top = 96
-    Width = 320
-    Caption = 'Function'
-    ClientHeight = 127
-    ClientWidth = 316
-    TabOrder = 3
-    Visible = False
     object mass1: TEdit
       Left = 19
       Height = 23
       Top = 32
-      Width = 67
+      Width = 122
+      OnClick = mass1Click
+      OnEditingDone = mass1EditingDone
       TabOrder = 0
-      Text = 'Mass:'
+      Text = 'Mass'
     end
     object collapse1: TButton
       Left = 230
@@ -146,7 +44,7 @@ object mainProgram: TmainProgram
       Top = 102
       Width = 82
       Caption = 'collapse'
-      OnClick = collapseClick
+      OnClick = collapse1Click
       TabOrder = 1
     end
     object setType1: TComboBox
@@ -171,68 +69,108 @@ object mainProgram: TmainProgram
       Top = -19
       Width = 82
       Caption = 'edit'
-      OnClick = editClick
+      OnClick = edit1Click
       TabOrder = 3
       Visible = False
     end
-    object length2: TEdit
+    object length1: TEdit
       Left = 19
       Height = 23
       Top = 51
-      Width = 67
+      Width = 122
+      OnClick = length1Click
+      OnEditingDone = length1EditingDone
       TabOrder = 4
-      Text = 'Length:'
+      Text = 'Length'
     end
-    object featherKonstant2: TEdit
+    object featherKonstant1: TEdit
       Left = 19
       Height = 23
       Top = 70
-      Width = 67
+      Width = 122
+      OnClick = featherKonstant1Click
+      OnEditingDone = featherKonstant1EditingDone
       TabOrder = 5
       Text = 'Feather Konstant'
     end
-    object elongation2: TEdit
-      Left = 90
+    object elongation1: TEdit
+      Left = 154
       Height = 23
       Top = 32
-      Width = 67
+      Width = 128
+      OnClick = elongation1Click
+      OnEditingDone = elongation1EditingDone
       TabOrder = 6
-      Text = 'Elongation:'
+      Text = 'Elongation'
     end
-    object locationFactor2: TEdit
-      Left = 90
+    object locationFactor1: TEdit
+      Left = 154
       Height = 23
       Top = 51
-      Width = 67
+      Width = 128
+      OnClick = locationFactor1Click
+      OnEditingDone = locationFactor1EditingDone
       TabOrder = 7
-      Text = 'Location Factor:'
+      Text = 'Location Factor'
     end
-    object damping2: TEdit
-      Left = 90
+    object damping1: TEdit
+      Left = 154
       Height = 23
       Top = 70
-      Width = 67
+      Width = 128
+      OnClick = damping1Click
+      OnEditingDone = damping1EditingDone
       TabOrder = 8
-      Text = 'Damping:'
+      Text = 'Damping'
+    end
+    object nameFunction1: TEdit
+      Left = 19
+      Height = 23
+      Top = 6
+      Width = 99
+      OnClick = nameFunction1Click
+      OnEditingDone = nameFunction1EditingDone
+      TabOrder = 9
+      Text = 'Name'
+    end
+    object calculate1: TButton
+      Left = 147
+      Height = 25
+      Top = 102
+      Width = 82
+      Caption = 'calculate'
+      OnClick = calculate1Click
+      TabOrder = 10
     end
   end
-  object function3: TGroupBox
-    Left = 672
+  object deleteAll: TButton
+    Left = 179
+    Height = 50
+    Top = 45
+    Width = 171
+    Caption = 'Delete All'
+    OnClick = deleteAllClick
+    TabOrder = 2
+  end
+  object function2: TGroupBox
+    Left = 24
     Height = 147
-    Top = 96
+    Top = 272
     Width = 320
     Caption = 'Function'
     ClientHeight = 127
     ClientWidth = 316
-    TabOrder = 4
+    TabOrder = 3
     Visible = False
     object mass2: TEdit
       Left = 19
       Height = 23
       Top = 32
-      Width = 67
+      Width = 115
+      OnClick = mass2Click
+      OnEditingDone = mass2EditingDone
       TabOrder = 0
-      Text = 'Mass:'
+      Text = 'Mass'
     end
     object collapse2: TButton
       Left = 230
@@ -240,7 +178,7 @@ object mainProgram: TmainProgram
       Top = 102
       Width = 82
       Caption = 'collapse'
-      OnClick = collapseClick
+      OnClick = collapse2Click
       TabOrder = 1
     end
     object setType2: TComboBox
@@ -254,7 +192,6 @@ object mainProgram: TmainProgram
         'damped spring pendulum'
         'undamped thread pendulum'
         'damped thread pendulum'
-        ''
       )
       ReadOnly = True
       TabOrder = 2
@@ -263,71 +200,101 @@ object mainProgram: TmainProgram
     object edit2: TButton
       Left = 230
       Height = 25
-      Top = -19
+      Top = -16
       Width = 82
       Caption = 'edit'
-      OnClick = editClick
+      OnClick = edit2Click
       TabOrder = 3
       Visible = False
     end
-    object length3: TEdit
+    object length2: TEdit
       Left = 19
       Height = 23
       Top = 51
-      Width = 67
+      Width = 115
+      OnClick = length2Click
+      OnEditingDone = length2EditingDone
       TabOrder = 4
-      Text = 'Length:'
+      Text = 'Length'
     end
-    object featherKonstant3: TEdit
+    object featherKonstant2: TEdit
       Left = 19
       Height = 23
       Top = 70
-      Width = 67
+      Width = 115
+      OnClick = featherKonstant2Click
+      OnEditingDone = featherKonstant2EditingDone
       TabOrder = 5
       Text = 'Feather Konstant'
     end
-    object elongation3: TEdit
-      Left = 90
+    object elongation2: TEdit
+      Left = 154
       Height = 23
       Top = 32
-      Width = 67
+      Width = 128
+      OnClick = elongation2Click
+      OnEditingDone = elongation2EditingDone
       TabOrder = 6
-      Text = 'Elongation:'
+      Text = 'Elongation'
     end
-    object locationFactor3: TEdit
-      Left = 90
+    object locationFactor2: TEdit
+      Left = 154
       Height = 23
       Top = 51
-      Width = 67
+      Width = 128
+      OnClick = locationFactor2Click
+      OnEditingDone = locationFactor2EditingDone
       TabOrder = 7
-      Text = 'Location Factor:'
+      Text = 'Location Factor'
     end
-    object damping3: TEdit
-      Left = 90
+    object damping2: TEdit
+      Left = 154
       Height = 23
       Top = 70
-      Width = 67
+      Width = 128
+      OnClick = damping2Click
+      OnEditingDone = damping2EditingDone
       TabOrder = 8
-      Text = 'Damping:'
+      Text = 'Damping'
+    end
+    object nameFunction2: TEdit
+      Left = 19
+      Height = 23
+      Top = 6
+      Width = 102
+      OnClick = nameFunction2Click
+      OnEditingDone = nameFunction2EditingDone
+      TabOrder = 9
+      Text = 'Name'
+    end
+    object calculate2: TButton
+      Left = 147
+      Height = 25
+      Top = 102
+      Width = 82
+      Caption = 'calculate'
+      TabOrder = 10
     end
   end
-  object function4: TGroupBox
-    Left = 352
+  object function3: TGroupBox
+    Left = 24
     Height = 147
-    Top = 250
+    Top = 422
     Width = 320
     Caption = 'Function'
     ClientHeight = 127
     ClientWidth = 316
-    TabOrder = 5
+    TabOrder = 4
     Visible = False
     object mass3: TEdit
       Left = 19
       Height = 23
       Top = 32
-      Width = 67
+      Width = 115
+      OnClick = mass3Click
+      OnEditingDone = mass3EditingDone
       TabOrder = 0
-      Text = 'Mass:'
+      Text = 'Mass'
     end
     object collapse3: TButton
       Left = 230
@@ -335,7 +302,7 @@ object mainProgram: TmainProgram
       Top = 102
       Width = 82
       Caption = 'collapse'
-      OnClick = collapseClick
+      OnClick = collapse3Click
       TabOrder = 1
     end
     object setType3: TComboBox
@@ -361,603 +328,86 @@ object mainProgram: TmainProgram
       Top = -19
       Width = 82
       Caption = 'edit'
-      OnClick = editClick
+      OnClick = edit3Click
       TabOrder = 3
       Visible = False
     end
-    object length4: TEdit
+    object length3: TEdit
       Left = 19
       Height = 23
       Top = 51
-      Width = 67
+      Width = 115
+      OnClick = length3Click
+      OnEditingDone = length3EditingDone
       TabOrder = 4
-      Text = 'Length:'
+      Text = 'Length'
     end
-    object featherKonstant4: TEdit
+    object featherKonstant3: TEdit
       Left = 19
       Height = 23
       Top = 70
-      Width = 67
+      Width = 115
+      OnClick = featherKonstant3Click
+      OnEditingDone = featherKonstant3EditingDone
       TabOrder = 5
       Text = 'Feather Konstant'
     end
-    object elongation4: TEdit
-      Left = 90
+    object elongation3: TEdit
+      Left = 154
       Height = 23
       Top = 32
-      Width = 67
+      Width = 128
+      OnClick = elongation3Click
+      OnEditingDone = elongation3EditingDone
       TabOrder = 6
-      Text = 'Elongation:'
+      Text = 'Elongation'
     end
-    object locationFactor4: TEdit
-      Left = 90
+    object locationFactor3: TEdit
+      Left = 154
       Height = 23
       Top = 51
-      Width = 67
+      Width = 128
+      OnClick = locationFactor3Click
+      OnEditingDone = locationFactor3EditingDone
       TabOrder = 7
-      Text = 'Location Factor:'
+      Text = 'Location Factor'
     end
-    object damping4: TEdit
-      Left = 90
+    object damping3: TEdit
+      Left = 154
       Height = 23
       Top = 70
-      Width = 67
+      Width = 128
+      OnClick = damping3Click
+      OnEditingDone = damping3EditingDone
       TabOrder = 8
-      Text = 'Damping:'
+      Text = 'Damping'
     end
-  end
-  object function5: TGroupBox
-    Left = 672
-    Height = 147
-    Top = 250
-    Width = 320
-    Caption = 'Function'
-    ClientHeight = 127
-    ClientWidth = 316
-    TabOrder = 6
-    Visible = False
-    object mass4: TEdit
+    object nameFunction3: TEdit
       Left = 19
       Height = 23
-      Top = 32
-      Width = 67
-      TabOrder = 0
-      Text = 'Mass:'
+      Top = 6
+      Width = 99
+      OnClick = nameFunction3Click
+      OnEditingDone = nameFunction3EditingDone
+      TabOrder = 9
+      Text = 'Name'
     end
-    object collapse4: TButton
-      Left = 230
+    object calculate3: TButton
+      Left = 147
       Height = 25
       Top = 102
       Width = 82
-      Caption = 'collapse'
-      OnClick = collapseClick
-      TabOrder = 1
+      Caption = 'calculate'
+      TabOrder = 10
     end
-    object setType4: TComboBox
-      Left = 147
-      Height = 23
-      Top = 6
-      Width = 166
-      ItemHeight = 15
-      Items.Strings = (
-        'undamped spring pendulum'
-        'damped spring pendulum'
-        'undamped thread pendulum'
-        'damped thread pendulum'
-      )
-      ReadOnly = True
-      TabOrder = 2
-      Text = 'Choose an oscillationtype'
-    end
-    object edit4: TButton
-      Left = 230
-      Height = 25
-      Top = -19
-      Width = 82
-      Caption = 'edit'
-      OnClick = editClick
-      TabOrder = 3
-      Visible = False
-    end
-    object length5: TEdit
-      Left = 19
-      Height = 23
-      Top = 51
-      Width = 67
-      TabOrder = 4
-      Text = 'Length:'
-    end
-    object featherKonstant5: TEdit
-      Left = 19
-      Height = 23
-      Top = 70
-      Width = 67
-      TabOrder = 5
-      Text = 'Feather Konstant'
-    end
-    object elongation5: TEdit
-      Left = 90
-      Height = 23
-      Top = 32
-      Width = 67
-      TabOrder = 6
-      Text = 'Elongation:'
-    end
-    object locationFactor5: TEdit
-      Left = 90
-      Height = 23
-      Top = 51
-      Width = 67
-      TabOrder = 7
-      Text = 'Location Factor:'
-    end
-    object damping5: TEdit
-      Left = 90
-      Height = 23
-      Top = 70
-      Width = 67
-      TabOrder = 8
-      Text = 'Damping:'
-    end
-  end
-  object function6: TGroupBox
-    Left = 672
-    Height = 147
-    Top = 403
-    Width = 320
-    Caption = 'Function'
-    ClientHeight = 127
-    ClientWidth = 316
-    TabOrder = 7
-    Visible = False
-    object mass5: TEdit
-      Left = 19
-      Height = 23
-      Top = 32
-      Width = 67
-      TabOrder = 0
-      Text = 'Mass:'
-    end
-    object collapse5: TButton
-      Left = 230
-      Height = 25
-      Top = 102
-      Width = 82
-      Caption = 'collapse'
-      OnClick = collapseClick
-      TabOrder = 1
-    end
-    object setType5: TComboBox
-      Left = 147
-      Height = 23
-      Top = 6
-      Width = 166
-      ItemHeight = 15
-      Items.Strings = (
-        'undamped spring pendulum'
-        'damped spring pendulum'
-        'undamped thread pendulum'
-        'damped thread pendulum'
-        ''
-      )
-      ReadOnly = True
-      TabOrder = 2
-      Text = 'Choose an oscillationtype'
-    end
-    object edit5: TButton
-      Left = 230
-      Height = 25
-      Top = -19
-      Width = 82
-      Caption = 'edit'
-      OnClick = editClick
-      TabOrder = 3
-      Visible = False
-    end
-    object length6: TEdit
-      Left = 19
-      Height = 23
-      Top = 51
-      Width = 67
-      TabOrder = 4
-      Text = 'Length:'
-    end
-    object featherKonstant6: TEdit
-      Left = 19
-      Height = 23
-      Top = 70
-      Width = 67
-      TabOrder = 5
-      Text = 'Feather Konstant'
-    end
-    object elongation6: TEdit
-      Left = 90
-      Height = 23
-      Top = 32
-      Width = 67
-      TabOrder = 6
-      Text = 'Elongation:'
-    end
-    object locationFactor6: TEdit
-      Left = 90
-      Height = 23
-      Top = 51
-      Width = 67
-      TabOrder = 7
-      Text = 'Location Factor:'
-    end
-    object damping6: TEdit
-      Left = 90
-      Height = 23
-      Top = 70
-      Width = 67
-      TabOrder = 8
-      Text = 'Damping:'
-    end
-  end
-  object function7: TGroupBox
-    Left = 352
-    Height = 147
-    Top = 403
-    Width = 320
-    Caption = 'Function'
-    ClientHeight = 127
-    ClientWidth = 316
-    TabOrder = 8
-    Visible = False
-    object mass6: TEdit
-      Left = 19
-      Height = 23
-      Top = 32
-      Width = 67
-      TabOrder = 0
-      Text = 'Mass:'
-    end
-    object collapse6: TButton
-      Left = 230
-      Height = 25
-      Top = 102
-      Width = 82
-      Caption = 'collapse'
-      OnClick = collapseClick
-      TabOrder = 1
-    end
-    object setType6: TComboBox
-      Left = 147
-      Height = 23
-      Top = 6
-      Width = 166
-      ItemHeight = 15
-      Items.Strings = (
-        'undamped spring pendulum'
-        'damped spring pendulum'
-        'undamped thread pendulum'
-        'damped thread pendulum'
-        ''
-      )
-      ReadOnly = True
-      TabOrder = 2
-      Text = 'Choose an oscillationtype'
-    end
-    object edit6: TButton
-      Left = 230
-      Height = 25
-      Top = -19
-      Width = 82
-      Caption = 'edit'
-      OnClick = editClick
-      TabOrder = 3
-      Visible = False
-    end
-    object length7: TEdit
-      Left = 19
-      Height = 23
-      Top = 51
-      Width = 67
-      TabOrder = 4
-      Text = 'Length:'
-    end
-    object featherKonstant7: TEdit
-      Left = 19
-      Height = 23
-      Top = 70
-      Width = 67
-      TabOrder = 5
-      Text = 'Feather Konstant'
-    end
-    object elongation7: TEdit
-      Left = 90
-      Height = 23
-      Top = 32
-      Width = 67
-      TabOrder = 6
-      Text = 'Elongation:'
-    end
-    object locationFactor7: TEdit
-      Left = 90
-      Height = 23
-      Top = 51
-      Width = 67
-      TabOrder = 7
-      Text = 'Location Factor:'
-    end
-    object damping7: TEdit
-      Left = 90
-      Height = 23
-      Top = 70
-      Width = 67
-      TabOrder = 8
-      Text = 'Damping:'
-    end
-  end
-  object function8: TGroupBox
-    Left = 32
-    Height = 147
-    Top = 403
-    Width = 320
-    Caption = 'Function'
-    ClientHeight = 127
-    ClientWidth = 316
-    TabOrder = 9
-    Visible = False
-    object mass7: TEdit
-      Left = 19
-      Height = 23
-      Top = 32
-      Width = 67
-      TabOrder = 0
-      Text = 'Mass:'
-    end
-    object collapse7: TButton
-      Left = 230
-      Height = 25
-      Top = 102
-      Width = 82
-      Caption = 'collapse'
-      OnClick = collapseClick
-      TabOrder = 1
-    end
-    object setType7: TComboBox
-      Left = 147
-      Height = 23
-      Top = 6
-      Width = 166
-      ItemHeight = 15
-      Items.Strings = (
-        'undamped spring pendulum'
-        'damped spring pendulum'
-        'undamped thread pendulum'
-        'damped thread pendulum'
-        ''
-      )
-      ReadOnly = True
-      TabOrder = 2
-      Text = 'Choose an oscillationtype'
-    end
-    object edit7: TButton
-      Left = 230
-      Height = 25
-      Top = -19
-      Width = 82
-      Caption = 'edit'
-      OnClick = editClick
-      TabOrder = 3
-      Visible = False
-    end
-    object length8: TEdit
-      Left = 19
-      Height = 23
-      Top = 51
-      Width = 67
-      TabOrder = 4
-      Text = 'Length:'
-    end
-    object featherKonstant8: TEdit
-      Left = 19
-      Height = 23
-      Top = 70
-      Width = 67
-      TabOrder = 5
-      Text = 'Feather Konstant'
-    end
-    object elongation8: TEdit
-      Left = 90
-      Height = 23
-      Top = 32
-      Width = 67
-      TabOrder = 6
-      Text = 'Elongation:'
-    end
-    object locationFactor8: TEdit
-      Left = 90
-      Height = 23
-      Top = 51
-      Width = 67
-      TabOrder = 7
-      Text = 'Location Factor:'
-    end
-    object damping8: TEdit
-      Left = 90
-      Height = 23
-      Top = 70
-      Width = 67
-      TabOrder = 8
-      Text = 'Damping:'
-    end
-  end
-  object function9: TGroupBox
-    Left = 358
-    Height = 147
-    Top = 563
-    Width = 320
-    Caption = 'Function'
-    ClientHeight = 127
-    ClientWidth = 316
-    TabOrder = 10
-    Visible = False
-    object mass8: TEdit
-      Left = 19
-      Height = 23
-      Top = 32
-      Width = 67
-      TabOrder = 0
-      Text = 'Mass:'
-    end
-    object collapse8: TButton
-      Left = 230
-      Height = 25
-      Top = 102
-      Width = 82
-      Caption = 'collapse'
-      OnClick = collapseClick
-      TabOrder = 1
-    end
-    object setType8: TComboBox
-      Left = 147
-      Height = 23
-      Top = 6
-      Width = 166
-      ItemHeight = 15
-      Items.Strings = (
-        'undamped spring pendulum'
-        'damped spring pendulum'
-        'undamped thread pendulum'
-        'damped thread pendulum'
-      )
-      ReadOnly = True
-      TabOrder = 2
-      Text = 'Choose an oscillationtype'
-    end
-    object edit8: TButton
-      Left = 230
-      Height = 25
-      Top = -19
-      Width = 82
-      Caption = 'edit'
-      OnClick = editClick
-      TabOrder = 3
-      Visible = False
-    end
-    object length9: TEdit
-      Left = 19
-      Height = 23
-      Top = 51
-      Width = 67
-      TabOrder = 4
-      Text = 'Length:'
-    end
-    object featherKonstant9: TEdit
-      Left = 19
-      Height = 23
-      Top = 70
-      Width = 67
-      TabOrder = 5
-      Text = 'Feather Konstant'
-    end
-    object elongation9: TEdit
-      Left = 90
-      Height = 23
-      Top = 32
-      Width = 67
-      TabOrder = 6
-      Text = 'Elongation:'
-    end
-    object locationFactor9: TEdit
-      Left = 90
-      Height = 23
-      Top = 51
-      Width = 67
-      TabOrder = 7
-      Text = 'Location Factor:'
-    end
-    object damping9: TEdit
-      Left = 90
-      Height = 23
-      Top = 70
-      Width = 67
-      TabOrder = 8
-      Text = 'Damping:'
-    end
-  end
-  object nameFunction1: TEdit
-    Left = 45
-    Height = 23
-    Top = 122
-    Width = 67
-    TabOrder = 11
-    Text = 'Name:'
-  end
-  object nameFunction2: TEdit
-    Left = 371
-    Height = 23
-    Top = 122
-    Width = 67
-    TabOrder = 12
-    Text = 'Name:'
-  end
-  object nameFunction3: TEdit
-    Left = 691
-    Height = 23
-    Top = 122
-    Width = 67
-    TabOrder = 13
-    Text = 'Name:'
-  end
-  object nameFunction4: TEdit
-    Left = 371
-    Height = 23
-    Top = 275
-    Width = 67
-    TabOrder = 14
-    Text = 'Name:'
-  end
-  object nameFunction5: TEdit
-    Left = 691
-    Height = 23
-    Top = 275
-    Width = 67
-    TabOrder = 15
-    Text = 'Name:'
-  end
-  object nameFunction6: TEdit
-    Left = 691
-    Height = 23
-    Top = 429
-    Width = 67
-    TabOrder = 16
-    Text = 'Name:'
-  end
-  object nameFunction7: TEdit
-    Left = 371
-    Height = 23
-    Top = 429
-    Width = 67
-    TabOrder = 17
-    Text = 'Name:'
-  end
-  object nameFunction8: TEdit
-    Left = 51
-    Height = 23
-    Top = 429
-    Width = 67
-    TabOrder = 18
-    Text = 'Name:'
-  end
-  object nameFunction9: TEdit
-    Left = 378
-    Height = 23
-    Top = 589
-    Width = 67
-    TabOrder = 19
-    Text = 'Name:'
   end
   object StringGrid1: TStringGrid
-    Left = 1032
-    Height = 430
-    Top = 96
-    Width = 400
+    Left = 1080
+    Height = 493
+    Top = 90
+    Width = 395
     RowCount = 200
-    TabOrder = 20
+    TabOrder = 5
     ColWidths = (
       64
       64
@@ -981,15 +431,6 @@ object mainProgram: TmainProgram
       'Beschleunigung'
     )
   end
-  object Calculate: TButton
-    Left = 40
-    Height = 56
-    Top = 296
-    Width = 171
-    Caption = 'Calculate'
-    OnClick = CalculateClick
-    TabOrder = 21
-  end
   object RecommendationMasse: TLabel
     Left = 11
     Height = 15
@@ -1010,8 +451,8 @@ object mainProgram: TmainProgram
     Left = 392
     Height = 15
     Top = 8
-    Width = 231
-    Caption = 'Recommandation Fether Konstant: 30 < 100'
+    Width = 237
+    Caption = 'Recommandation Feather Konstant: 30 < 100'
     ParentColor = False
   end
   object RecommandationElongation: TLabel
@@ -1021,7 +462,6 @@ object mainProgram: TmainProgram
     Width = 187
     Caption = 'Recommandation Elongation: 0 < 1'
     ParentColor = False
-    OnClick = RecommandationElongationClick
   end
   object RecommandationLocationFactor: TLabel
     Left = 848
@@ -1030,10 +470,9 @@ object mainProgram: TmainProgram
     Width = 207
     Caption = 'Recommandation Location Factor: 9,81'
     ParentColor = False
-    OnClick = RecommandationLocationFactorClick
   end
   object RecommandationDamping: TLabel
-    Left = 1072
+    Left = 1064
     Height = 15
     Top = 8
     Width = 188
@@ -1041,15 +480,14 @@ object mainProgram: TmainProgram
     ParentColor = False
   end
   object Graph: TImage
-    Left = 1016
-    Height = 90
-    Top = 563
-    Width = 90
-    OnClick = GraphClick
+    Left = 384
+    Height = 493
+    Top = 90
+    Width = 678
   end
   object MainMenu1: TMainMenu
-    Left = 70
-    Top = 51
+    Left = 1498
+    Top = 6
     object Tutorial: TMenuItem
       Caption = 'Tutorial'
     end
@@ -1059,8 +497,7 @@ object mainProgram: TmainProgram
     object Programcontrol: TMenuItem
       Caption = 'Programcontrol'
       object RefreshMenu: TMenuItem
-        Caption = 'RefreshMenu'
-        OnClick = RefreshMenuClick
+        Caption = 'Refresh'
       end
       object CloseMenu: TMenuItem
         Caption = 'Close'

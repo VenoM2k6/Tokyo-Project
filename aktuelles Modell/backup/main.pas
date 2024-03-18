@@ -14,8 +14,11 @@ type
 
   TmainProgram = class(TForm)
     Calculate: TButton;
+    calculate2: TButton;
+    calculate3: TButton;
     collapse2: TButton;
     collapse3: TButton;
+    calculate1: TButton;
     damping2: TEdit;
     damping3: TEdit;
     edit1: TButton;
@@ -63,7 +66,7 @@ type
     function1: TGroupBox;
     setType2: TComboBox;
     setType3: TComboBox;
-    procedure CalculateClick(Sender: TObject);
+    procedure calculate1Click(Sender: TObject);
     procedure CloseMenuClick(Sender: TObject);
     procedure collapse1Click(Sender: TObject);
     procedure collapse2Click(Sender: TObject);
@@ -124,7 +127,17 @@ type
 
 var
   mainProgram: TmainProgram;
+  //functions
   functionCreated: array[0..8] of Boolean;
+  //arrays for table
+  function1table: array[1..4, 1..3999] of real;
+  function2table: array[1..4, 1..3999] of real;
+  function3table: array[1..4, 1..3999] of real;
+  function4table: array[1..4, 1..3999] of real;
+
+  mass1cache, elongation1cache, length1cache, locationfactor1cache, featherkonstant1cache, damping1cache: real;
+  mass2cache, elongation2cache, length2cache, locationfactor2cache, featherkonstant2cache, damping2cache: real;
+  mass3cache, elongation3cache, length3cache, locationfactor3cache, featherkonstant3cache, damping3cache: real;
 
   //variables to fix bugs
   nameWasAlreadyOverwritten1,nameWasAlreadyOverwritten2,nameWasAlreadyOverwritten3: boolean;
@@ -172,6 +185,7 @@ end;
 procedure TmainProgram.mass1EditingDone(Sender: TObject);
 begin
    if massWasAlreadyOverwritten1 = false then begin
+      mass1cache := strtofloat(mass1.text);
       mass1.text := 'Mass: ' + mass1.text;
    end;
    massWasAlreadyOverwritten1 := true;
@@ -186,6 +200,7 @@ end;
 procedure TmainProgram.length1EditingDone(Sender: TObject);
 begin
   if lengthWasAlreadyOverwritten1 = false then begin
+      length1cache := strtofloat(length1.text);
       length1.text := 'Length: ' + length1.text;
    end;
    lengthWasAlreadyOverwritten1 := true;
@@ -200,7 +215,8 @@ end;
 procedure TmainProgram.locationFactor1EditingDone(Sender: TObject);
 begin
    if locationfactorWasAlreadyOverwritten1 = false then begin
-      locationfactor1.text := 'Locationfactor: ' + locationfactor1.text;
+      locationfactor1cache := strtofloat(locationfactor1.text);
+      locationfactor1.text := 'Location Factor: ' + locationfactor1.text;
    end;
    locationfactorWasAlreadyOverwritten1 := true;
    locationfactor1.enabled := false;
@@ -214,7 +230,8 @@ end;
 procedure TmainProgram.featherKonstant1EditingDone(Sender: TObject);
 begin
   if featherkonstantWasAlreadyOverwritten1 = false then begin
-      featherkonstant1.text := 'Feather Konstant: ' + featherkonstant1.text;
+     featherkonstant1cache := strtofloat(featherkonstant1.text);
+     featherkonstant1.text := 'Feather Konstant: ' + featherkonstant1.text;
    end;
    featherkonstantWasAlreadyOverwritten1 := true;
    featherkonstant1.enabled := false;
@@ -228,6 +245,7 @@ end;
 procedure TmainProgram.elongation1EditingDone(Sender: TObject);
 begin
    if elongationWasAlreadyOverwritten1 = false then begin
+      elongation1cache := strtofloat(elongation1.text);
       elongation1.text := 'Elongation: ' + elongation1.text;
    end;
    elongationWasAlreadyOverwritten1 := true;
@@ -242,6 +260,7 @@ end;
 procedure TmainProgram.damping1EditingDone(Sender: TObject);
 begin
    if dampingWasAlreadyOverwritten1 = false then begin
+      damping1cache := strtofloat(damping1.text);
       damping1.text := 'Damping: ' + damping1.text;
    end;
    dampingWasAlreadyOverwritten1 := true;
@@ -275,6 +294,7 @@ end;
 procedure TmainProgram.mass2EditingDone(Sender: TObject);
 begin
    if massWasAlreadyOverwritten2 = false then begin
+      mass2cache := strtofloat(mass2.text);
       mass2.text := 'Mass: ' + mass2.text;
    end;
    massWasAlreadyOverwritten2 := true;
@@ -289,6 +309,7 @@ end;
 procedure TmainProgram.length2EditingDone(Sender: TObject);
 begin
    if lengthWasAlreadyOverwritten2 = false then begin
+      length2cache := strtofloat(length2.text);
       length2.text := 'Length: ' + length2.text;
    end;
    lengthWasAlreadyOverwritten2 := true;
@@ -303,6 +324,7 @@ end;
 procedure TmainProgram.featherKonstant2EditingDone(Sender: TObject);
 begin
    if featherkonstantWasAlreadyOverwritten2 = false then begin
+      featherkonstant2cache := strtofloat(featherkonstant2.text);
       featherkonstant2.text := 'Feather Konstant: ' + featherkonstant2.text;
    end;
    featherkonstantWasAlreadyOverwritten2 := true;
@@ -317,6 +339,7 @@ end;
 procedure TmainProgram.elongation2EditingDone(Sender: TObject);
 begin
    if elongationWasAlreadyOverwritten2 = false then begin
+      elongation2cache := strtofloat(elongation2.text);
       elongation2.text := 'Elongation: ' + elongation2.text;
    end;
    elongationWasAlreadyOverwritten2 := true;
@@ -331,7 +354,8 @@ end;
 procedure TmainProgram.locationFactor2EditingDone(Sender: TObject);
 begin
    if locationfactorWasAlreadyOverwritten2 = false then begin
-      locationfactor2.text := 'Locationfactor: ' + locationfactor2.text;
+      locationfactor2cache := strtofloat(locationfactor2.text);
+      locationfactor2.text := 'Location Factor: ' + locationfactor2.text;
    end;
    locationfactorWasAlreadyOverwritten2 := true;
    locationfactor2.enabled := false;
@@ -345,6 +369,7 @@ end;
 procedure TmainProgram.damping2EditingDone(Sender: TObject);
 begin
    if dampingWasAlreadyOverwritten2 = false then begin
+      damping2cache := strtofloat(damping2.text);
       damping2.text := 'Damping: ' + damping2.text;
    end;
    dampingWasAlreadyOverwritten2 := true;
@@ -378,6 +403,7 @@ end;
 procedure TmainProgram.mass3EditingDone(Sender: TObject);
 begin
    if massWasAlreadyOverwritten3 = false then begin
+      mass3cache := strtofloat(mass3.text);
       mass3.text := 'Mass: ' + mass3.text;
    end;
    massWasAlreadyOverwritten3 := true;
@@ -392,6 +418,7 @@ end;
 procedure TmainProgram.length3EditingDone(Sender: TObject);
 begin
    if lengthWasAlreadyOverwritten3 = false then begin
+      length3cache := strtofloat(length3.text);
       length3.text := 'Length: ' + length3.text;
    end;
    lengthWasAlreadyOverwritten3 := true;
@@ -406,6 +433,7 @@ end;
 procedure TmainProgram.featherKonstant3EditingDone(Sender: TObject);
 begin
    if featherkonstantWasAlreadyOverwritten3 = false then begin
+      featherkonstant3cache := strtofloat(featherkonstant3.text);
       featherkonstant3.text := 'Feather Konstant: ' + featherkonstant3.text;
    end;
    featherkonstantWasAlreadyOverwritten3 := true;
@@ -420,6 +448,7 @@ end;
 procedure TmainProgram.elongation3EditingDone(Sender: TObject);
 begin
    if elongationWasAlreadyOverwritten3 = false then begin
+      elongation3cache := strtofloat(elongation3.text);
       elongation3.text := 'Elongation: ' + elongation3.text;
    end;
    elongationWasAlreadyOverwritten3 := true;
@@ -434,7 +463,8 @@ end;
 procedure TmainProgram.locationFactor3EditingDone(Sender: TObject);
 begin
    if locationfactorWasAlreadyOverwritten3 = false then begin
-      locationfactor3.text := 'Locationfactor: ' + locationfactor3.text;
+      locationfactor3cache := strtofloat(locationfactor3.text);
+      locationfactor3.text := 'Location Factor: ' + locationfactor3.text;
    end;
    locationfactorWasAlreadyOverwritten3 := true;
    locationfactor3.enabled := false;
@@ -448,6 +478,7 @@ end;
 procedure TmainProgram.damping3EditingDone(Sender: TObject);
 begin
    if dampingWasAlreadyOverwritten3 = false then begin
+      damping3cache := strtofloat(damping3.text);
       damping3.text := 'Damping: ' + damping3.text;
    end;
    dampingWasAlreadyOverwritten3 := true;
@@ -556,16 +587,34 @@ begin
   close;
 end;
 
-procedure TmainProgram.CalculateClick(Sender: TObject);
-var count: integer;
+//calculationarea
+procedure TmainProgram.calculate1Click(Sender: TObject);
+var
+  m, D, y, v, t, a, tsum: real;
+  i: integer;
 begin
-  with StringGrid1 do begin
-    for count := 1 to 199 do begin
-      cells [0, count] := floattostr (count);
-    end;
-
+   if setType1.ItemIndex = 0 then begin
+    m := mass1cache;
+    D := featherkonstant1cache;
+    y := elongation1cache;
+    v := 0;
+    tsum := 0;
+    for i:=0 to 19998 do begin
+           t := 0.005;
+           a := -(D/m)*y;
+           v := v+a*t;
+           y := y+v*t;
+           tsum := tsum + t;
+           function1table[1, i] := tsum;
+           function1table[2, i] := y;
+           function1table[3, i] := v;
+           function1table[4, i] := a;
+      end;
   end;
 end;
+
+
+
 
 
 
