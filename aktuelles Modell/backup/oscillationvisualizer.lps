@@ -20,10 +20,9 @@
         <ComponentName Value="mainProgram"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="698"/>
-        <CursorPos X="29" Y="713"/>
-        <FoldState Value=" TM HkP21 T3l60C8 piajJ09[94YjC0BC]9ZjI0Y[94bk10421]TkVmg0{C1 pj7lI0Q3 PiDic0 T0z9XH01111]3[66[DD Plfp9MA"/>
+        <TopLine Value="1138"/>
+        <CursorPos X="44" Y="1173"/>
+        <FoldState Value=" TM HkP21 T3l60C8 piajJ09[94YjC0BC]9ZjI0Y[94bk10421]TkVmg0{C1 Pj7j80 T0z9XH01111]3[66[CC]flfmUXN"/>
         <UsageCount Value="31"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -34,7 +33,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainUnit"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="250"/>
         <CursorPos X="11" Y="286"/>
         <UsageCount Value="14"/>
@@ -53,12 +52,18 @@
         <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\lcl\grids.pas"/>
+        <UnitName Value="Grids"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="10100"/>
+        <CursorPos Y="10126"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="main.pas"/>
-        <Caret Line="734" Column="14" TopLine="500"/>
-      </Position>
       <Position>
         <Filename Value="main.pas"/>
         <Caret Line="735" Column="14" TopLine="496"/>
@@ -174,6 +179,10 @@
       <Position>
         <Filename Value="main.pas"/>
         <Caret Line="1171" Column="63" TopLine="1114"/>
+      </Position>
+      <Position>
+        <Filename Value="main.pas"/>
+        <Caret Line="1173" Column="44" TopLine="1138"/>
       </Position>
     </JumpHistory>
     <RunParams>

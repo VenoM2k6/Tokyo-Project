@@ -1152,26 +1152,29 @@ var
 begin
     if functionFilter.itemindex = 0 then begin
        for j:=0 to 19999 do begin
-         table.cells[1, j] := floattostr(function1table[1, j]);
-         table.cells[2, j] := floattostr(function1table[2, j]);
-         table.cells[3, j] := floattostr(function1table[3, j]);
-         table.cells[4, j] := floattostr(function1table[4, j]);
+         table.cells[0, j+2] := inttostr(j);
+         table.cells[1, j+1] := floattostr(function1table[1, j]);
+         table.cells[2, j+1] := floattostr(function1table[2, j]);
+         table.cells[3, j+1] := floattostr(function1table[3, j]);
+         table.cells[4, j+1] := floattostr(function1table[4, j]);
          end;
        end;
     if functionFilter.itemindex = 1 then begin
        for j:=0 to 19999 do begin
-         table.cells[1, j] := floattostr(function2table[1, j]);
-         table.cells[2, j] := floattostr(function2table[2, j]);
-         table.cells[3, j] := floattostr(function2table[3, j]);
-         table.cells[4, j] := floattostr(function2table[4, j]);
+        table.cells[0, j+2] := inttostr(j);
+         table.cells[1, j+1] := floattostr(function2table[1, j]);
+         table.cells[2, j+1] := floattostr(function2table[2, j]);
+         table.cells[3, j+1] := floattostr(function2table[3, j]);
+         table.cells[4, j+1] := floattostr(function2table[4, j]);
          end;
        end;
     if functionFilter.itemindex = 2 then begin
        for j:=0 to 19999 do begin
-         table.cells[1, j] := floattostr(function3table[1, j]);
-         table.cells[2, j] := floattostr(function3table[2, j]);
-         table.cells[3, j] := floattostr(function3table[3, j]);
-         table.cells[4, j] := floattostr(function3table[4, j]);
+        table.cells[0, j+2] := inttostr(j);
+         table.cells[1, j+1] := floattostr(function3table[1, j]);
+         table.cells[2, j+1] := floattostr(function3table[2, j]);
+         table.cells[3, j+1] := floattostr(function3table[3, j]);
+         table.cells[4, j+1] := floattostr(function3table[4, j]);
          end;
        end;
     if (functionFilter.itemindex = 0) AND (generated1 = false) then begin

@@ -1,7 +1,7 @@
 object mainProgram: TmainProgram
-  Left = 701
+  Left = 718
   Height = 723
-  Top = 160
+  Top = 147
   Width = 1819
   Caption = 'Main Program'
   ClientHeight = 703
@@ -431,7 +431,7 @@ object mainProgram: TmainProgram
     Height = 493
     Top = 90
     Width = 395
-    RowCount = 20000
+    RowCount = 20100
     TabOrder = 5
     Visible = False
     ColWidths = (
