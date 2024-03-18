@@ -13,6 +13,7 @@ type
   { TmainProgram }
 
   TmainProgram = class(TForm)
+    createTable: TButton;
     Calculate: TButton;
     calculate2: TButton;
     calculate3: TButton;
@@ -35,6 +36,7 @@ type
     function2: TGroupBox;
     function3: TGroupBox;
     Graph: TImage;
+    functionFilter: TRadioGroup;
     temp2: TImage;
     temp1: TImage;
     RecommendationMasse: TLabel;
@@ -51,7 +53,7 @@ type
     mass2: TEdit;
     mass3: TEdit;
     RefreshMenu: TMenuItem;
-    StringGrid1: TStringGrid;
+    table: TStringGrid;
     eye1: TImage;
     eye2: TImage;
     eye3: TImage;
@@ -82,6 +84,7 @@ type
     procedure collapse2Click(Sender: TObject);
     procedure collapse3Click(Sender: TObject);
     procedure createNewFunctionClick(Sender: TObject);
+    procedure createTableClick(Sender: TObject);
     procedure damping1Click(Sender: TObject);
     procedure damping1EditingDone(Sender: TObject);
     procedure damping2Click(Sender: TObject);
@@ -108,6 +111,7 @@ type
     procedure featherKonstant3Click(Sender: TObject);
     procedure featherKonstant3EditingDone(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure functionFilterClick(Sender: TObject);
     procedure length1Click(Sender: TObject);
     procedure length1EditingDone(Sender: TObject);
     procedure length2Click(Sender: TObject);
@@ -185,6 +189,7 @@ begin
   generated2 := false;
   generated3 := false;
 end;
+
 
 
 //Editfields of function 1
@@ -657,6 +662,11 @@ begin
    for i:=0 to 12do begin
      functionCreated[i] := false;
    end;
+
+   func1.visible := false;
+   func2.visible := false;
+   func3.visible := false;
+
    eye1.visible := false;
    eye1.picture := temp1.picture;
    eye2.visible := false;
@@ -681,26 +691,26 @@ begin
    setType2.text := 'Choose an oscillationtype';
    setType3.text := 'Choose an oscillationtype';
 
-   mass1.Visible := true;
-   elongation1.visible := true;
-   featherkonstant1.visible := true;
-   length1.visible := true;
-   locationfactor1.visible := true;
-   damping1.visible := true;
+   mass1.Visible := false;
+   elongation1.visible := false;
+   featherkonstant1.visible := false;
+   length1.visible := false;
+   locationfactor1.visible := false;
+   damping1.visible := false;
 
-   mass2.Visible := true;
-   elongation2.visible := true;
-   featherkonstant2.visible := true;
-   length2.visible := true;
-   locationfactor2.visible := true;
-   damping2.visible := true;
+   mass2.Visible := false;
+   elongation2.visible := false;
+   featherkonstant2.visible := false;
+   length2.visible := false;
+   locationfactor2.visible := false;
+   damping2.visible := false;
 
-   mass3.Visible := true;
-   elongation3.visible := true;
-   featherkonstant3.visible := true;
-   length3.visible := true;
-   locationfactor3.visible := true;
-   damping3.visible := true;
+   mass3.Visible := false;
+   elongation3.visible := false;
+   featherkonstant3.visible := false;
+   length3.visible := false;
+   locationfactor3.visible := false;
+   damping3.visible := false;
 
    mass1.text := 'Mass';
    length1.text := 'Length';
@@ -853,11 +863,12 @@ begin
     with graph do begin
        canvas.Pixels[j+1, graph.height div 2 + round(function1table[1, j]*1000)] := clred;
     end;
-    end;
+  end;
   func1.visible := true;
   eye1.visible := true;
   generated1 := true;
   func1.text := function1.caption;
+  createTable.visible :=true;
    end;
 procedure TmainProgram.calculate2Click(Sender: TObject);
 var
@@ -951,6 +962,7 @@ begin
   eye2.visible := true;
   generated2 := true;
   func2.text := function2.caption;
+  createTable.visible :=true;
 end;
 procedure TmainProgram.calculate3Click(Sender: TObject);
 var
@@ -1044,6 +1056,7 @@ begin
   eye3.visible := true;
   generated3 := true;
   func3.text := function3.caption;
+  createTable.visible :=true;
 end;
 
 //Visualization
@@ -1122,13 +1135,55 @@ begin
     if generated3 then begin
        for j:=0 to 19999 do begin
         with graph do begin
-             canvas.Pixels[j+1, graph.height div 2 + round(function2table[1, j]*1000)] := clgreen;
+             canvas.Pixels[j+1, graph.height div 2 + round(function3table[1, j]*1000)] := clgreen;
              end;
         end;
     end;
    end;
 end;
-
+procedure TmainProgram.createTableClick(Sender: TObject);
+begin
+   functionFilter.visible := true;
+   table.visible := true;
+end;
+procedure TmainProgram.functionFilterClick(Sender: TObject);
+var
+  j:integer;
+begin
+    if functionFilter.itemindex = 0 then begin
+       for j:=0 to 19999 do begin
+         table.cells[1, j] := floattostr(function1table[1, j]);
+         table.cells[2, j] := floattostr(function1table[2, j]);
+         table.cells[3, j] := floattostr(function1table[3, j]);
+         table.cells[4, j] := floattostr(function1table[4, j]);
+         end;
+       end;
+    if functionFilter.itemindex = 1 then begin
+       for j:=0 to 19999 do begin
+         table.cells[1, j] := floattostr(function2table[1, j]);
+         table.cells[2, j] := floattostr(function2table[2, j]);
+         table.cells[3, j] := floattostr(function2table[3, j]);
+         table.cells[4, j] := floattostr(function2table[4, j]);
+         end;
+       end;
+    if functionFilter.itemindex = 2 then begin
+       for j:=0 to 19999 do begin
+         table.cells[1, j] := floattostr(function3table[1, j]);
+         table.cells[2, j] := floattostr(function3table[2, j]);
+         table.cells[3, j] := floattostr(function3table[3, j]);
+         table.cells[4, j] := floattostr(function3table[4, j]);
+         end;
+       end;
+    if (functionFilter.itemindex = 0) AND (generated1 = false) then begin
+       showmessage('You have not created the red function so far');
+    end;
+    if (functionFilter.itemindex = 1) AND (generated2 = false) then begin
+       showmessage('You have not created the red function so far');
+    end;
+    if (functionFilter.itemindex = 2) AND (generated3 = false) then begin
+       showmessage('You have not created the red function so far');
+    end;
+end;
 
 
 

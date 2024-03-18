@@ -1,11 +1,11 @@
 object mainProgram: TmainProgram
   Left = 701
-  Height = 724
+  Height = 723
   Top = 160
-  Width = 1627
+  Width = 1819
   Caption = 'Main Program'
-  ClientHeight = 704
-  ClientWidth = 1627
+  ClientHeight = 703
+  ClientWidth = 1819
   Color = clWindow
   Menu = MainMenu1
   OnCreate = FormCreate
@@ -426,13 +426,14 @@ object mainProgram: TmainProgram
       TabOrder = 10
     end
   end
-  object StringGrid1: TStringGrid
-    Left = 1080
+  object table: TStringGrid
+    Left = 1280
     Height = 493
     Top = 90
     Width = 395
-    RowCount = 200
+    RowCount = 20000
     TabOrder = 5
+    Visible = False
     ColWidths = (
       64
       64
@@ -522,7 +523,7 @@ object mainProgram: TmainProgram
     Visible = False
   end
   object func2: TEdit
-    Left = 632
+    Left = 640
     Height = 21
     Top = 600
     Width = 96
@@ -1558,6 +1559,41 @@ object mainProgram: TmainProgram
       888088883FFFD9
     }
     Stretch = True
+    Visible = False
+  end
+  object createTable: TButton
+    Left = 1080
+    Height = 25
+    Top = 88
+    Width = 185
+    Caption = 'Create Table'
+    OnClick = createTableClick
+    TabOrder = 9
+    Visible = False
+  end
+  object functionFilter: TRadioGroup
+    Left = 1080
+    Height = 105
+    Top = 120
+    Width = 185
+    AutoFill = True
+    Caption = 'Choose Function'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 85
+    ClientWidth = 181
+    Items.Strings = (
+      'Red'
+      'Blue'
+      'Green'
+    )
+    OnClick = functionFilterClick
+    TabOrder = 10
     Visible = False
   end
   object MainMenu1: TMainMenu
