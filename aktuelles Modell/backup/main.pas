@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Menus, Grids,
-  ExtCtrls;
+  ExtCtrls, Buttons;
 
 type
 
@@ -25,6 +25,9 @@ type
     collapse1: TButton;
     edit2: TButton;
     edit3: TButton;
+    func1: TEdit;
+    func2: TEdit;
+    func3: TEdit;
     elongation2: TEdit;
     elongation3: TEdit;
     featherKonstant2: TEdit;
@@ -32,6 +35,8 @@ type
     function2: TGroupBox;
     function3: TGroupBox;
     Graph: TImage;
+    temp2: TImage;
+    temp1: TImage;
     RecommendationMasse: TLabel;
     RecommandationLength: TLabel;
     RecommandationFetherkonstant: TLabel;
@@ -47,6 +52,9 @@ type
     mass3: TEdit;
     RefreshMenu: TMenuItem;
     StringGrid1: TStringGrid;
+    eye1: TImage;
+    eye2: TImage;
+    eye3: TImage;
     Tutorial: TMenuItem;
     Settings: TMenuItem;
     CloseMenu: TMenuItem;
@@ -67,6 +75,8 @@ type
     setType2: TComboBox;
     setType3: TComboBox;
     procedure calculate1Click(Sender: TObject);
+    procedure calculate2Click(Sender: TObject);
+    procedure calculate3Click(Sender: TObject);
     procedure CloseMenuClick(Sender: TObject);
     procedure collapse1Click(Sender: TObject);
     procedure collapse2Click(Sender: TObject);
@@ -88,6 +98,9 @@ type
     procedure elongation2EditingDone(Sender: TObject);
     procedure elongation3Click(Sender: TObject);
     procedure elongation3EditingDone(Sender: TObject);
+    procedure eye1Click(Sender: TObject);
+    procedure eye2Click(Sender: TObject);
+    procedure eye3Click(Sender: TObject);
     procedure featherKonstant1Click(Sender: TObject);
     procedure featherKonstant1EditingDone(Sender: TObject);
     procedure featherKonstant2Click(Sender: TObject);
@@ -119,6 +132,9 @@ type
     procedure nameFunction2EditingDone(Sender: TObject);
     procedure nameFunction3Click(Sender: TObject);
     procedure nameFunction3EditingDone(Sender: TObject);
+    procedure setType1Change(Sender: TObject);
+    procedure setType2Change(Sender: TObject);
+    procedure setType3Change(Sender: TObject);
   private
 
   public
@@ -127,14 +143,17 @@ type
 
 var
   mainProgram: TmainProgram;
+  //eye
+  clicked1, clicked2, clicked3: boolean;
+  generated1, generated2, generated3: boolean;
   //functions
   functionCreated: array[0..8] of Boolean;
   //arrays for table
-  function1table: array[1..4, 1..3999] of real;
-  function2table: array[1..4, 1..3999] of real;
-  function3table: array[1..4, 1..3999] of real;
-  function4table: array[1..4, 1..3999] of real;
-
+  function1table: array[1..4, 1..19999] of real;
+  function2table: array[1..4, 1..19999] of real;
+  function3table: array[1..4, 1..19999] of real;
+  function4table: array[1..4, 1..19999] of real;
+  //caches for function stuff
   mass1cache, elongation1cache, length1cache, locationfactor1cache, featherkonstant1cache, damping1cache: real;
   mass2cache, elongation2cache, length2cache, locationfactor2cache, featherkonstant2cache, damping2cache: real;
   mass3cache, elongation3cache, length3cache, locationfactor3cache, featherkonstant3cache, damping3cache: real;
@@ -156,10 +175,55 @@ implementation
 procedure TmainProgram.FormCreate(Sender: TObject);
 begin
   WindowState := wsmaximized;
+
+  //eye
+  eye1.picture := temp1.picture;
+  eye2.picture := temp1.picture;
+  eye3.picture := temp1.picture;
+
+  generated1 := false;
+  generated2 := false;
+  generated3 := false;
 end;
 
 
 //Editfields of function 1
+procedure TmainProgram.setType1Change(Sender: TObject);
+begin
+  if setType1.itemindex = 0 then begin
+     mass1.Visible := true;
+     elongation1.visible := true;
+     featherkonstant1.visible := true;
+     length1.visible := false;
+     locationfactor1.visible := false;
+     damping1.visible := false;
+  end;
+  if setType1.itemindex = 1 then begin
+     mass1.Visible := true;
+     elongation1.visible := true;
+     featherkonstant1.visible := true;
+     length1.visible := false;
+     locationfactor1.visible := false;
+     damping1.visible := true;
+  end;
+  if setType1.itemindex = 2 then begin
+     mass1.Visible := true;
+     elongation1.visible := true;
+     featherkonstant1.visible := false;
+     length1.visible := true;
+     locationfactor1.visible := true;
+     damping1.visible := false;
+  end;
+  if setType1.itemindex = 3 then begin
+     mass1.Visible := true;
+     elongation1.visible := true;
+     featherkonstant1.visible := false;
+     length1.visible := true;
+     locationfactor1.visible := true;
+     damping1.visible := true;
+  end;
+end;
+
 procedure TmainProgram.nameFunction1Click(Sender: TObject);
 begin
   nameFunction1.text := '';
@@ -269,6 +333,42 @@ begin
 end;
 
 //Editfields of function 2
+procedure TmainProgram.setType2Change(Sender: TObject);
+begin
+   if setType2.itemindex = 0 then begin
+     mass2.Visible := true;
+     elongation2.visible := true;
+     featherkonstant2.visible := true;
+     length2.visible := false;
+     locationfactor2.visible := false;
+     damping2.visible := false;
+  end;
+  if setType2.itemindex = 1 then begin
+     mass2.Visible := true;
+     elongation2.visible := true;
+     featherkonstant2.visible := true;
+     length2.visible := false;
+     locationfactor2.visible := false;
+     damping2.visible := true;
+  end;
+  if setType2.itemindex = 2 then begin
+     mass2.Visible := true;
+     elongation2.visible := true;
+     featherkonstant2.visible := false;
+     length2.visible := true;
+     locationfactor2.visible := true;
+     damping2.visible := false;
+  end;
+  if setType2.itemindex = 3 then begin
+     mass2.Visible := true;
+     elongation2.visible := true;
+     featherkonstant2.visible := false;
+     length2.visible := true;
+     locationfactor2.visible := true;
+     damping2.visible := true;
+  end;
+end;
+
 procedure TmainProgram.nameFunction2Click(Sender: TObject);
 begin
   nameFunction2.text:='';
@@ -378,6 +478,42 @@ begin
 end;
 
 //Editfields of function 3
+procedure TmainProgram.setType3Change(Sender: TObject);
+begin
+  if setType3.itemindex = 0 then begin
+     mass3.Visible := true;
+     elongation3.visible := true;
+     featherkonstant3.visible := true;
+     length3.visible := false;
+     locationfactor3.visible := false;
+     damping3.visible := false;
+  end;
+  if setType3.itemindex = 1 then begin
+     mass3.Visible := true;
+     elongation3.visible := true;
+     featherkonstant3.visible := true;
+     length3.visible := false;
+     locationfactor3.visible := false;
+     damping3.visible := true;
+  end;
+  if setType3.itemindex = 2 then begin
+     mass3.Visible := true;
+     elongation3.visible := true;
+     featherkonstant3.visible := false;
+     length3.visible := true;
+     locationfactor3.visible := true;
+     damping3.visible := false;
+  end;
+  if setType3.itemindex = 3 then begin
+     mass3.Visible := true;
+     elongation3.visible := true;
+     featherkonstant3.visible := false;
+     length3.visible := true;
+     locationfactor3.visible := true;
+     damping3.visible := true;
+  end;
+end;
+
 procedure TmainProgram.nameFunction3Click(Sender: TObject);
 begin
   nameFunction3.text := '';
@@ -455,6 +591,8 @@ begin
    elongation3.enabled := false;
    elongation3.enabled := true;
 end;
+
+
 procedure TmainProgram.locationFactor3Click(Sender: TObject);
 begin
   locationFactor3.text := '';
@@ -519,9 +657,51 @@ begin
    for i:=0 to 12do begin
      functionCreated[i] := false;
    end;
+   eye1.visible := false;
+   eye1.picture := temp1.picture;
+   eye2.visible := false;
+   eye2.picture := temp1.picture;
+   eye3.visible := false;
+   eye3.picture := temp1.picture;
+
+   generated1 := false;
+   generated2 := false;
+   generated3 := false;
+
+   graph.picture := nil;
+
    function1.visible := false;
    function2.visible := false;
    function3.visible := false;
+
+   setType1.ItemIndex := -1;
+   setType2.ItemIndex := -1;
+   setType3.ItemIndex := -1;
+   setType1.text := 'Choose an oscillationtype';
+   setType2.text := 'Choose an oscillationtype';
+   setType3.text := 'Choose an oscillationtype';
+
+   mass1.Visible := true;
+   elongation1.visible := true;
+   featherkonstant1.visible := true;
+   length1.visible := true;
+   locationfactor1.visible := true;
+   damping1.visible := true;
+
+   mass2.Visible := true;
+   elongation2.visible := true;
+   featherkonstant2.visible := true;
+   length2.visible := true;
+   locationfactor2.visible := true;
+   damping2.visible := true;
+
+   mass3.Visible := true;
+   elongation3.visible := true;
+   featherkonstant3.visible := true;
+   length3.visible := true;
+   locationfactor3.visible := true;
+   damping3.visible := true;
+
    mass1.text := 'Mass';
    length1.text := 'Length';
    featherkonstant1.text := 'Feather Konstant';
@@ -561,7 +741,6 @@ begin
    function3.height := 184;
    edit3.visible := false;
 end;
-
 procedure TmainProgram.collapse1Click(Sender: TObject);
 begin
    function1.height := edit1.height;
@@ -581,38 +760,374 @@ begin
    edit3.visible := true;
 end;
 
-
 procedure TmainProgram.CloseMenuClick(Sender: TObject);
 begin
   close;
 end;
 
-//calculationarea
+//Calculation
 procedure TmainProgram.calculate1Click(Sender: TObject);
 var
-  m, D, y, v, t, a, tsum: real;
-  i: integer;
+  m, D, y, v, t, a, k, l, g, tsum: real;
+  i, j: integer;
 begin
-   if setType1.ItemIndex = 0 then begin
+  if setType1.ItemIndex = 0 then begin
     m := mass1cache;
     D := featherkonstant1cache;
     y := elongation1cache;
     v := 0;
     tsum := 0;
-    for i:=0 to 19998 do begin
+    for i:=0 to 19999 do begin
            t := 0.005;
            a := -(D/m)*y;
            v := v+a*t;
            y := y+v*t;
            tsum := tsum + t;
-           function1table[1, i] := tsum;
-           function1table[2, i] := y;
-           function1table[3, i] := v;
-           function1table[4, i] := a;
+           function1table[0, i] := tsum;
+           function1table[1, i] := y;
+           function1table[2, i] := v;
+           function1table[3, i] := a;
       end;
   end;
+  if setType1.ItemIndex = 1 then begin
+    m := mass1cache;
+    D := featherkonstant1cache;
+    y := elongation1cache;
+    k := damping1cache;
+    v := 0;
+    tsum := 0;
+    for i:=0 to 19998 do begin
+           t := 0.005;
+           a := -(D*y+k*v)/m;
+           v := v+a*t;
+           y := y+v*t;
+           tsum := tsum + t;
+           function1table[0, i] := tsum;
+           function1table[1, i] := y;
+           function1table[2, i] := v;
+           function1table[3, i] := a;
+      end;
+  end;
+  if setType1.ItemIndex = 2 then begin
+    m := mass1cache;
+    y := elongation1cache;
+    l := length1cache;
+    g := locationfactor1cache;
+    v := 0;
+    D := (m*g)/l;
+    tsum := 0;
+    for i:=0 to 19999 do begin
+           t := 0.005;
+           a := -(D/m)*y;
+           v := v+a*t;
+           y := y+v*t;
+           tsum := tsum + t;
+           function1table[0, i] := tsum;
+           function1table[1, i] := y;
+           function1table[2, i] := v;
+           function1table[3, i] := a;
+      end;
+  end;
+  if setType1.ItemIndex = 3 then begin
+    m := mass1cache;
+    y := elongation1cache;
+    k := damping1cache;
+    l := length1cache;
+    g := locationfactor1cache;
+    D := (m*g)/l;
+    v := 0;
+    tsum := 0;
+    for i:=0 to 19998 do begin
+           t := 0.005;
+           a := -(D*y+k*v)/m;
+           v := v+a*t;
+           y := y+v*t;
+           tsum := tsum + t;
+           function1table[0, i] := tsum;
+           function1table[1, i] := y;
+           function1table[2, i] := v;
+           function1table[3, i] := a;
+      end;
+  end;
+  for j:=0 to 19999 do begin
+    with graph do begin
+       canvas.Pixels[j+1, graph.height div 2 + round(function1table[1, j]*1000)] := clred;
+    end;
+    end;
+  func1.visible := true;
+  eye1.visible := true;
+  generated1 := true;
+  func1.text := function1.caption;
+   end;
+procedure TmainProgram.calculate2Click(Sender: TObject);
+var
+  m, D, y, v, t, a, k, l, g, tsum: real;
+  i, j: integer;
+begin
+  if setType2.ItemIndex = 0 then begin
+    m := mass2cache;
+    D := featherkonstant2cache;
+    y := elongation2cache;
+    v := 0;
+    tsum := 0;
+    for i:=0 to 19999 do begin
+           t := 0.005;
+           a := -(D/m)*y;
+           v := v+a*t;
+           y := y+v*t;
+           tsum := tsum + t;
+           function2table[0, i] := tsum;
+           function2table[1, i] := y;
+           function2table[2, i] := v;
+           function2table[3, i] := a;
+      end;
+  end;
+  if setType2.ItemIndex = 1 then begin
+    m := mass2cache;
+    D := featherkonstant2cache;
+    y := elongation2cache;
+    k := damping2cache;
+    v := 0;
+    tsum := 0;
+    for i:=0 to 19998 do begin
+           t := 0.005;
+           a := -(D*y+k*v)/m;
+           v := v+a*t;
+           y := y+v*t;
+           tsum := tsum + t;
+           function2table[0, i] := tsum;
+           function2table[1, i] := y;
+           function2table[2, i] := v;
+           function2table[3, i] := a;
+      end;
+  end;
+  if setType2.ItemIndex = 2 then begin
+    m := mass2cache;
+    y := elongation2cache;
+    l := length2cache;
+    g := locationfactor2cache;
+    v := 0;
+    D := (m*g)/l;
+    tsum := 0;
+    for i:=0 to 19999 do begin
+           t := 0.005;
+           a := -(D/m)*y;
+           v := v+a*t;
+           y := y+v*t;
+           tsum := tsum + t;
+           function2table[0, i] := tsum;
+           function2table[1, i] := y;
+           function2table[2, i] := v;
+           function2table[3, i] := a;
+      end;
+  end;
+  if setType2.ItemIndex = 3 then begin
+    m := mass2cache;
+    y := elongation2cache;
+    k := damping2cache;
+    l := length2cache;
+    g := locationfactor2cache;
+    D := (m*g)/l;
+    v := 0;
+    tsum := 0;
+    for i:=0 to 19998 do begin
+           t := 0.005;
+           a := -(D*y+k*v)/m;
+           v := v+a*t;
+           y := y+v*t;
+           tsum := tsum + t;
+           function2table[0, i] := tsum;
+           function2table[1, i] := y;
+           function2table[2, i] := v;
+           function2table[3, i] := a;
+      end;
+  end;
+  for j:=0 to 19999 do begin
+    with graph do begin
+       canvas.Pixels[j+1, graph.height div 2 + round(function2table[1, j]*1000)] := clblue;
+    end;
+    end;
+  func2.visible := true;
+  eye2.visible := true;
+  generated2 := true;
+  func2.text := function2.caption;
+end;
+procedure TmainProgram.calculate3Click(Sender: TObject);
+var
+  m, D, y, v, t, a, k, l, g, tsum: real;
+  i, j: integer;
+begin
+   if setType3.ItemIndex = 0 then begin
+    m := mass3cache;
+    D := featherkonstant3cache;
+    y := elongation3cache;
+    v := 0;
+    tsum := 0;
+    for i:=0 to 19999 do begin
+           t := 0.005;
+           a := -(D/m)*y;
+           v := v+a*t;
+           y := y+v*t;
+           tsum := tsum + t;
+           function3table[0, i] := tsum;
+           function3table[1, i] := y;
+           function3table[2, i] := v;
+           function3table[3, i] := a;
+      end;
+  end;
+  if setType3.ItemIndex = 1 then begin
+    m := mass3cache;
+    D := featherkonstant3cache;
+    y := elongation3cache;
+    k := damping3cache;
+    v := 0;
+    tsum := 0;
+    for i:=0 to 19998 do begin
+           t := 0.005;
+           a := -(D*y+k*v)/m;
+           v := v+a*t;
+           y := y+v*t;
+           tsum := tsum + t;
+           function3table[0, i] := tsum;
+           function3table[1, i] := y;
+           function3table[2, i] := v;
+           function3table[3, i] := a;
+      end;
+  end;
+  if setType3.ItemIndex = 2 then begin
+    m := mass3cache;
+    y := elongation3cache;
+    l := length3cache;
+    g := locationfactor3cache;
+    v := 0;
+    D := (m*g)/l;
+    tsum := 0;
+    for i:=0 to 19999 do begin
+           t := 0.005;
+           a := -(D/m)*y;
+           v := v+a*t;
+           y := y+v*t;
+           tsum := tsum + t;
+           function3table[0, i] := tsum;
+           function3table[1, i] := y;
+           function3table[2, i] := v;
+           function3table[3, i] := a;
+      end;
+  end;
+  if setType3.ItemIndex = 3 then begin
+    m := mass3cache;
+    y := elongation3cache;
+    k := damping3cache;
+    l := length3cache;
+    g := locationfactor3cache;
+    D := (m*g)/l;
+    v := 0;
+    tsum := 0;
+    for i:=0 to 19998 do begin
+           t := 0.005;
+           a := -(D*y+k*v)/m;
+           v := v+a*t;
+           y := y+v*t;
+           tsum := tsum + t;
+           function3table[0, i] := tsum;
+           function3table[1, i] := y;
+           function3table[2, i] := v;
+           function3table[3, i] := a;
+      end;
+  end;
+  for j:=0 to 19999 do begin
+    with graph do begin
+       canvas.Pixels[j+1, graph.height div 2 + round(function3table[1, j]*1000)] := clgreen;
+    end;
+    end;
+  func3.visible := true;
+  eye3.visible := true;
+  generated3 := true;
+  func3.text := function3.caption;
 end;
 
+//Visualization
+procedure TmainProgram.eye1Click(Sender: TObject);
+var
+  j:integer;
+begin
+   if clicked1 = true then begin
+    eye1.Picture := temp2.picture;
+    clicked1 := false;
+    if generated1 then begin
+       for j:=0 to 19999 do begin
+        with graph do begin
+             canvas.Pixels[j+1, graph.height div 2 + round(function1table[1, j]*1000)] := clblack;
+             end;
+        end;
+    end;
+   end
+   else begin
+    eye1.Picture := temp1.picture;
+    clicked1 := true;
+    if generated1 then begin
+       for j:=0 to 19999 do begin
+        with graph do begin
+             canvas.Pixels[j+1, graph.height div 2 + round(function1table[1, j]*1000)] := clred;
+             end;
+        end;
+    end;
+   end;
+end;
+procedure TmainProgram.eye2Click(Sender: TObject);
+var
+  j:integer;
+begin
+   if clicked2 = true then begin
+    eye2.Picture := temp2.picture;
+    clicked2 := false;
+    if generated2 then begin
+       for j:=0 to 19999 do begin
+        with graph do begin
+             canvas.Pixels[j+1, graph.height div 2 + round(function2table[1, j]*1000)] := clblack;
+             end;
+        end;
+    end;
+   end
+   else begin
+    eye2.Picture := temp1.picture;
+    clicked2 := true;
+    if generated2 then begin
+       for j:=0 to 19999 do begin
+        with graph do begin
+             canvas.Pixels[j+1, graph.height div 2 + round(function2table[1, j]*1000)] := clblue;
+             end;
+        end;
+    end;
+   end;
+end;
+procedure TmainProgram.eye3Click(Sender: TObject);
+var
+  j:integer;
+begin
+   if clicked3 = true then begin
+    eye3.Picture := temp2.picture;
+    clicked3 := false;
+    if generated3 then begin
+       for j:=0 to 19999 do begin
+        with graph do begin
+             canvas.Pixels[j+1, graph.height div 2 + round(function3table[1, j]*1000)] := clblack;
+             end;
+        end;
+    end;
+   end
+   else begin
+    eye3.Picture := temp1.picture;
+    clicked3 := true;
+    if generated3 then begin
+       for j:=0 to 19999 do begin
+        with graph do begin
+             canvas.Pixels[j+1, graph.height div 2 + round(function2table[1, j]*1000)] := clgreen;
+             end;
+        end;
+    end;
+   end;
+end;
 
 
 
