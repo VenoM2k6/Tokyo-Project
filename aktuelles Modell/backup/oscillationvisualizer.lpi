@@ -41,6 +41,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
+      <Unit>
+        <Filename Value="welcome.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="welcomescreen"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

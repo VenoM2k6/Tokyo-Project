@@ -1,14 +1,15 @@
 object mainProgram: TmainProgram
-  Left = 718
-  Height = 723
-  Top = 147
+  Left = 126
+  Height = 628
+  Top = 251
   Width = 1819
   Caption = 'Main Program'
-  ClientHeight = 703
+  ClientHeight = 608
   ClientWidth = 1819
   Color = clWindow
   Menu = MainMenu1
   OnCreate = FormCreate
+  OnShow = FormShow
   ParentBiDiMode = False
   LCLVersion = '2.2.4.0'
   object createNewFunction: TButton
@@ -1607,9 +1608,6 @@ object mainProgram: TmainProgram
     end
     object Programcontrol: TMenuItem
       Caption = 'Programcontrol'
-      object RefreshMenu: TMenuItem
-        Caption = 'Refresh'
-      end
       object CloseMenu: TMenuItem
         Caption = 'Close'
         OnClick = CloseMenuClick

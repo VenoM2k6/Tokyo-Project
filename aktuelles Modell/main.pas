@@ -52,7 +52,6 @@ type
     MainMenu1: TMainMenu;
     mass2: TEdit;
     mass3: TEdit;
-    RefreshMenu: TMenuItem;
     table: TStringGrid;
     eye1: TImage;
     eye2: TImage;
@@ -111,6 +110,7 @@ type
     procedure featherKonstant3Click(Sender: TObject);
     procedure featherKonstant3EditingDone(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure functionFilterClick(Sender: TObject);
     procedure length1Click(Sender: TObject);
     procedure length1EditingDone(Sender: TObject);
@@ -147,16 +147,18 @@ type
 
 var
   mainProgram: TmainProgram;
+  //check started
+  shown: boolean;
   //eye
   clicked1, clicked2, clicked3: boolean;
   generated1, generated2, generated3: boolean;
   //functions
   functionCreated: array[0..8] of Boolean;
   //arrays for table
-  function1table: array[1..4, 1..19999] of real;
-  function2table: array[1..4, 1..19999] of real;
-  function3table: array[1..4, 1..19999] of real;
-  function4table: array[1..4, 1..19999] of real;
+  function1table: array[0..4, 1..19999] of real;
+  function2table: array[0..4, 1..19999] of real;
+  function3table: array[0..4, 1..19999] of real;
+  function4table: array[0..4, 1..19999] of real;
   //caches for function stuff
   mass1cache, elongation1cache, length1cache, locationfactor1cache, featherkonstant1cache, damping1cache: real;
   mass2cache, elongation2cache, length2cache, locationfactor2cache, featherkonstant2cache, damping2cache: real;
@@ -179,7 +181,6 @@ implementation
 procedure TmainProgram.FormCreate(Sender: TObject);
 begin
   WindowState := wsmaximized;
-
   //eye
   eye1.picture := temp1.picture;
   eye2.picture := temp1.picture;
@@ -188,6 +189,15 @@ begin
   generated1 := false;
   generated2 := false;
   generated3 := false;
+  shown := false;
+end;
+
+procedure TmainProgram.FormShow(Sender: TObject);
+begin
+  if shown = false then begin
+   mainProgram.hide;
+   shown := true;
+  end;
 end;
 
 
@@ -536,6 +546,7 @@ begin
   nameFunction3.enabled := false;
   nameFunction3.enabled := true;
 end;
+
 procedure TmainProgram.mass3Click(Sender: TObject);
 begin
   mass3.text := '';
@@ -1183,10 +1194,10 @@ begin
        showmessage('You have not created the red function so far');
     end;
     if (functionFilter.itemindex = 1) AND (generated2 = false) then begin
-       showmessage('You have not created the red function so far');
+       showmessage('You have not created the blue function so far');
     end;
     if (functionFilter.itemindex = 2) AND (generated3 = false) then begin
-       showmessage('You have not created the red function so far');
+       showmessage('You have not created the green function so far');
     end;
 end;
 
