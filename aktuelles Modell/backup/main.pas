@@ -147,6 +147,8 @@ type
 
 var
   mainProgram: TmainProgram;
+  //check started
+  shown: boolean;
   //eye
   clicked1, clicked2, clicked3: boolean;
   generated1, generated2, generated3: boolean;
@@ -187,11 +189,15 @@ begin
   generated1 := false;
   generated2 := false;
   generated3 := false;
+  shown := false;
 end;
 
 procedure TmainProgram.FormShow(Sender: TObject);
 begin
-  mainProgram.hide;
+  if shown = false then begin
+   mainProgram.hide;
+   shown := true;
+  end;
 end;
 
 

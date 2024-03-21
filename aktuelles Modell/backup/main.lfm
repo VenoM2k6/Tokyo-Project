@@ -1,8 +1,9 @@
 object mainProgram: TmainProgram
-  Left = 126
+  Left = 273
   Height = 628
-  Top = 251
+  Top = 64
   Width = 1819
+  BorderStyle = bsNone
   Caption = 'Main Program'
   ClientHeight = 608
   ClientWidth = 1819
@@ -15,10 +16,16 @@ object mainProgram: TmainProgram
   object createNewFunction: TButton
     Left = 13
     Height = 50
-    Top = 45
-    Width = 171
+    Top = 32
+    Width = 203
     Caption = 'Create New Function'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -16
+    Font.Name = 'Yu Gothic UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     OnClick = createNewFunctionClick
+    ParentFont = False
     TabOrder = 0
   end
   object function1: TGroupBox
@@ -29,6 +36,11 @@ object mainProgram: TmainProgram
     Caption = 'Function'
     ClientHeight = 127
     ClientWidth = 316
+    Font.CharSet = ANSI_CHARSET
+    Font.Name = 'Yu Gothic UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentFont = False
     TabOrder = 1
     Visible = False
     object mass1: TEdit
@@ -154,12 +166,18 @@ object mainProgram: TmainProgram
     end
   end
   object deleteAll: TButton
-    Left = 179
+    Left = 227
     Height = 50
-    Top = 45
-    Width = 171
+    Top = 32
+    Width = 205
     Caption = 'Delete All'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -16
+    Font.Name = 'Yu Gothic UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     OnClick = deleteAllClick
+    ParentFont = False
     TabOrder = 2
   end
   object function2: TGroupBox
@@ -170,6 +188,11 @@ object mainProgram: TmainProgram
     Caption = 'Function'
     ClientHeight = 127
     ClientWidth = 316
+    Font.CharSet = ANSI_CHARSET
+    Font.Name = 'Yu Gothic UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentFont = False
     TabOrder = 3
     Visible = False
     object mass2: TEdit
@@ -302,6 +325,11 @@ object mainProgram: TmainProgram
     Caption = 'Function'
     ClientHeight = 127
     ClientWidth = 316
+    Font.CharSet = ANSI_CHARSET
+    Font.Name = 'Yu Gothic UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentFont = False
     TabOrder = 4
     Visible = False
     object mass3: TEdit

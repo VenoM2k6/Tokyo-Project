@@ -1,8 +1,9 @@
 object mainProgram: TmainProgram
-  Left = 126
+  Left = 273
   Height = 628
-  Top = 251
+  Top = 64
   Width = 1819
+  BorderStyle = bsNone
   Caption = 'Main Program'
   ClientHeight = 608
   ClientWidth = 1819
@@ -15,10 +16,16 @@ object mainProgram: TmainProgram
   object createNewFunction: TButton
     Left = 13
     Height = 50
-    Top = 45
-    Width = 171
+    Top = 32
+    Width = 203
     Caption = 'Create New Function'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -16
+    Font.Name = 'Yu Gothic UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     OnClick = createNewFunctionClick
+    ParentFont = False
     TabOrder = 0
   end
   object function1: TGroupBox
@@ -29,6 +36,11 @@ object mainProgram: TmainProgram
     Caption = 'Function'
     ClientHeight = 127
     ClientWidth = 316
+    Font.CharSet = ANSI_CHARSET
+    Font.Name = 'Yu Gothic UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentFont = False
     TabOrder = 1
     Visible = False
     object mass1: TEdit
@@ -154,12 +166,18 @@ object mainProgram: TmainProgram
     end
   end
   object deleteAll: TButton
-    Left = 179
+    Left = 227
     Height = 50
-    Top = 45
-    Width = 171
+    Top = 32
+    Width = 205
     Caption = 'Delete All'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -16
+    Font.Name = 'Yu Gothic UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     OnClick = deleteAllClick
+    ParentFont = False
     TabOrder = 2
   end
   object function2: TGroupBox
@@ -170,6 +188,11 @@ object mainProgram: TmainProgram
     Caption = 'Function'
     ClientHeight = 127
     ClientWidth = 316
+    Font.CharSet = ANSI_CHARSET
+    Font.Name = 'Yu Gothic UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentFont = False
     TabOrder = 3
     Visible = False
     object mass2: TEdit
@@ -302,6 +325,11 @@ object mainProgram: TmainProgram
     Caption = 'Function'
     ClientHeight = 127
     ClientWidth = 316
+    Font.CharSet = ANSI_CHARSET
+    Font.Name = 'Yu Gothic UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentFont = False
     TabOrder = 4
     Visible = False
     object mass3: TEdit
@@ -460,51 +488,87 @@ object mainProgram: TmainProgram
   end
   object RecommendationMasse: TLabel
     Left = 11
-    Height = 15
+    Height = 20
     Top = 8
-    Width = 160
-    Caption = 'Recommandation Mass: 0 < 1 '
+    Width = 172
+    Caption = 'Recommanded Mass: 0,05'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -15
+    Font.Name = 'Yu Gothic UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     ParentColor = False
+    ParentFont = False
   end
   object RecommandationLength: TLabel
     Left = 193
-    Height = 15
+    Height = 20
     Top = 8
-    Width = 179
-    Caption = ' Recommandation Length: 0 < 0,5'
+    Width = 176
+    Caption = 'Recommanded Length: 0,3'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -15
+    Font.Name = 'Yu Gothic UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     ParentColor = False
+    ParentFont = False
   end
   object RecommandationFetherkonstant: TLabel
     Left = 392
-    Height = 15
+    Height = 20
     Top = 8
-    Width = 237
-    Caption = 'Recommandation Feather Konstant: 30 < 100'
+    Width = 238
+    Caption = 'Recommanded Feather Konstant: 50'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -15
+    Font.Name = 'Yu Gothic UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     ParentColor = False
+    ParentFont = False
   end
   object RecommandationElongation: TLabel
     Left = 644
-    Height = 15
+    Height = 20
     Top = 8
-    Width = 187
-    Caption = 'Recommandation Elongation: 0 < 1'
+    Width = 211
+    Caption = 'Recommanded Elongation: 0,04'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -15
+    Font.Name = 'Yu Gothic UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     ParentColor = False
+    ParentFont = False
   end
   object RecommandationLocationFactor: TLabel
-    Left = 848
-    Height = 15
+    Left = 864
+    Height = 20
     Top = 8
-    Width = 207
-    Caption = 'Recommandation Location Factor: 9,81'
+    Width = 240
+    Caption = 'Recommanded Location Factor: 9,81'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -15
+    Font.Name = 'Yu Gothic UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     ParentColor = False
+    ParentFont = False
   end
   object RecommandationDamping: TLabel
-    Left = 1064
-    Height = 15
+    Left = 1120
+    Height = 20
     Top = 8
-    Width = 188
-    Caption = 'Recommandation Damping: 0 < 0,3'
+    Width = 193
+    Caption = 'Recommanded Damping: 0,3'
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -15
+    Font.Name = 'Yu Gothic UI'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
     ParentColor = False
+    ParentFont = False
   end
   object Graph: TImage
     Left = 384
