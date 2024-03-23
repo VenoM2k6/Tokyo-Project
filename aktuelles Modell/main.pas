@@ -6,13 +6,17 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Menus, Grids,
-  ExtCtrls, Buttons;
+  ExtCtrls, Buttons, TAGraph, Math, TASeries;
 
 type
 
   { TmainProgram }
 
   TmainProgram = class(TForm)
+    Chart: TChart;
+    ChartLineSeries1: TLineSeries;
+    ChartLineSeries2: TLineSeries;
+    ChartLineSeries3: TLineSeries;
     createTable: TButton;
     Calculate: TButton;
     calculate2: TButton;
@@ -20,6 +24,7 @@ type
     collapse2: TButton;
     collapse3: TButton;
     calculate1: TButton;
+    deleteTable: TButton;
     damping2: TEdit;
     damping3: TEdit;
     edit1: TButton;
@@ -35,7 +40,6 @@ type
     featherKonstant3: TEdit;
     function2: TGroupBox;
     function3: TGroupBox;
-    Graph: TImage;
     functionFilter: TRadioGroup;
     temp2: TImage;
     temp1: TImage;
@@ -91,6 +95,7 @@ type
     procedure damping3Click(Sender: TObject);
     procedure damping3EditingDone(Sender: TObject);
     procedure deleteAllClick(Sender: TObject);
+    procedure deleteTableClick(Sender: TObject);
     procedure edit1Click(Sender: TObject);
     procedure edit2Click(Sender: TObject);
     procedure edit3Click(Sender: TObject);
@@ -155,10 +160,9 @@ var
   //functions
   functionCreated: array[0..8] of Boolean;
   //arrays for table
-  function1table: array[0..4, 1..19999] of real;
-  function2table: array[0..4, 1..19999] of real;
-  function3table: array[0..4, 1..19999] of real;
-  function4table: array[0..4, 1..19999] of real;
+  function1table: array[0..4, 1..19999] of double;
+  function2table: array[0..4, 1..19999] of double;
+  function3table: array[0..4, 1..19999] of double;
   //caches for function stuff
   mass1cache, elongation1cache, length1cache, locationfactor1cache, featherkonstant1cache, damping1cache: real;
   mass2cache, elongation2cache, length2cache, locationfactor2cache, featherkonstant2cache, damping2cache: real;
@@ -191,7 +195,6 @@ begin
   generated3 := false;
   shown := false;
 end;
-
 procedure TmainProgram.FormShow(Sender: TObject);
 begin
   if shown = false then begin
@@ -383,7 +386,6 @@ begin
      damping2.visible := true;
   end;
 end;
-
 procedure TmainProgram.nameFunction2Click(Sender: TObject);
 begin
   nameFunction2.text:='';
@@ -528,7 +530,6 @@ begin
      damping3.visible := true;
   end;
 end;
-
 procedure TmainProgram.nameFunction3Click(Sender: TObject);
 begin
   nameFunction3.text := '';
@@ -546,7 +547,6 @@ begin
   nameFunction3.enabled := false;
   nameFunction3.enabled := true;
 end;
-
 procedure TmainProgram.mass3Click(Sender: TObject);
 begin
   mass3.text := '';
@@ -607,8 +607,6 @@ begin
    elongation3.enabled := false;
    elongation3.enabled := true;
 end;
-
-
 procedure TmainProgram.locationFactor3Click(Sender: TObject);
 begin
   locationFactor3.text := '';
@@ -673,6 +671,9 @@ begin
    for i:=0 to 12do begin
      functionCreated[i] := false;
    end;
+   ChartLineSeries1.clear;
+   ChartLineSeries2.clear;
+   ChartLineSeries3.clear;
 
    func1.visible := false;
    func2.visible := false;
@@ -689,7 +690,7 @@ begin
    generated2 := false;
    generated3 := false;
 
-   graph.picture := nil;
+   //graph.picture := nil;
 
    function1.visible := false;
    function2.visible := false;
@@ -742,6 +743,13 @@ begin
    locationfactor3.text := 'Location Factor';
    damping3.text := 'Damping';
 end;
+
+procedure TmainProgram.deleteTableClick(Sender: TObject);
+begin
+  table.visible := false;
+  functionFilter.visible := false;
+end;
+
 //maximize / minimze
 procedure TmainProgram.edit1Click(Sender: TObject);
 begin
@@ -780,7 +788,6 @@ begin
    function3.height := edit3.height;
    edit3.visible := true;
 end;
-
 procedure TmainProgram.CloseMenuClick(Sender: TObject);
 begin
   close;
@@ -793,6 +800,7 @@ var
   i, j: integer;
 begin
   if setType1.ItemIndex = 0 then begin
+    ChartLineSeries1.clear;
     m := mass1cache;
     D := featherkonstant1cache;
     y := elongation1cache;
@@ -808,9 +816,13 @@ begin
            function1table[1, i] := y;
            function1table[2, i] := v;
            function1table[3, i] := a;
+           if i <= Chart.width then begin
+             ChartLineSeries1.AddXY(i,(y+v*t));
+           end;
       end;
   end;
   if setType1.ItemIndex = 1 then begin
+    ChartLineSeries1.clear;
     m := mass1cache;
     D := featherkonstant1cache;
     y := elongation1cache;
@@ -827,9 +839,13 @@ begin
            function1table[1, i] := y;
            function1table[2, i] := v;
            function1table[3, i] := a;
+           if i <= Chart.width then begin
+             ChartLineSeries1.AddXY(i,(y+v*t));
+           end;
       end;
   end;
   if setType1.ItemIndex = 2 then begin
+    ChartLineSeries1.clear;
     m := mass1cache;
     y := elongation1cache;
     l := length1cache;
@@ -847,9 +863,13 @@ begin
            function1table[1, i] := y;
            function1table[2, i] := v;
            function1table[3, i] := a;
+           if i <= Chart.width then begin
+             ChartLineSeries1.AddXY(i,(y+v*t));
+           end;
       end;
   end;
   if setType1.ItemIndex = 3 then begin
+    ChartLineSeries1.clear;
     m := mass1cache;
     y := elongation1cache;
     k := damping1cache;
@@ -868,25 +888,25 @@ begin
            function1table[1, i] := y;
            function1table[2, i] := v;
            function1table[3, i] := a;
+           if i <= Chart.width then begin
+             ChartLineSeries1.AddXY(i,(y+v*t));
+           end;
       end;
   end;
-  for j:=0 to 19999 do begin
-    with graph do begin
-       canvas.Pixels[j+1, graph.height div 2 + round(function1table[1, j]*1000)] := clred;
-    end;
-  end;
+
   func1.visible := true;
   eye1.visible := true;
   generated1 := true;
   func1.text := function1.caption;
   createTable.visible :=true;
-   end;
+  end;
 procedure TmainProgram.calculate2Click(Sender: TObject);
 var
   m, D, y, v, t, a, k, l, g, tsum: real;
   i, j: integer;
 begin
   if setType2.ItemIndex = 0 then begin
+    ChartLineSeries2.clear;
     m := mass2cache;
     D := featherkonstant2cache;
     y := elongation2cache;
@@ -902,9 +922,13 @@ begin
            function2table[1, i] := y;
            function2table[2, i] := v;
            function2table[3, i] := a;
+           if i <= Chart.width then begin
+             ChartLineSeries2.AddXY(i,(y+v*t));
+           end;
       end;
   end;
   if setType2.ItemIndex = 1 then begin
+    ChartLineSeries2.clear;
     m := mass2cache;
     D := featherkonstant2cache;
     y := elongation2cache;
@@ -921,9 +945,13 @@ begin
            function2table[1, i] := y;
            function2table[2, i] := v;
            function2table[3, i] := a;
+           if i <= Chart.width then begin
+             ChartLineSeries2.AddXY(i,(y+v*t));
+           end;
       end;
   end;
   if setType2.ItemIndex = 2 then begin
+    ChartLineSeries2.clear;
     m := mass2cache;
     y := elongation2cache;
     l := length2cache;
@@ -941,9 +969,13 @@ begin
            function2table[1, i] := y;
            function2table[2, i] := v;
            function2table[3, i] := a;
+           if i <= Chart.width then begin
+             ChartLineSeries2.AddXY(i,(y+v*t));
+           end;
       end;
   end;
   if setType2.ItemIndex = 3 then begin
+    ChartLineSeries2.clear;
     m := mass2cache;
     y := elongation2cache;
     k := damping2cache;
@@ -962,13 +994,12 @@ begin
            function2table[1, i] := y;
            function2table[2, i] := v;
            function2table[3, i] := a;
+           if i <= Chart.width then begin
+             ChartLineSeries2.AddXY(i,(y+v*t));
+           end;
       end;
   end;
-  for j:=0 to 19999 do begin
-    with graph do begin
-       canvas.Pixels[j+1, graph.height div 2 + round(function2table[1, j]*1000)] := clblue;
-    end;
-    end;
+
   func2.visible := true;
   eye2.visible := true;
   generated2 := true;
@@ -980,7 +1011,8 @@ var
   m, D, y, v, t, a, k, l, g, tsum: real;
   i, j: integer;
 begin
-   if setType3.ItemIndex = 0 then begin
+  if setType3.ItemIndex = 0 then begin
+    ChartLineSeries3.clear;
     m := mass3cache;
     D := featherkonstant3cache;
     y := elongation3cache;
@@ -996,9 +1028,13 @@ begin
            function3table[1, i] := y;
            function3table[2, i] := v;
            function3table[3, i] := a;
+           if i <= Chart.width then begin
+             ChartLineSeries3.AddXY(i,(y+v*t));
+           end;
       end;
   end;
   if setType3.ItemIndex = 1 then begin
+    ChartLineSeries3.clear;
     m := mass3cache;
     D := featherkonstant3cache;
     y := elongation3cache;
@@ -1015,9 +1051,13 @@ begin
            function3table[1, i] := y;
            function3table[2, i] := v;
            function3table[3, i] := a;
+           if i <= Chart.width then begin
+             ChartLineSeries3.AddXY(i,(y+v*t));
+           end;
       end;
   end;
   if setType3.ItemIndex = 2 then begin
+    ChartLineSeries3.clear;
     m := mass3cache;
     y := elongation3cache;
     l := length3cache;
@@ -1035,9 +1075,13 @@ begin
            function3table[1, i] := y;
            function3table[2, i] := v;
            function3table[3, i] := a;
+           if i <= Chart.width then begin
+             ChartLineSeries3.AddXY(i,(y+v*t));
+           end;
       end;
   end;
   if setType3.ItemIndex = 3 then begin
+    ChartLineSeries3.clear;
     m := mass3cache;
     y := elongation3cache;
     k := damping3cache;
@@ -1056,13 +1100,12 @@ begin
            function3table[1, i] := y;
            function3table[2, i] := v;
            function3table[3, i] := a;
+           if i <= Chart.width then begin
+             ChartLineSeries3.AddXY(i,(y+v*t));
+           end;
       end;
   end;
-  for j:=0 to 19999 do begin
-    with graph do begin
-       canvas.Pixels[j+1, graph.height div 2 + round(function3table[1, j]*1000)] := clgreen;
-    end;
-    end;
+
   func3.visible := true;
   eye3.visible := true;
   generated3 := true;
@@ -1076,52 +1119,36 @@ var
   j:integer;
 begin
    if clicked1 = true then begin
-    eye1.Picture := temp2.picture;
+    eye1.Picture := temp1.picture;
     clicked1 := false;
     if generated1 then begin
-       for j:=0 to 19999 do begin
-        with graph do begin
-             canvas.Pixels[j+1, graph.height div 2 + round(function1table[1, j]*1000)] := clblack;
-             end;
-        end;
+       ChartLineSeries1.Transparency := 0;
     end;
    end
    else begin
-    eye1.Picture := temp1.picture;
+    eye1.Picture := temp2.picture;
+    ChartLineSeries1.Transparency := 255;
     clicked1 := true;
-    if generated1 then begin
-       for j:=0 to 19999 do begin
-        with graph do begin
-             canvas.Pixels[j+1, graph.height div 2 + round(function1table[1, j]*1000)] := clred;
-             end;
-        end;
     end;
    end;
-end;
 procedure TmainProgram.eye2Click(Sender: TObject);
 var
   j:integer;
 begin
    if clicked2 = true then begin
-    eye2.Picture := temp2.picture;
+    eye2.Picture := temp1.picture;
     clicked2 := false;
     if generated2 then begin
-       for j:=0 to 19999 do begin
-        with graph do begin
-             canvas.Pixels[j+1, graph.height div 2 + round(function2table[1, j]*1000)] := clblack;
-             end;
-        end;
+       ChartLineSeries2.Transparency := 0;
     end;
    end
    else begin
-    eye2.Picture := temp1.picture;
+    eye2.Picture := temp2.picture;
     clicked2 := true;
     if generated2 then begin
-       for j:=0 to 19999 do begin
-        with graph do begin
-             canvas.Pixels[j+1, graph.height div 2 + round(function2table[1, j]*1000)] := clblue;
-             end;
-        end;
+       eye2.Picture := temp2.picture;
+       ChartLineSeries2.Transparency := 255;
+       clicked2 := true;
     end;
    end;
 end;
@@ -1130,26 +1157,16 @@ var
   j:integer;
 begin
    if clicked3 = true then begin
-    eye3.Picture := temp2.picture;
+    eye3.Picture := temp1.picture;
     clicked3 := false;
     if generated3 then begin
-       for j:=0 to 19999 do begin
-        with graph do begin
-             canvas.Pixels[j+1, graph.height div 2 + round(function3table[1, j]*1000)] := clblack;
-             end;
-        end;
+       ChartLineSeries3.Transparency := 0;
     end;
    end
    else begin
-    eye3.Picture := temp1.picture;
+    eye3.Picture := temp2.picture;
     clicked3 := true;
-    if generated3 then begin
-       for j:=0 to 19999 do begin
-        with graph do begin
-             canvas.Pixels[j+1, graph.height div 2 + round(function3table[1, j]*1000)] := clgreen;
-             end;
-        end;
-    end;
+    ChartLineSeries3.Transparency := 255;
    end;
 end;
 procedure TmainProgram.createTableClick(Sender: TObject);
@@ -1200,8 +1217,6 @@ begin
        showmessage('You have not created the green function so far');
     end;
 end;
-
-
 
 
 end.
