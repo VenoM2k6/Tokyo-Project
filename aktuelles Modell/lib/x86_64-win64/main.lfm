@@ -1,27 +1,26 @@
 object mainProgram: TmainProgram
-  Left = 573
-  Height = 991
-  Top = 103
-  Width = 1920
+  Left = 234
+  Height = 705
+  Top = 35
+  Width = 1283
   BorderStyle = bsNone
   Caption = 'Main Program'
-  ClientHeight = 966
-  ClientWidth = 1920
+  ClientHeight = 685
+  ClientWidth = 1283
   Color = clBtnHighlight
-  DesignTimePPI = 120
   Menu = MainMenu1
   OnCreate = FormCreate
   OnShow = FormShow
   ParentBiDiMode = False
   LCLVersion = '2.2.6.0'
   object createNewFunction: TButton
-    Left = 16
-    Height = 62
-    Top = 56
-    Width = 254
+    Left = 13
+    Height = 50
+    Top = 45
+    Width = 203
     Caption = 'Create New Function'
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -20
+    Font.Height = -16
     Font.Name = 'Yu Gothic UI'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -31,15 +30,15 @@ object mainProgram: TmainProgram
     TabOrder = 0
   end
   object function1: TGroupBox
-    Left = 16
-    Height = 176
-    Top = 224
-    Width = 480
+    Left = 13
+    Height = 141
+    Top = 179
+    Width = 384
     Caption = 'Function'
-    ClientHeight = 148
-    ClientWidth = 476
+    ClientHeight = 117
+    ClientWidth = 380
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -17
+    Font.Height = -14
     Font.Name = 'Yu Gothic UI'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -48,10 +47,10 @@ object mainProgram: TmainProgram
     TabOrder = 1
     Visible = False
     object mass1: TEdit
-      Left = 24
-      Height = 31
-      Top = 40
-      Width = 200
+      Left = 19
+      Height = 27
+      Top = 32
+      Width = 160
       OnClick = mass1Click
       OnExit = mass1Exit
       TabOrder = 0
@@ -59,20 +58,20 @@ object mainProgram: TmainProgram
       Visible = False
     end
     object collapse1: TButton
-      Left = 289
-      Height = 31
-      Top = 123
-      Width = 102
+      Left = 231
+      Height = 25
+      Top = 98
+      Width = 82
       Caption = 'collapse'
       OnClick = collapse1Click
       TabOrder = 1
     end
     object setType1: TComboBox
-      Left = 225
-      Height = 31
-      Top = 8
-      Width = 247
-      ItemHeight = 23
+      Left = 180
+      Height = 27
+      Top = 6
+      Width = 198
+      ItemHeight = 19
       Items.Strings = (
         'undamped spring pendulum'
         'damped spring pendulum'
@@ -85,20 +84,20 @@ object mainProgram: TmainProgram
       Text = 'Choose an oscillationtype'
     end
     object edit1: TButton
-      Left = 288
-      Height = 31
-      Top = -24
-      Width = 102
+      Left = 230
+      Height = 25
+      Top = -19
+      Width = 82
       Caption = 'edit'
       OnClick = edit1Click
       TabOrder = 3
       Visible = False
     end
     object length1: TEdit
-      Left = 24
-      Height = 31
-      Top = 64
-      Width = 204
+      Left = 19
+      Height = 27
+      Top = 51
+      Width = 163
       OnClick = length1Click
       OnExit = length1Exit
       TabOrder = 4
@@ -106,10 +105,10 @@ object mainProgram: TmainProgram
       Visible = False
     end
     object featherKonstant1: TEdit
-      Left = 24
-      Height = 31
-      Top = 88
-      Width = 200
+      Left = 19
+      Height = 27
+      Top = 70
+      Width = 160
       OnClick = featherKonstant1Click
       OnExit = featherKonstant1Exit
       TabOrder = 5
@@ -117,10 +116,10 @@ object mainProgram: TmainProgram
       Visible = False
     end
     object elongation1: TEdit
-      Left = 224
-      Height = 31
-      Top = 40
-      Width = 232
+      Left = 179
+      Height = 27
+      Top = 32
+      Width = 186
       OnClick = elongation1Click
       OnExit = elongation1Exit
       TabOrder = 6
@@ -128,10 +127,10 @@ object mainProgram: TmainProgram
       Visible = False
     end
     object locationFactor1: TEdit
-      Left = 224
-      Height = 31
-      Top = 64
-      Width = 232
+      Left = 179
+      Height = 27
+      Top = 51
+      Width = 186
       OnClick = locationFactor1Click
       OnExit = locationFactor1Exit
       TabOrder = 7
@@ -139,10 +138,10 @@ object mainProgram: TmainProgram
       Visible = False
     end
     object damping1: TEdit
-      Left = 224
-      Height = 31
-      Top = 88
-      Width = 232
+      Left = 179
+      Height = 27
+      Top = 70
+      Width = 186
       OnClick = damping1Click
       OnExit = damping1Exit
       TabOrder = 8
@@ -150,33 +149,33 @@ object mainProgram: TmainProgram
       Visible = False
     end
     object nameFunction1: TEdit
-      Left = 24
-      Height = 31
-      Top = 8
-      Width = 196
+      Left = 19
+      Height = 27
+      Top = 6
+      Width = 157
       OnClick = nameFunction1Click
       OnEditingDone = nameFunction1EditingDone
       TabOrder = 9
       Text = 'Name'
     end
     object calculate1: TButton
-      Left = 184
-      Height = 31
-      Top = 123
-      Width = 102
+      Left = 147
+      Height = 25
+      Top = 98
+      Width = 82
       Caption = 'calculate'
       OnClick = calculate1Click
       TabOrder = 10
     end
   end
   object deleteAll: TButton
-    Left = 14
-    Height = 62
-    Top = 120
-    Width = 256
+    Left = 11
+    Height = 50
+    Top = 96
+    Width = 205
     Caption = 'Delete All'
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -20
+    Font.Height = -16
     Font.Name = 'Yu Gothic UI'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -186,15 +185,15 @@ object mainProgram: TmainProgram
     TabOrder = 2
   end
   object function2: TGroupBox
-    Left = 16
-    Height = 176
-    Top = 416
-    Width = 480
+    Left = 13
+    Height = 141
+    Top = 333
+    Width = 384
     Caption = 'Function'
-    ClientHeight = 148
-    ClientWidth = 476
+    ClientHeight = 117
+    ClientWidth = 380
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -17
+    Font.Height = -14
     Font.Name = 'Yu Gothic UI'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -203,10 +202,10 @@ object mainProgram: TmainProgram
     TabOrder = 3
     Visible = False
     object mass2: TEdit
-      Left = 24
-      Height = 31
-      Top = 40
-      Width = 202
+      Left = 19
+      Height = 27
+      Top = 32
+      Width = 162
       OnClick = mass2Click
       OnExit = mass2Exit
       TabOrder = 0
@@ -214,20 +213,20 @@ object mainProgram: TmainProgram
       Visible = False
     end
     object collapse2: TButton
-      Left = 288
-      Height = 31
-      Top = 123
-      Width = 102
+      Left = 230
+      Height = 25
+      Top = 98
+      Width = 82
       Caption = 'collapse'
       OnClick = collapse2Click
       TabOrder = 1
     end
     object setType2: TComboBox
-      Left = 225
-      Height = 31
-      Top = 8
-      Width = 247
-      ItemHeight = 23
+      Left = 180
+      Height = 27
+      Top = 6
+      Width = 198
+      ItemHeight = 19
       Items.Strings = (
         'undamped spring pendulum'
         'damped spring pendulum'
@@ -240,20 +239,20 @@ object mainProgram: TmainProgram
       Text = 'Choose an oscillationtype'
     end
     object edit2: TButton
-      Left = 288
-      Height = 31
-      Top = -24
-      Width = 102
+      Left = 230
+      Height = 25
+      Top = -19
+      Width = 82
       Caption = 'edit'
       OnClick = edit2Click
       TabOrder = 3
       Visible = False
     end
     object length2: TEdit
-      Left = 24
-      Height = 31
-      Top = 64
-      Width = 203
+      Left = 19
+      Height = 27
+      Top = 51
+      Width = 162
       OnClick = length2Click
       OnExit = length2Exit
       TabOrder = 4
@@ -261,10 +260,10 @@ object mainProgram: TmainProgram
       Visible = False
     end
     object featherKonstant2: TEdit
-      Left = 24
-      Height = 31
-      Top = 88
-      Width = 203
+      Left = 19
+      Height = 27
+      Top = 70
+      Width = 162
       OnClick = featherKonstant2Click
       OnExit = featherKonstant2Exit
       TabOrder = 5
@@ -272,10 +271,10 @@ object mainProgram: TmainProgram
       Visible = False
     end
     object elongation2: TEdit
-      Left = 227
-      Height = 31
-      Top = 40
-      Width = 231
+      Left = 182
+      Height = 27
+      Top = 32
+      Width = 185
       OnClick = elongation2Click
       OnExit = elongation2Exit
       TabOrder = 6
@@ -283,10 +282,10 @@ object mainProgram: TmainProgram
       Visible = False
     end
     object locationFactor2: TEdit
-      Left = 227
-      Height = 31
-      Top = 64
-      Width = 231
+      Left = 182
+      Height = 27
+      Top = 51
+      Width = 185
       OnClick = locationFactor2Click
       OnExit = locationFactor2Exit
       TabOrder = 7
@@ -294,10 +293,10 @@ object mainProgram: TmainProgram
       Visible = False
     end
     object damping2: TEdit
-      Left = 227
-      Height = 31
-      Top = 88
-      Width = 231
+      Left = 182
+      Height = 27
+      Top = 70
+      Width = 185
       OnClick = damping2Click
       OnExit = damping2Exit
       TabOrder = 8
@@ -305,35 +304,35 @@ object mainProgram: TmainProgram
       Visible = False
     end
     object nameFunction2: TEdit
-      Left = 24
-      Height = 31
-      Top = 8
-      Width = 192
+      Left = 19
+      Height = 27
+      Top = 6
+      Width = 154
       OnClick = nameFunction2Click
       OnEditingDone = nameFunction2EditingDone
       TabOrder = 9
       Text = 'Name'
     end
     object calculate2: TButton
-      Left = 184
-      Height = 31
-      Top = 123
-      Width = 102
+      Left = 147
+      Height = 25
+      Top = 98
+      Width = 82
       Caption = 'calculate'
       OnClick = calculate2Click
       TabOrder = 10
     end
   end
   object function3: TGroupBox
-    Left = 16
-    Height = 177
-    Top = 616
-    Width = 480
+    Left = 13
+    Height = 142
+    Top = 493
+    Width = 384
     Caption = 'Function'
-    ClientHeight = 149
-    ClientWidth = 476
+    ClientHeight = 118
+    ClientWidth = 380
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -17
+    Font.Height = -14
     Font.Name = 'Yu Gothic UI'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -342,10 +341,10 @@ object mainProgram: TmainProgram
     TabOrder = 4
     Visible = False
     object mass3: TEdit
-      Left = 24
-      Height = 31
-      Top = 40
-      Width = 200
+      Left = 19
+      Height = 27
+      Top = 32
+      Width = 160
       OnClick = mass3Click
       OnExit = mass3Exit
       TabOrder = 0
@@ -353,20 +352,20 @@ object mainProgram: TmainProgram
       Visible = False
     end
     object collapse3: TButton
-      Left = 288
-      Height = 31
-      Top = 123
-      Width = 102
+      Left = 230
+      Height = 25
+      Top = 98
+      Width = 82
       Caption = 'collapse'
       OnClick = collapse3Click
       TabOrder = 1
     end
     object setType3: TComboBox
-      Left = 225
-      Height = 31
-      Top = 8
-      Width = 239
-      ItemHeight = 23
+      Left = 180
+      Height = 27
+      Top = 6
+      Width = 191
+      ItemHeight = 19
       Items.Strings = (
         'undamped spring pendulum'
         'damped spring pendulum'
@@ -380,20 +379,20 @@ object mainProgram: TmainProgram
       Text = 'Choose an oscillationtype'
     end
     object edit3: TButton
-      Left = 288
-      Height = 31
-      Top = -24
-      Width = 102
+      Left = 230
+      Height = 25
+      Top = -19
+      Width = 82
       Caption = 'edit'
       OnClick = edit3Click
       TabOrder = 3
       Visible = False
     end
     object length3: TEdit
-      Left = 24
-      Height = 31
-      Top = 64
-      Width = 200
+      Left = 19
+      Height = 27
+      Top = 51
+      Width = 160
       OnClick = length3Click
       OnExit = length3Exit
       TabOrder = 4
@@ -401,10 +400,10 @@ object mainProgram: TmainProgram
       Visible = False
     end
     object featherKonstant3: TEdit
-      Left = 24
-      Height = 31
-      Top = 88
-      Width = 200
+      Left = 19
+      Height = 27
+      Top = 70
+      Width = 160
       OnClick = featherKonstant3Click
       OnExit = featherKonstant3Exit
       TabOrder = 5
@@ -412,10 +411,10 @@ object mainProgram: TmainProgram
       Visible = False
     end
     object elongation3: TEdit
-      Left = 225
-      Height = 31
-      Top = 40
-      Width = 224
+      Left = 180
+      Height = 27
+      Top = 32
+      Width = 179
       OnClick = elongation3Click
       OnExit = elongation3Exit
       TabOrder = 6
@@ -423,10 +422,10 @@ object mainProgram: TmainProgram
       Visible = False
     end
     object locationFactor3: TEdit
-      Left = 224
-      Height = 31
-      Top = 64
-      Width = 224
+      Left = 179
+      Height = 27
+      Top = 51
+      Width = 179
       OnClick = locationFactor3Click
       OnExit = locationFactor3Exit
       TabOrder = 7
@@ -434,10 +433,10 @@ object mainProgram: TmainProgram
       Visible = False
     end
     object damping3: TEdit
-      Left = 224
-      Height = 31
-      Top = 88
-      Width = 224
+      Left = 179
+      Height = 27
+      Top = 70
+      Width = 179
       OnClick = damping3Click
       OnExit = damping3Exit
       TabOrder = 8
@@ -445,39 +444,39 @@ object mainProgram: TmainProgram
       Visible = False
     end
     object nameFunction3: TEdit
-      Left = 24
-      Height = 31
-      Top = 8
-      Width = 124
+      Left = 19
+      Height = 27
+      Top = 6
+      Width = 99
       OnClick = nameFunction3Click
       OnEditingDone = nameFunction3EditingDone
       TabOrder = 9
       Text = 'Name'
     end
     object calculate3: TButton
-      Left = 184
-      Height = 31
-      Top = 123
-      Width = 102
+      Left = 147
+      Height = 25
+      Top = 98
+      Width = 82
       Caption = 'calculate'
       OnClick = calculate3Click
       TabOrder = 10
     end
   end
   object table: TStringGrid
-    Left = 1384
-    Height = 616
-    Top = 168
-    Width = 494
+    Left = 1107
+    Height = 493
+    Top = 134
+    Width = 395
     RowCount = 20100
     TabOrder = 5
     Visible = False
     ColWidths = (
-      80
-      80
-      80
-      119
-      115
+      64
+      64
+      64
+      95
+      92
     )
     Cells = (
       4
@@ -496,13 +495,13 @@ object mainProgram: TmainProgram
     )
   end
   object RecommendationMasse: TLabel
-    Left = 14
-    Height = 25
-    Top = 10
-    Width = 217
-    Caption = 'Recommanded Mass: 0,05'
+    Left = 11
+    Height = 20
+    Top = 8
+    Width = 178
+    Caption = 'Recommanded Mass: 0,3-1'
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -19
+    Font.Height = -15
     Font.Name = 'Yu Gothic UI'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -510,13 +509,13 @@ object mainProgram: TmainProgram
     ParentFont = False
   end
   object RecommandationLength: TLabel
-    Left = 241
-    Height = 25
-    Top = 10
-    Width = 222
-    Caption = 'Recommanded Length: 0,3'
+    Left = 200
+    Height = 20
+    Top = 8
+    Width = 190
+    Caption = 'Recommanded Length: 0,1-1'
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -19
+    Font.Height = -15
     Font.Name = 'Yu Gothic UI'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -524,13 +523,13 @@ object mainProgram: TmainProgram
     ParentFont = False
   end
   object RecommandationFetherkonstant: TLabel
-    Left = 490
-    Height = 25
-    Top = 10
-    Width = 301
-    Caption = 'Recommanded Feather Konstant: 50'
+    Left = 400
+    Height = 20
+    Top = 8
+    Width = 260
+    Caption = 'Recommanded Feather Konstant: 30-70'
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -19
+    Font.Height = -15
     Font.Name = 'Yu Gothic UI'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -538,13 +537,13 @@ object mainProgram: TmainProgram
     ParentFont = False
   end
   object RecommandationElongation: TLabel
-    Left = 805
-    Height = 25
-    Top = 10
-    Width = 265
-    Caption = 'Recommanded Elongation: 0,04'
+    Left = 672
+    Height = 20
+    Top = 8
+    Width = 236
+    Caption = 'Recommanded Elongation: 0,01-0,1'
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -19
+    Font.Height = -15
     Font.Name = 'Yu Gothic UI'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -552,13 +551,13 @@ object mainProgram: TmainProgram
     ParentFont = False
   end
   object RecommandationLocationFactor: TLabel
-    Left = 1080
-    Height = 25
-    Top = 10
-    Width = 302
+    Left = 920
+    Height = 20
+    Top = 8
+    Width = 240
     Caption = 'Recommanded Location Factor: 9,81'
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -19
+    Font.Height = -15
     Font.Name = 'Yu Gothic UI'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -566,13 +565,13 @@ object mainProgram: TmainProgram
     ParentFont = False
   end
   object RecommandationDamping: TLabel
-    Left = 1400
-    Height = 25
-    Top = 10
-    Width = 241
-    Caption = 'Recommanded Damping: 0,3'
+    Left = 1168
+    Height = 20
+    Top = 8
+    Width = 207
+    Caption = 'Recommanded Damping: 0,1-1'
     Font.CharSet = ANSI_CHARSET
-    Font.Height = -19
+    Font.Height = -15
     Font.Name = 'Yu Gothic UI'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
@@ -580,10 +579,10 @@ object mainProgram: TmainProgram
     ParentFont = False
   end
   object func1: TEdit
-    Left = 548
-    Height = 26
-    Top = 201
-    Width = 120
+    Left = 438
+    Height = 21
+    Top = 161
+    Width = 96
     AutoSize = False
     BorderStyle = bsNone
     ParentColor = True
@@ -591,10 +590,10 @@ object mainProgram: TmainProgram
     Visible = False
   end
   object func2: TEdit
-    Left = 832
-    Height = 26
-    Top = 201
-    Width = 120
+    Left = 666
+    Height = 21
+    Top = 161
+    Width = 96
     AutoSize = False
     BorderStyle = bsNone
     ParentColor = True
@@ -602,10 +601,10 @@ object mainProgram: TmainProgram
     Visible = False
   end
   object func3: TEdit
-    Left = 1128
-    Height = 26
-    Top = 200
-    Width = 108
+    Left = 902
+    Height = 21
+    Top = 160
+    Width = 86
     AutoSize = False
     BorderStyle = bsNone
     ParentColor = True
@@ -613,10 +612,10 @@ object mainProgram: TmainProgram
     Visible = False
   end
   object temp2: TImage
-    Left = 96
-    Height = 74
-    Top = 976
-    Width = 88
+    Left = 77
+    Height = 59
+    Top = 781
+    Width = 70
     Picture.Data = {
       0A544A706567496D61676529140000FFD8FFE000104A46494600010100000100
       010000FFDB0043000B090907090907090909090B0909090909090B090B0B0C0B
@@ -785,10 +784,10 @@ object mainProgram: TmainProgram
     Visible = False
   end
   object temp1: TImage
-    Left = -32
-    Height = 74
-    Top = 1000
-    Width = 88
+    Left = -26
+    Height = 59
+    Top = 800
+    Width = 70
     Picture.Data = {
       0A544A706567496D6167658B160000FFD8FFE000104A46494600010100000100
       010000FFDB0043000B090907090907090909090B0909090909090B090B0B0C0B
@@ -976,10 +975,10 @@ object mainProgram: TmainProgram
     Visible = False
   end
   object eye1: TImage
-    Left = 500
-    Height = 35
-    Top = 192
-    Width = 40
+    Left = 400
+    Height = 28
+    Top = 154
+    Width = 32
     OnClick = eye1Click
     Picture.Data = {
       0A544A706567496D616765B8190000FFD8FFE000104A46494600010100000100
@@ -1194,10 +1193,10 @@ object mainProgram: TmainProgram
     Visible = False
   end
   object eye2: TImage
-    Left = 784
-    Height = 35
-    Top = 192
-    Width = 40
+    Left = 627
+    Height = 28
+    Top = 154
+    Width = 32
     OnClick = eye2Click
     Picture.Data = {
       0A544A706567496D616765B8190000FFD8FFE000104A46494600010100000100
@@ -1412,10 +1411,10 @@ object mainProgram: TmainProgram
     Visible = False
   end
   object eye3: TImage
-    Left = 1080
-    Height = 35
-    Top = 192
-    Width = 36
+    Left = 864
+    Height = 28
+    Top = 154
+    Width = 29
     OnClick = eye3Click
     Picture.Data = {
       0A544A706567496D616765B8190000FFD8FFE000104A46494600010100000100
@@ -1630,20 +1629,20 @@ object mainProgram: TmainProgram
     Visible = False
   end
   object createTable: TButton
-    Left = 1528
-    Height = 31
-    Top = 104
-    Width = 231
+    Left = 1101
+    Height = 25
+    Top = 102
+    Width = 185
     Caption = 'Create Table'
     OnClick = createTableClick
     TabOrder = 9
     Visible = False
   end
   object functionFilter: TRadioGroup
-    Left = 1296
-    Height = 131
-    Top = 96
-    Width = 72
+    Left = 1030
+    Height = 105
+    Top = 77
+    Width = 64
     AutoFill = True
     Caption = 'Filter'
     ChildSizing.LeftRightSpacing = 6
@@ -1653,8 +1652,8 @@ object mainProgram: TmainProgram
     ChildSizing.ShrinkVertical = crsScaleChilds
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 1
-    ClientHeight = 106
-    ClientWidth = 68
+    ClientHeight = 85
+    ClientWidth = 60
     Items.Strings = (
       'Red'
       'Green'
@@ -1665,10 +1664,10 @@ object mainProgram: TmainProgram
     Visible = False
   end
   object Chart: TChart
-    Left = 504
-    Height = 544
-    Top = 240
-    Width = 856
+    Left = 403
+    Height = 435
+    Top = 192
+    Width = 685
     AxisList = <    
       item
         Marks.LabelBrush.Style = bsClear
@@ -1697,18 +1696,18 @@ object mainProgram: TmainProgram
     end
   end
   object deleteTable: TButton
-    Left = 1528
-    Height = 31
-    Top = 135
-    Width = 231
+    Left = 1101
+    Height = 25
+    Top = 77
+    Width = 185
     Caption = 'Delete Table'
     OnClick = deleteTableClick
     TabOrder = 12
     Visible = False
   end
   object MainMenu1: TMainMenu
-    Left = 1864
-    Top = 16
+    Left = 1491
+    Top = 13
     object Tutorial: TMenuItem
       Caption = 'Tutorial'
     end

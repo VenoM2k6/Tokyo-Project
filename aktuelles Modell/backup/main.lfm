@@ -1,7 +1,7 @@
 object mainProgram: TmainProgram
-  Left = 573
+  Left = -62
   Height = 991
-  Top = 103
+  Top = 0
   Width = 1920
   BorderStyle = bsNone
   Caption = 'Main Program'
@@ -1630,9 +1630,9 @@ object mainProgram: TmainProgram
     Visible = False
   end
   object createTable: TButton
-    Left = 1528
+    Left = 1376
     Height = 31
-    Top = 104
+    Top = 128
     Width = 231
     Caption = 'Create Table'
     OnClick = createTableClick
@@ -1640,10 +1640,10 @@ object mainProgram: TmainProgram
     Visible = False
   end
   object functionFilter: TRadioGroup
-    Left = 1296
+    Left = 1288
     Height = 131
     Top = 96
-    Width = 72
+    Width = 80
     AutoFill = True
     Caption = 'Filter'
     ChildSizing.LeftRightSpacing = 6
@@ -1654,7 +1654,7 @@ object mainProgram: TmainProgram
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 1
     ClientHeight = 106
-    ClientWidth = 68
+    ClientWidth = 76
     Items.Strings = (
       'Red'
       'Green'
@@ -1697,9 +1697,9 @@ object mainProgram: TmainProgram
     end
   end
   object deleteTable: TButton
-    Left = 1528
+    Left = 1376
     Height = 31
-    Top = 135
+    Top = 96
     Width = 231
     Caption = 'Delete Table'
     OnClick = deleteTableClick
