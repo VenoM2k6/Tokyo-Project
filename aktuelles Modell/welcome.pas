@@ -17,11 +17,8 @@ type
     continueButton2: TButton;
     tutorialPanel: TPanel;
     tutorial: TButton;
-    deutsch: TButton;
-    english: TButton;
     continueButton: TButton;
     sign1: TEdit;
-    sign2: TEdit;
     procedure continueButton2Click(Sender: TObject);
     procedure exitButtonClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -48,6 +45,7 @@ begin
    welcomescreen.Show;
    mainProgram.hide;
    tutorialpanel.bringtofront;
+   WindowState := wsmaximized;
 end;
 
 procedure Twelcomescreen.continueButtonClick(Sender: TObject);

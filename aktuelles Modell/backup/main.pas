@@ -89,52 +89,52 @@ type
     procedure createNewFunctionClick(Sender: TObject);
     procedure createTableClick(Sender: TObject);
     procedure damping1Click(Sender: TObject);
-    procedure damping1EditingDone(Sender: TObject);
+    procedure damping1Exit(Sender: TObject);
     procedure damping2Click(Sender: TObject);
-    procedure damping2EditingDone(Sender: TObject);
+    procedure damping2Exit(Sender: TObject);
     procedure damping3Click(Sender: TObject);
-    procedure damping3EditingDone(Sender: TObject);
+    procedure damping3Exit(Sender: TObject);
     procedure deleteAllClick(Sender: TObject);
     procedure deleteTableClick(Sender: TObject);
     procedure edit1Click(Sender: TObject);
     procedure edit2Click(Sender: TObject);
     procedure edit3Click(Sender: TObject);
     procedure elongation1Click(Sender: TObject);
-    procedure elongation1EditingDone(Sender: TObject);
+    procedure elongation1Exit(Sender: TObject);
     procedure elongation2Click(Sender: TObject);
-    procedure elongation2EditingDone(Sender: TObject);
+    procedure elongation2Exit(Sender: TObject);
     procedure elongation3Click(Sender: TObject);
-    procedure elongation3EditingDone(Sender: TObject);
+    procedure elongation3Exit(Sender: TObject);
     procedure eye1Click(Sender: TObject);
     procedure eye2Click(Sender: TObject);
     procedure eye3Click(Sender: TObject);
     procedure featherKonstant1Click(Sender: TObject);
-    procedure featherKonstant1EditingDone(Sender: TObject);
+    procedure featherKonstant1Exit(Sender: TObject);
     procedure featherKonstant2Click(Sender: TObject);
-    procedure featherKonstant2EditingDone(Sender: TObject);
+    procedure featherKonstant2Exit(Sender: TObject);
     procedure featherKonstant3Click(Sender: TObject);
-    procedure featherKonstant3EditingDone(Sender: TObject);
+    procedure featherKonstant3Exit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure functionFilterClick(Sender: TObject);
     procedure length1Click(Sender: TObject);
-    procedure length1EditingDone(Sender: TObject);
+    procedure length1Exit(Sender: TObject);
     procedure length2Click(Sender: TObject);
-    procedure length2EditingDone(Sender: TObject);
+    procedure length2Exit(Sender: TObject);
     procedure length3Click(Sender: TObject);
-    procedure length3EditingDone(Sender: TObject);
+    procedure length3Exit(Sender: TObject);
     procedure locationFactor1Click(Sender: TObject);
-    procedure locationFactor1EditingDone(Sender: TObject);
+    procedure locationFactor1Exit(Sender: TObject);
     procedure locationFactor2Click(Sender: TObject);
-    procedure locationFactor2EditingDone(Sender: TObject);
+    procedure locationFactor2Exit(Sender: TObject);
     procedure locationFactor3Click(Sender: TObject);
-    procedure locationFactor3EditingDone(Sender: TObject);
+    procedure locationFactor3Exit(Sender: TObject);
     procedure mass1Click(Sender: TObject);
-    procedure mass1EditingDone(Sender: TObject);
+    procedure mass1Exit(Sender: TObject);
     procedure mass2Click(Sender: TObject);
-    procedure mass2EditingDone(Sender: TObject);
+    procedure mass2Exit(Sender: TObject);
     procedure mass3Click(Sender: TObject);
-    procedure mass3EditingDone(Sender: TObject);
+    procedure mass3Exit(Sender: TObject);
     procedure nameFunction1Click(Sender: TObject);
     procedure nameFunction1EditingDone(Sender: TObject);
     procedure nameFunction2Click(Sender: TObject);
@@ -151,6 +151,10 @@ type
   end;
 
 var
+  //bugfixxing
+  nameWasAlreadyOverwritten1 : boolean;
+  nameWasAlreadyOverwritten2 : boolean;
+  nameWasAlreadyOverwritten3 : boolean;
   mainProgram: TmainProgram;
   //check started
   shown: boolean;
@@ -167,15 +171,6 @@ var
   mass1cache, elongation1cache, length1cache, locationfactor1cache, featherkonstant1cache, damping1cache: real;
   mass2cache, elongation2cache, length2cache, locationfactor2cache, featherkonstant2cache, damping2cache: real;
   mass3cache, elongation3cache, length3cache, locationfactor3cache, featherkonstant3cache, damping3cache: real;
-
-  //variables to fix bugs
-  nameWasAlreadyOverwritten1,nameWasAlreadyOverwritten2,nameWasAlreadyOverwritten3: boolean;
-  dampingWasAlreadyOverwritten1,dampingWasAlreadyOverwritten2,dampingWasAlreadyOverwritten3: boolean;
-  locationfactorWasAlreadyOverwritten1,locationfactorWasAlreadyOverwritten2,locationfactorWasAlreadyOverwritten3: boolean;
-  elongationWasAlreadyOverwritten1,elongationWasAlreadyOverwritten2,elongationWasAlreadyOverwritten3: boolean;
-  featherkonstantWasAlreadyOverwritten1,featherkonstantWasAlreadyOverwritten2,featherkonstantWasAlreadyOverwritten3: boolean;
-  lengthWasAlreadyOverwritten1,lengthWasAlreadyOverwritten2,lengthWasAlreadyOverwritten3: boolean;
-  massWasAlreadyOverwritten1,massWasAlreadyOverwritten2,massWasAlreadyOverwritten3: boolean;
 implementation
 
 {$R *.lfm}
@@ -184,7 +179,9 @@ implementation
 
 procedure TmainProgram.FormCreate(Sender: TObject);
 begin
-  WindowState := wsmaximized;
+   //bugfixxing
+
+   WindowState := wsmaximized;
   //eye
   eye1.picture := temp1.picture;
   eye2.picture := temp1.picture;
@@ -241,7 +238,6 @@ begin
      damping1.visible := true;
   end;
 end;
-
 procedure TmainProgram.nameFunction1Click(Sender: TObject);
 begin
   nameFunction1.text := '';
@@ -259,95 +255,114 @@ begin
   nameFunction1.enabled := false;
   nameFunction1.enabled := true;
 end;
+
 procedure TmainProgram.mass1Click(Sender: TObject);
 begin
   mass1.text := '';
-  massWasAlreadyOverwritten1 := false;
 end;
-procedure TmainProgram.mass1EditingDone(Sender: TObject);
+procedure TmainProgram.mass1Exit(Sender: TObject);
 begin
-   if massWasAlreadyOverwritten1 = false then begin
-      mass1cache := strtofloat(mass1.text);
-      mass1.text := 'Mass: ' + mass1.text;
+   if not trystrtofloat(mass1.text, mass1cache)
+   then begin
+      showmessage('Please enter a real number!');
+      mass1.text := 'Mass';
+   end
+   else begin
+      mass1.Text := 'Mass: ' + floattostr(mass1cache);
+      //fixxes bug
+      mass1.Enabled := false;
+      mass1.enabled := true;
    end;
-   massWasAlreadyOverwritten1 := true;
-   mass1.enabled := false;
-   mass1.enabled := true;
 end;
 procedure TmainProgram.length1Click(Sender: TObject);
 begin
   length1.text := '';
-  lengthWasAlreadyOverwritten1 := false;
 end;
-procedure TmainProgram.length1EditingDone(Sender: TObject);
+procedure TmainProgram.length1Exit(Sender: TObject);
 begin
-  if lengthWasAlreadyOverwritten1 = false then begin
-      length1cache := strtofloat(length1.text);
-      length1.text := 'Length: ' + length1.text;
+  if not trystrtofloat(length1.text, length1cache)
+   then begin
+      showmessage('Please enter a real number!');
+      length1.text := 'Length';
+   end
+   else begin
+      length1.Text := 'Length: ' + floattostr(length1cache);
+      //fixxes bug
+      length1.Enabled := false;
+      length1.enabled := true;
    end;
-   lengthWasAlreadyOverwritten1 := true;
-   length1.enabled := false;
-   length1.enabled := true;
 end;
 procedure TmainProgram.locationFactor1Click(Sender: TObject);
 begin
   locationFactor1.text := '';
-  locationFactorWasAlreadyOverwritten1 := false;
 end;
-procedure TmainProgram.locationFactor1EditingDone(Sender: TObject);
+procedure TmainProgram.locationFactor1Exit(Sender: TObject);
 begin
-   if locationfactorWasAlreadyOverwritten1 = false then begin
-      locationfactor1cache := strtofloat(locationfactor1.text);
-      locationfactor1.text := 'Location Factor: ' + locationfactor1.text;
+  if not trystrtofloat(locationfactor1.text, locationfactor1cache)
+   then begin
+      showmessage('Please enter a real number!');
+      locationfactor1.text := 'Location Factor';
+   end
+   else begin
+      locationfactor1.Text := 'Locationfactor: ' + floattostr(locationfactor1cache);
+      //fixxes bug
+      locationfactor1.Enabled := false;
+      locationfactor1.enabled := true;
    end;
-   locationfactorWasAlreadyOverwritten1 := true;
-   locationfactor1.enabled := false;
-   locationfactor1.enabled := true;
 end;
 procedure TmainProgram.featherKonstant1Click(Sender: TObject);
 begin
   featherKonstant1.text := '';
-  featherkonstantWasAlreadyOverwritten1 := false;
 end;
-procedure TmainProgram.featherKonstant1EditingDone(Sender: TObject);
+procedure TmainProgram.featherKonstant1Exit(Sender: TObject);
 begin
-  if featherkonstantWasAlreadyOverwritten1 = false then begin
-     featherkonstant1cache := strtofloat(featherkonstant1.text);
-     featherkonstant1.text := 'Feather Konstant: ' + featherkonstant1.text;
+  if not trystrtofloat(featherkonstant1.text, featherkonstant1cache)
+   then begin
+      showmessage('Please enter a real number!');
+      featherkonstant1.text := 'Feather Konstant';
+   end
+   else begin
+      featherkonstant1.Text := 'Feather Konstant: ' + floattostr(featherkonstant1cache);
+      //fixxes bug
+      featherkonstant1.Enabled := false;
+      featherkonstant1.enabled := true;
    end;
-   featherkonstantWasAlreadyOverwritten1 := true;
-   featherkonstant1.enabled := false;
-   featherkonstant1.enabled := true;
 end;
 procedure TmainProgram.elongation1Click(Sender: TObject);
 begin
   elongation1.text := '';
-  elongationWasAlreadyOverwritten1 := false;
 end;
-procedure TmainProgram.elongation1EditingDone(Sender: TObject);
+procedure TmainProgram.elongation1Exit(Sender: TObject);
 begin
-   if elongationWasAlreadyOverwritten1 = false then begin
-      elongation1cache := strtofloat(elongation1.text);
-      elongation1.text := 'Elongation: ' + elongation1.text;
+   if not trystrtofloat(elongation1.text, elongation1cache)
+   then begin
+      showmessage('Please enter a real number!');
+      elongation1.text := 'Elongation';
+   end
+   else begin
+      elongation1.Text := 'Elongation: ' + floattostr(elongation1cache);
+      //fixxes bug
+      elongation1.Enabled := false;
+      elongation1.enabled := true;
    end;
-   elongationWasAlreadyOverwritten1 := true;
-   elongation1.enabled := false;
-   elongation1.enabled := true;
 end;
 procedure TmainProgram.damping1Click(Sender: TObject);
 begin
   damping1.text := '';
-  dampingWasAlreadyOverwritten1 := false;
 end;
-procedure TmainProgram.damping1EditingDone(Sender: TObject);
+procedure TmainProgram.damping1Exit(Sender: TObject);
 begin
-   if dampingWasAlreadyOverwritten1 = false then begin
-      damping1cache := strtofloat(damping1.text);
-      damping1.text := 'Damping: ' + damping1.text;
+   if not trystrtofloat(damping1.text, damping1cache)
+   then begin
+      showmessage('Please enter a real number!');
+      damping1.text := 'Damping';
+   end
+   else begin
+      damping1.Text := 'Damping: ' + floattostr(damping1cache);
+      //fixxes bug
+      damping1.Enabled := false;
+      damping1.enabled := true;
    end;
-   dampingWasAlreadyOverwritten1 := true;
-   damping1.enabled := false;
-   damping1.enabled := true;
 end;
 
 //Editfields of function 2
@@ -406,93 +421,112 @@ end;
 procedure TmainProgram.mass2Click(Sender: TObject);
 begin
   mass2.text := '';
-  massWasAlreadyOverwritten2 := false;
 end;
-procedure TmainProgram.mass2EditingDone(Sender: TObject);
+procedure TmainProgram.mass2Exit(Sender: TObject);
 begin
-   if massWasAlreadyOverwritten2 = false then begin
-      mass2cache := strtofloat(mass2.text);
-      mass2.text := 'Mass: ' + mass2.text;
+   if not trystrtofloat(mass2.text, mass2cache)
+   then begin
+      showmessage('Please enter a real number!');
+      mass2.text := 'Mass';
+   end
+   else begin
+      mass2.Text := 'Mass: ' + floattostr(mass2cache);
+      //fixxes bug
+      mass2.Enabled := false;
+      mass2.enabled := true;
    end;
-   massWasAlreadyOverwritten2 := true;
-   mass2.enabled := false;
-   mass2.enabled := true;
 end;
 procedure TmainProgram.length2Click(Sender: TObject);
 begin
   length2.text := '';
-  lengthWasAlreadyOverwritten2 := false;
 end;
-procedure TmainProgram.length2EditingDone(Sender: TObject);
+procedure TmainProgram.length2Exit(Sender: TObject);
 begin
-   if lengthWasAlreadyOverwritten2 = false then begin
-      length2cache := strtofloat(length2.text);
-      length2.text := 'Length: ' + length2.text;
+   if not trystrtofloat(length2.text, length2cache)
+   then begin
+      showmessage('Please enter a real number!');
+      length2.text := 'Length';
+   end
+   else begin
+      length2.Text := 'Length: ' + floattostr(length2cache);
+      //fixxes bug
+      length2.Enabled := false;
+      length2.enabled := true;
    end;
-   lengthWasAlreadyOverwritten2 := true;
-   length2.enabled := false;
-   length2.enabled := true;
 end;
 procedure TmainProgram.featherKonstant2Click(Sender: TObject);
 begin
   featherKonstant2.text := '';
-  featherkonstantWasAlreadyOverwritten2 := false;
 end;
-procedure TmainProgram.featherKonstant2EditingDone(Sender: TObject);
+procedure TmainProgram.featherKonstant2Exit(Sender: TObject);
 begin
-   if featherkonstantWasAlreadyOverwritten2 = false then begin
-      featherkonstant2cache := strtofloat(featherkonstant2.text);
-      featherkonstant2.text := 'Feather Konstant: ' + featherkonstant2.text;
+   if not trystrtofloat(featherkonstant2.text, featherkonstant2cache)
+   then begin
+      showmessage('Please enter a real number!');
+      featherkonstant2.text := 'Feather Konstant';
+   end
+   else begin
+      featherkonstant2.Text := 'Feather Konstant: ' + floattostr(featherkonstant2cache);
+      //fixxes bug
+      featherkonstant2.Enabled := false;
+      featherkonstant2.enabled := true;
    end;
-   featherkonstantWasAlreadyOverwritten2 := true;
-   featherkonstant2.enabled := false;
-   featherkonstant2.enabled := true;
 end;
 procedure TmainProgram.elongation2Click(Sender: TObject);
 begin
   elongation2.text := '';
-  elongationWasAlreadyOverwritten2 := false;
 end;
-procedure TmainProgram.elongation2EditingDone(Sender: TObject);
+procedure TmainProgram.elongation2Exit(Sender: TObject);
 begin
-   if elongationWasAlreadyOverwritten2 = false then begin
-      elongation2cache := strtofloat(elongation2.text);
-      elongation2.text := 'Elongation: ' + elongation2.text;
+   if not trystrtofloat(elongation2.text, elongation2cache)
+   then begin
+      showmessage('Please enter a real number!');
+      elongation2.text := 'Elongation';
+   end
+   else begin
+      elongation2.Text := 'Elongation: ' + floattostr(elongation2cache);
+      //fixxes bug
+      elongation2.Enabled := false;
+      elongation2.enabled := true;
    end;
-   elongationWasAlreadyOverwritten2 := true;
-   elongation2.enabled := false;
-   elongation2.enabled := true;
 end;
 procedure TmainProgram.locationFactor2Click(Sender: TObject);
 begin
   locationFactor2.text := '';
-  locationFactorWasAlreadyOverwritten2 := false;
 end;
-procedure TmainProgram.locationFactor2EditingDone(Sender: TObject);
+procedure TmainProgram.locationFactor2Exit(Sender: TObject);
 begin
-   if locationfactorWasAlreadyOverwritten2 = false then begin
-      locationfactor2cache := strtofloat(locationfactor2.text);
-      locationfactor2.text := 'Location Factor: ' + locationfactor2.text;
+   if not trystrtofloat(locationfactor2.text, locationfactor2cache)
+   then begin
+      showmessage('Please enter a real number!');
+      locationfactor2.text := 'Location Factor';
+   end
+   else begin
+      locationfactor2.Text := 'Locationfactor: ' + floattostr(locationfactor2cache);
+      //fixxes bug
+      locationfactor2.Enabled := false;
+      locationfactor2.enabled := true;
    end;
-   locationfactorWasAlreadyOverwritten2 := true;
-   locationfactor2.enabled := false;
-   locationfactor2.enabled := true;
 end;
 procedure TmainProgram.damping2Click(Sender: TObject);
 begin
   damping2.text := '';
-  dampingWasAlreadyOverwritten2 := false;
 end;
-procedure TmainProgram.damping2EditingDone(Sender: TObject);
+procedure TmainProgram.damping2Exit(Sender: TObject);
 begin
-   if dampingWasAlreadyOverwritten2 = false then begin
-      damping2cache := strtofloat(damping2.text);
-      damping2.text := 'Damping: ' + damping2.text;
+   if not trystrtofloat(damping2.text, damping2cache)
+   then begin
+      showmessage('Please enter a real number!');
+      damping2.text := 'Damping';
+   end
+   else begin
+      damping2.Text := 'Damping: ' + floattostr(damping2cache);
+      //fixxes bug
+      damping2.Enabled := false;
+      damping2.enabled := true;
    end;
-   dampingWasAlreadyOverwritten2 := true;
-   damping2.enabled := false;
-   damping2.enabled := true;
 end;
+
 
 //Editfields of function 3
 procedure TmainProgram.setType3Change(Sender: TObject);
@@ -547,95 +581,114 @@ begin
   nameFunction3.enabled := false;
   nameFunction3.enabled := true;
 end;
+
 procedure TmainProgram.mass3Click(Sender: TObject);
 begin
   mass3.text := '';
-  massWasAlreadyOverwritten3 := false;
 end;
-procedure TmainProgram.mass3EditingDone(Sender: TObject);
+procedure TmainProgram.mass3Exit(Sender: TObject);
 begin
-   if massWasAlreadyOverwritten3 = false then begin
-      mass3cache := strtofloat(mass3.text);
-      mass3.text := 'Mass: ' + mass3.text;
+   if not trystrtofloat(mass3.text, mass3cache)
+   then begin
+      showmessage('Please enter a real number!');
+      mass3.text := 'Mass';
+   end
+   else begin
+      mass3.Text := 'Mass: ' + floattostr(mass3cache);
+      //fixxes bug
+      mass3.Enabled := false;
+      mass3.enabled := true;
    end;
-   massWasAlreadyOverwritten3 := true;
-   mass3.enabled := false;
-   mass3.enabled := true;
 end;
 procedure TmainProgram.length3Click(Sender: TObject);
 begin
-   length3.text := '';
-  lengthWasAlreadyOverwritten3 := false;
+  length3.text := '';
 end;
-procedure TmainProgram.length3EditingDone(Sender: TObject);
+procedure TmainProgram.length3Exit(Sender: TObject);
 begin
-   if lengthWasAlreadyOverwritten3 = false then begin
-      length3cache := strtofloat(length3.text);
-      length3.text := 'Length: ' + length3.text;
+   if not trystrtofloat(length3.text, length3cache)
+   then begin
+      showmessage('Please enter a real number!');
+      length3.text := 'Length';
+   end
+   else begin
+      length3.Text := 'Length: ' + floattostr(length3cache);
+      //fixxes bug
+      length3.Enabled := false;
+      length3.enabled := true;
    end;
-   lengthWasAlreadyOverwritten3 := true;
-   length3.enabled := false;
-   length3.enabled := true;
 end;
 procedure TmainProgram.featherKonstant3Click(Sender: TObject);
 begin
   featherKonstant3.text := '';
-  featherkonstantWasAlreadyOverwritten3 := false;
 end;
-procedure TmainProgram.featherKonstant3EditingDone(Sender: TObject);
+procedure TmainProgram.featherKonstant3Exit(Sender: TObject);
 begin
-   if featherkonstantWasAlreadyOverwritten3 = false then begin
-      featherkonstant3cache := strtofloat(featherkonstant3.text);
-      featherkonstant3.text := 'Feather Konstant: ' + featherkonstant3.text;
+   if not trystrtofloat(featherkonstant3.text, featherkonstant3cache)
+   then begin
+      showmessage('Please enter a real number!');
+      featherkonstant3.text := 'Feather Konstant';
+   end
+   else begin
+      featherkonstant3.Text := 'Feather Konstant: ' + floattostr(featherkonstant3cache);
+      //fixxes bug
+      featherkonstant3.Enabled := false;
+      featherkonstant3.enabled := true;
    end;
-   featherkonstantWasAlreadyOverwritten3 := true;
-   featherkonstant3.enabled := false;
-   featherkonstant3.enabled := true;
 end;
 procedure TmainProgram.elongation3Click(Sender: TObject);
 begin
   elongation3.text := '';
-  elongationWasAlreadyOverwritten3:= false;
 end;
-procedure TmainProgram.elongation3EditingDone(Sender: TObject);
+procedure TmainProgram.elongation3Exit(Sender: TObject);
 begin
-   if elongationWasAlreadyOverwritten3 = false then begin
-      elongation3cache := strtofloat(elongation3.text);
-      elongation3.text := 'Elongation: ' + elongation3.text;
+   if not trystrtofloat(elongation3.text, elongation3cache)
+   then begin
+      showmessage('Please enter a real number!');
+      elongation3.text := 'Elongation';
+   end
+   else begin
+      elongation3.Text := 'Elongation: ' + floattostr(elongation3cache);
+      //fixxes bug
+      elongation3.Enabled := false;
+      elongation3.enabled := true;
    end;
-   elongationWasAlreadyOverwritten3 := true;
-   elongation3.enabled := false;
-   elongation3.enabled := true;
 end;
 procedure TmainProgram.locationFactor3Click(Sender: TObject);
 begin
   locationFactor3.text := '';
-  locationFactorWasAlreadyOverwritten3 := false;
 end;
-procedure TmainProgram.locationFactor3EditingDone(Sender: TObject);
+procedure TmainProgram.locationFactor3Exit(Sender: TObject);
 begin
-   if locationfactorWasAlreadyOverwritten3 = false then begin
-      locationfactor3cache := strtofloat(locationfactor3.text);
-      locationfactor3.text := 'Location Factor: ' + locationfactor3.text;
+   if not trystrtofloat(locationfactor3.text, locationfactor3cache)
+   then begin
+      showmessage('Please enter a real number!');
+      locationfactor3.text := 'Location Factor';
+   end
+   else begin
+      locationfactor3.Text := 'Locationfactor: ' + floattostr(locationfactor3cache);
+      //fixxes bug
+      locationfactor3.Enabled := false;
+      locationfactor3.enabled := true;
    end;
-   locationfactorWasAlreadyOverwritten3 := true;
-   locationfactor3.enabled := false;
-   locationfactor3.enabled := true;
 end;
 procedure TmainProgram.damping3Click(Sender: TObject);
 begin
   damping3.text := '';
-  dampingWasAlreadyOverwritten3 := false;
 end;
-procedure TmainProgram.damping3EditingDone(Sender: TObject);
+procedure TmainProgram.damping3Exit(Sender: TObject);
 begin
-   if dampingWasAlreadyOverwritten3 = false then begin
-      damping3cache := strtofloat(damping3.text);
-      damping3.text := 'Damping: ' + damping3.text;
+   if not trystrtofloat(damping3.text, damping3cache)
+   then begin
+      showmessage('Please enter a real number!');
+      damping3.text := 'Damping';
+   end
+   else begin
+      damping3.Text := 'Damping: ' + floattostr(damping3cache);
+      //fixxes bug
+      damping3.Enabled := false;
+      damping3.enabled := true;
    end;
-   dampingWasAlreadyOverwritten3 := true;
-   damping3.enabled := false;
-   damping3.enabled := true;
 end;
 
 //Create / Delete Functions
@@ -744,6 +797,7 @@ begin
    damping3.text := 'Damping';
 end;
 
+
 procedure TmainProgram.deleteTableClick(Sender: TObject);
 begin
   table.visible := false;
@@ -753,21 +807,20 @@ end;
 //maximize / minimze
 procedure TmainProgram.edit1Click(Sender: TObject);
 begin
-   function1.height := 184;
+   function1.height := 176;
    edit1.visible := false;
    function2.Top := function1.top + function1.height;
    function3.top := function2.top + function2.height;
 end;
 procedure TmainProgram.edit2Click(Sender: TObject);
 begin
-   function2.height := 184;
+   function2.height := 176;
    edit2.visible := false;
    function3.top := function2.top + function2.height;
-
 end;
 procedure TmainProgram.edit3Click(Sender: TObject);
 begin
-   function3.height := 184;
+   function3.height := 176;
    edit3.visible := false;
 end;
 procedure TmainProgram.collapse1Click(Sender: TObject);
@@ -899,6 +952,7 @@ begin
   generated1 := true;
   func1.text := function1.caption;
   createTable.visible :=true;
+  chart.visible := true;
   end;
 procedure TmainProgram.calculate2Click(Sender: TObject);
 var
@@ -1005,6 +1059,7 @@ begin
   generated2 := true;
   func2.text := function2.caption;
   createTable.visible :=true;
+  chart.visible := true;
 end;
 procedure TmainProgram.calculate3Click(Sender: TObject);
 var
@@ -1111,6 +1166,7 @@ begin
   generated3 := true;
   func3.text := function3.caption;
   createTable.visible :=true;
+  chart.visible := true;
 end;
 
 //Visualization
