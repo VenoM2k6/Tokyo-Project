@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Menus, Grids,
-  ExtCtrls, Buttons, TAGraph, Math, TASeries;
+  ExtCtrls, Buttons, TAGraph, Math, TASeries, TATransformations, TASources;
 
 type
 
@@ -83,6 +83,7 @@ type
     procedure calculate1Click(Sender: TObject);
     procedure calculate2Click(Sender: TObject);
     procedure calculate3Click(Sender: TObject);
+    procedure ChartExtentChanged(ASender: TChart);
     procedure CloseMenuClick(Sender: TObject);
     procedure collapse1Click(Sender: TObject);
     procedure collapse2Click(Sender: TObject);
@@ -204,7 +205,7 @@ end;
 
 
 
-//Editfields of function 1
+//Editfields of function 1: Saving and Program Security
 procedure TmainProgram.setType1Change(Sender: TObject);
 begin
   if setType1.itemindex = 0 then begin
@@ -367,7 +368,7 @@ begin
    end;
 end;
 
-//Editfields of function 2
+//Editfields of function 2: Saving and Program Security
 procedure TmainProgram.setType2Change(Sender: TObject);
 begin
    if setType2.itemindex = 0 then begin
@@ -531,7 +532,7 @@ begin
 end;
 
 
-//Editfields of function 3
+//Editfields of function 3: Saving and Program Security
 procedure TmainProgram.setType3Change(Sender: TObject);
 begin
   if setType3.itemindex = 0 then begin
@@ -585,7 +586,6 @@ begin
   nameFunction3.enabled := false;
   nameFunction3.enabled := true;
 end;
-
 procedure TmainProgram.mass3Click(Sender: TObject);
 begin
   mass3.text := '';
@@ -604,12 +604,10 @@ begin
       mass3.enabled := true;
    end;
 end;
-
 procedure TmainProgram.unitinfoClick(Sender: TObject);
 begin
   showmessage('Every unit input and calculation is based on the SI-Units, e.g. m for lengths, m/s for velocity and m/s^2 for acceleration');
 end;
-
 procedure TmainProgram.length3Click(Sender: TObject);
 begin
   length3.text := '';
@@ -734,6 +732,9 @@ begin
    for i:=0 to 12do begin
      functionCreated[i] := false;
    end;
+   chart.visible := false;
+   table.visible := false;
+   functionFilter.visible := false;
    ChartLineSeries1.clear;
    ChartLineSeries2.clear;
    ChartLineSeries3.clear;
@@ -752,8 +753,6 @@ begin
    generated1 := false;
    generated2 := false;
    generated3 := false;
-
-   //graph.picture := nil;
 
    function1.visible := false;
    function2.visible := false;
@@ -814,7 +813,7 @@ begin
   functionFilter.visible := false;
 end;
 
-//maximize / minimze
+//maximize / minimze of the function view
 procedure TmainProgram.edit1Click(Sender: TObject);
 begin
    function1.height := 176;
@@ -862,108 +861,108 @@ var
   m, D, y, v, t, a, k, l, g, tsum: real;
   i, j: integer;
 begin
-  if setType1.ItemIndex = 0 then begin
-    ChartLineSeries1.clear;
-    m := mass1cache;
-    D := featherkonstant1cache;
-    y := elongation1cache;
-    v := 0;
-    tsum := 0;
-    for i:=0 to 19999 do begin
-           t := 0.005;
-           a := -(D/m)*y;
-           v := v+a*t;
-           y := y+v*t;
-           tsum := tsum + t;
-           function1table[0, i] := tsum;
-           function1table[1, i] := y;
-           function1table[2, i] := v;
-           function1table[3, i] := a;
-           if i <= Chart.width then begin
-             ChartLineSeries1.AddXY(i,(y+v*t));
-           end;
-      end;
-  end;
-  if setType1.ItemIndex = 1 then begin
-    ChartLineSeries1.clear;
-    m := mass1cache;
-    D := featherkonstant1cache;
-    y := elongation1cache;
-    k := damping1cache;
-    v := 0;
-    tsum := 0;
-    for i:=0 to 19998 do begin
-           t := 0.005;
-           a := -(D*y+k*v)/m;
-           v := v+a*t;
-           y := y+v*t;
-           tsum := tsum + t;
-           function1table[0, i] := tsum;
-           function1table[1, i] := y;
-           function1table[2, i] := v;
-           function1table[3, i] := a;
-           if i <= Chart.width then begin
-             ChartLineSeries1.AddXY(i,(y+v*t));
-           end;
-      end;
-  end;
-  if setType1.ItemIndex = 2 then begin
-    ChartLineSeries1.clear;
-    m := mass1cache;
-    y := elongation1cache;
-    l := length1cache;
-    g := locationfactor1cache;
-    v := 0;
-    D := (m*g)/l;
-    tsum := 0;
-    for i:=0 to 19999 do begin
-           t := 0.005;
-           a := -(D/m)*y;
-           v := v+a*t;
-           y := y+v*t;
-           tsum := tsum + t;
-           function1table[0, i] := tsum;
-           function1table[1, i] := y;
-           function1table[2, i] := v;
-           function1table[3, i] := a;
-           if i <= Chart.width then begin
-             ChartLineSeries1.AddXY(i,(y+v*t));
-           end;
-      end;
-  end;
-  if setType1.ItemIndex = 3 then begin
-    ChartLineSeries1.clear;
-    m := mass1cache;
-    y := elongation1cache;
-    k := damping1cache;
-    l := length1cache;
-    g := locationfactor1cache;
-    D := (m*g)/l;
-    v := 0;
-    tsum := 0;
-    for i:=0 to 19998 do begin
-           t := 0.005;
-           a := -(D*y+k*v)/m;
-           v := v+a*t;
-           y := y+v*t;
-           tsum := tsum + t;
-           function1table[0, i] := tsum;
-           function1table[1, i] := y;
-           function1table[2, i] := v;
-           function1table[3, i] := a;
-           if i <= Chart.width then begin
-             ChartLineSeries1.AddXY(i,(y+v*t));
-           end;
-      end;
-  end;
+    if setType1.ItemIndex = 0 then begin
+      ChartLineSeries1.clear;
+      m := mass1cache;
+      D := featherkonstant1cache;
+      y := elongation1cache;
+      v := 0;
+      tsum := 0;
+      for i:=0 to 19999 do begin
+             t := 0.005;
+             a := -(D/m)*y;
+             v := v+a*t;
+             y := y+v*t;
+             tsum := tsum + t;
+             function1table[0, i] := tsum;
+             function1table[1, i] := y;
+             function1table[2, i] := v;
+             function1table[3, i] := a;
+             if i <= Chart.width then begin
+               ChartLineSeries1.AddXY(i,(y+v*t));
+             end;
+        end;
+    end;
+    if setType1.ItemIndex = 1 then begin
+      ChartLineSeries1.clear;
+      m := mass1cache;
+      D := featherkonstant1cache;
+      y := elongation1cache;
+      k := damping1cache;
+      v := 0;
+      tsum := 0;
+      for i:=0 to 19998 do begin
+             t := 0.005;
+             a := -(D*y+k*v)/m;
+             v := v+a*t;
+             y := y+v*t;
+             tsum := tsum + t;
+             function1table[0, i] := tsum;
+             function1table[1, i] := y;
+             function1table[2, i] := v;
+             function1table[3, i] := a;
+             if i <= Chart.width then begin
+               ChartLineSeries1.AddXY(i,(y+v*t));
+             end;
+        end;
+    end;
+    if setType1.ItemIndex = 2 then begin
+      ChartLineSeries1.clear;
+      m := mass1cache;
+      y := elongation1cache;
+      l := length1cache;
+      g := locationfactor1cache;
+      v := 0;
+      D := (m*g)/l;
+      tsum := 0;
+      for i:=0 to 19999 do begin
+             t := 0.005;
+             a := -(D/m)*y;
+             v := v+a*t;
+             y := y+v*t;
+             tsum := tsum + t;
+             function1table[0, i] := tsum;
+             function1table[1, i] := y;
+             function1table[2, i] := v;
+             function1table[3, i] := a;
+             if i <= Chart.width then begin
+               ChartLineSeries1.AddXY(i,(y+v*t));
+             end;
+        end;
+    end;
+    if setType1.ItemIndex = 3 then begin
+      ChartLineSeries1.clear;
+      m := mass1cache;
+      y := elongation1cache;
+      k := damping1cache;
+      l := length1cache;
+      g := locationfactor1cache;
+      D := (m*g)/l;
+      v := 0;
+      tsum := 0;
+      for i:=0 to 19998 do begin
+             t := 0.005;
+             a := -(D*y+k*v)/m;
+             v := v+a*t;
+             y := y+v*t;
+             tsum := tsum + t;
+             function1table[0, i] := tsum;
+             function1table[1, i] := y;
+             function1table[2, i] := v;
+             function1table[3, i] := a;
+             if i <= Chart.width then begin
+               ChartLineSeries1.AddXY(i,(y+v*t));
+             end;
+        end;
+    end;
 
-  func1.visible := true;
-  eye1.visible := true;
-  generated1 := true;
-  func1.text := function1.caption;
-  createTable.visible :=true;
-  chart.visible := true;
-  end;
+    func1.visible := true;
+    eye1.visible := true;
+    generated1 := true;
+    func1.text := function1.caption;
+    createTable.visible :=true;
+    chart.visible := true;
+end;
 procedure TmainProgram.calculate2Click(Sender: TObject);
 var
   m, D, y, v, t, a, k, l, g, tsum: real;
@@ -1179,7 +1178,12 @@ begin
   chart.visible := true;
 end;
 
-//Visualization
+procedure TmainProgram.ChartExtentChanged(ASender: TChart);
+begin
+  showmessage('Works');
+end;
+
+//Visualization: Turn graph on and off
 procedure TmainProgram.eye1Click(Sender: TObject);
 var
   j:integer;
@@ -1277,10 +1281,10 @@ begin
        showmessage('You have not created the red function so far');
     end;
     if (functionFilter.itemindex = 1) AND (generated2 = false) then begin
-       showmessage('You have not created the blue function so far');
+       showmessage('You have not created the green function so far');
     end;
     if (functionFilter.itemindex = 2) AND (generated3 = false) then begin
-       showmessage('You have not created the green function so far');
+       showmessage('You have not created the purple function so far');
     end;
 end;
 

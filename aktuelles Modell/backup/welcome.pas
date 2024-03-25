@@ -15,7 +15,6 @@ type
   Twelcomescreen = class(TForm)
     exitButton: TButton;
     continueButton2: TButton;
-    coolbackground: TImage;
     tutorialPanel: TPanel;
     tutorial: TButton;
     continueButton: TButton;
@@ -47,8 +46,6 @@ begin
    mainProgram.hide;
    tutorialpanel.bringtofront;
    WindowState := wsmaximized;
-   coolbackground.width := screen.width;
-   coolbackground.height := screen.height;
    sign1.enabled := false;
    sign1.enabled := true;
 end;

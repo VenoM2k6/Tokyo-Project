@@ -1,119 +1,78 @@
 object welcomescreen: Twelcomescreen
-  Left = 493
-  Height = 660
-  Top = 174
-  Width = 984
+  Left = -19
+  Height = 788
+  Top = 116
+  Width = 1635
   BorderStyle = bsNone
   Caption = 'welcomescreen'
-  ClientHeight = 660
-  ClientWidth = 984
-  Color = clGradientInactiveCaption
+  ClientHeight = 0
+  ClientWidth = 0
+  Color = 16382457
   OnCreate = FormCreate
   OnShow = FormShow
   LCLVersion = '2.2.4.0'
   object sign1: TEdit
-    Left = 192
-    Height = 96
-    Top = 64
-    Width = 568
+    Left = 608
+    Height = 83
+    Top = 354
+    Width = 749
+    Alignment = taCenter
     AutoSize = False
-    Enabled = False
-    Font.CharSet = ANSI_CHARSET
+    Font.CharSet = GB2312_CHARSET
     Font.Height = -64
-    Font.Name = 'Leelawadee UI Semilight'
+    Font.Name = '@STCaiyun'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
+    Font.Style = [fsItalic]
     ParentFont = False
+    ReadOnly = True
     TabOrder = 0
     Text = 'Oscillation Visualizer'
   end
   object tutorial: TButton
-    Left = 304
+    Left = 797
     Height = 57
-    Top = 168
+    Top = 438
     Width = 352
     Caption = 'Tutorial / Handbook'
     Enabled = False
     Font.CharSet = ANSI_CHARSET
     Font.Height = -32
-    Font.Name = 'Yu Gothic UI Light'
+    Font.Name = 'Yu Gothic UI Semibold'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
+    Font.Style = [fsBold]
     OnClick = tutorialClick
     ParentFont = False
     TabOrder = 1
   end
-  object deutsch: TButton
-    Left = 200
+  object continueButton: TButton
+    Left = 608
     Height = 65
-    Top = 304
-    Width = 267
-    Caption = 'Deutsch'
-    Enabled = False
+    Top = 507
+    Width = 720
+    Caption = 'Continue'
+    Color = clScrollBar
     Font.CharSet = ANSI_CHARSET
     Font.Height = -32
-    Font.Name = 'Yu Gothic UI Light'
+    Font.Name = 'Yu Gothic UI Semibold'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    OnClick = continueButtonClick
     ParentFont = False
     TabOrder = 3
   end
-  object sign2: TEdit
-    Left = 120
-    Height = 64
-    Top = 232
-    Width = 720
-    AutoSize = False
-    Enabled = False
-    Font.CharSet = ANSI_CHARSET
-    Font.Height = -37
-    Font.Name = 'Yu Gothic UI Light'
-    Font.Pitch = fpVariable
-    Font.Quality = fqDraft
-    ParentFont = False
-    TabOrder = 4
-    Text = 'Choose a language / Wählen sie eine Sprache aus'
-  end
-  object english: TButton
-    Left = 496
-    Height = 64
-    Top = 304
-    Width = 267
-    Caption = 'English'
-    Enabled = False
-    Font.CharSet = ANSI_CHARSET
-    Font.Height = -37
-    Font.Name = 'Yu Gothic UI Light'
-    Font.Pitch = fpVariable
-    Font.Quality = fqDraft
-    ParentFont = False
-    TabOrder = 5
-  end
-  object continueButton: TButton
-    Left = 120
-    Height = 65
-    Top = 384
-    Width = 720
-    Caption = 'Continue'
-    Font.CharSet = ANSI_CHARSET
-    Font.Height = -32
-    Font.Name = 'Yu Gothic UI Light'
-    Font.Pitch = fpVariable
-    Font.Quality = fqDraft
-    OnClick = continueButtonClick
-    ParentFont = False
-    TabOrder = 6
-  end
   object tutorialPanel: TPanel
-    Left = 96
+    Left = 584
     Height = 586
-    Top = 16
+    Top = 136
     Width = 779
     ClientHeight = 586
     ClientWidth = 779
-    Color = clGradientActiveCaption
+    Color = clInactiveBorder
     ParentColor = False
-    TabOrder = 7
+    TabOrder = 4
     Visible = False
     object continueButton2: TButton
       Left = 32
@@ -123,9 +82,10 @@ object welcomescreen: Twelcomescreen
       Caption = 'Continue'
       Font.CharSet = ANSI_CHARSET
       Font.Height = -32
-      Font.Name = 'Yu Gothic UI Light'
+      Font.Name = 'Yu Gothic UI'
       Font.Pitch = fpVariable
       Font.Quality = fqDraft
+      Font.Style = [fsBold]
       OnClick = continueButton2Click
       ParentFont = False
       TabOrder = 0
@@ -133,16 +93,17 @@ object welcomescreen: Twelcomescreen
     end
   end
   object exitButton: TButton
-    Left = 120
+    Left = 608
     Height = 65
-    Top = 456
+    Top = 578
     Width = 720
     Caption = 'Exit'
     Font.CharSet = ANSI_CHARSET
     Font.Height = -32
-    Font.Name = 'Yu Gothic UI Light'
+    Font.Name = 'Yu Gothic UI Semibold'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
+    Font.Style = [fsBold]
     OnClick = exitButtonClick
     ParentFont = False
     TabOrder = 2
