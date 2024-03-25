@@ -41,6 +41,7 @@ type
     function2: TGroupBox;
     function3: TGroupBox;
     functionFilter: TRadioGroup;
+    unitinfo: TMenuItem;
     temp2: TImage;
     temp1: TImage;
     RecommendationMasse: TLabel;
@@ -135,6 +136,7 @@ type
     procedure mass2Exit(Sender: TObject);
     procedure mass3Click(Sender: TObject);
     procedure mass3Exit(Sender: TObject);
+    procedure unitinfoClick(Sender: TObject);
     procedure nameFunction1Click(Sender: TObject);
     procedure nameFunction1EditingDone(Sender: TObject);
     procedure nameFunction2Click(Sender: TObject);
@@ -247,6 +249,7 @@ procedure TmainProgram.nameFunction1EditingDone(Sender: TObject);
 begin
   if nameWasAlreadyOverwritten1 = false then begin //This if clause & Variable fixxes the bug of overwriting 'Name' onto the function1.caption
      function1.caption := namefunction1.text;
+     func1.text := function1.caption;
   end;
   nameFunction1.text := 'Name';
   nameWasAlreadyOverwritten1 := true;
@@ -255,7 +258,6 @@ begin
   nameFunction1.enabled := false;
   nameFunction1.enabled := true;
 end;
-
 procedure TmainProgram.mass1Click(Sender: TObject);
 begin
   mass1.text := '';
@@ -410,6 +412,7 @@ procedure TmainProgram.nameFunction2EditingDone(Sender: TObject);
 begin
   if nameWasAlreadyOverwritten2 = false then begin //This if clause & Variable fixxes the bug of overwriting 'Name' onto the function1.caption
      function2.caption := namefunction2.text;
+     func2.text := function2.caption;
   end;
   nameFunction2.text := 'Name';
   nameWasAlreadyOverwritten2 := true;
@@ -573,6 +576,7 @@ procedure TmainProgram.nameFunction3EditingDone(Sender: TObject);
 begin
   if nameWasAlreadyOverwritten3 = false then begin //This if clause & Variable fixxes the bug of overwriting 'Name' onto the function1.caption
      function3.caption := namefunction3.text;
+     func3.text := function3.caption;
   end;
   nameFunction3.text := 'Name';
   nameWasAlreadyOverwritten3 := true;
@@ -600,6 +604,12 @@ begin
       mass3.enabled := true;
    end;
 end;
+
+procedure TmainProgram.unitinfoClick(Sender: TObject);
+begin
+  showmessage('Every unit input and calculation is based on the SI-Units, e.g. m for lengths, m/s for velocity and m/s^2 for acceleration');
+end;
+
 procedure TmainProgram.length3Click(Sender: TObject);
 begin
   length3.text := '';
@@ -1239,28 +1249,28 @@ begin
     if functionFilter.itemindex = 0 then begin
        for j:=0 to 19999 do begin
          table.cells[0, j+2] := inttostr(j);
-         table.cells[1, j+1] := floattostr(function1table[1, j]);
-         table.cells[2, j+1] := floattostr(function1table[2, j]);
-         table.cells[3, j+1] := floattostr(function1table[3, j]);
-         table.cells[4, j+1] := floattostr(function1table[4, j]);
+         table.cells[1, j+1] := floattostr(function1table[0, j]);
+         table.cells[2, j+1] := floattostr(function1table[1, j]);
+         table.cells[3, j+1] := floattostr(function1table[2, j]);
+         table.cells[4, j+1] := floattostr(function1table[3, j]);
          end;
        end;
     if functionFilter.itemindex = 1 then begin
        for j:=0 to 19999 do begin
         table.cells[0, j+2] := inttostr(j);
-         table.cells[1, j+1] := floattostr(function2table[1, j]);
-         table.cells[2, j+1] := floattostr(function2table[2, j]);
-         table.cells[3, j+1] := floattostr(function2table[3, j]);
-         table.cells[4, j+1] := floattostr(function2table[4, j]);
+         table.cells[1, j+1] := floattostr(function2table[0, j]);
+         table.cells[2, j+1] := floattostr(function2table[1, j]);
+         table.cells[3, j+1] := floattostr(function2table[2, j]);
+         table.cells[4, j+1] := floattostr(function2table[3, j]);
          end;
        end;
     if functionFilter.itemindex = 2 then begin
        for j:=0 to 19999 do begin
         table.cells[0, j+2] := inttostr(j);
-         table.cells[1, j+1] := floattostr(function3table[1, j]);
-         table.cells[2, j+1] := floattostr(function3table[2, j]);
-         table.cells[3, j+1] := floattostr(function3table[3, j]);
-         table.cells[4, j+1] := floattostr(function3table[4, j]);
+         table.cells[1, j+1] := floattostr(function3table[0, j]);
+         table.cells[2, j+1] := floattostr(function3table[1, j]);
+         table.cells[3, j+1] := floattostr(function3table[2, j]);
+         table.cells[4, j+1] := floattostr(function3table[3, j]);
          end;
        end;
     if (functionFilter.itemindex = 0) AND (generated1 = false) then begin
