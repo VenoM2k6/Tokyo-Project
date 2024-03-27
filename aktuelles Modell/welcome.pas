@@ -14,11 +14,9 @@ type
 
   Twelcomescreen = class(TForm)
     exitButton: TButton;
-    continueButton2: TButton;
-    tutorialPanel: TPanel;
-    tutorial: TButton;
     continueButton: TButton;
     sign1: TEdit;
+    sign2: TEdit;
     procedure continueButton2Click(Sender: TObject);
     procedure exitButtonClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -44,10 +42,13 @@ procedure Twelcomescreen.FormCreate(Sender: TObject);
 begin
    welcomescreen.Show;
    mainProgram.hide;
-   tutorialpanel.bringtofront;
    WindowState := wsmaximized;
-   sign1.enabled := false;
-   sign1.enabled := true;
+
+   //objects are presented in the middle of the screen
+   sign1.left := screen.width div 2 - sign1.width div 2;
+   continueButton.left := screen.width div 2 - continueButton.width div 2;
+   exitButton.left := continueButton.left;
+   sign2.left := screen.width div 2 - sign2.width div 2;
 end;
 
 procedure Twelcomescreen.continueButtonClick(Sender: TObject);
@@ -57,20 +58,17 @@ end;
 
 procedure Twelcomescreen.tutorialClick(Sender: TObject);
 begin
-   tutorialpanel.visible := true;
-   continuebutton2.visible := true;
+   continuebutton.visible := true;
 end;
 
 procedure Twelcomescreen.FormShow(Sender: TObject);
 begin
-  tutorial.enabled := false;
-  tutorial.enabled := true;
 end;
 
 procedure Twelcomescreen.continueButton2Click(Sender: TObject);
 begin
-   tutorialpanel.visible := false;
-   continuebutton2.visible := false;
+
+   continuebutton.visible := false;
 end;
 
 procedure Twelcomescreen.exitButtonClick(Sender: TObject);

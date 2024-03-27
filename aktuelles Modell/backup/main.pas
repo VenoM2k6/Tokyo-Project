@@ -62,7 +62,6 @@ type
     eye2: TImage;
     eye3: TImage;
     Tutorial: TMenuItem;
-    Settings: TMenuItem;
     CloseMenu: TMenuItem;
     Programcontrol: TMenuItem;
     nameFunction1: TEdit;
@@ -83,7 +82,6 @@ type
     procedure calculate1Click(Sender: TObject);
     procedure calculate2Click(Sender: TObject);
     procedure calculate3Click(Sender: TObject);
-    procedure ChartExtentChanged(ASender: TChart);
     procedure CloseMenuClick(Sender: TObject);
     procedure collapse1Click(Sender: TObject);
     procedure collapse2Click(Sender: TObject);
@@ -861,114 +859,137 @@ var
   m, D, y, v, t, a, k, l, g, tsum: real;
   i, j: integer;
 begin
-    if setType1.ItemIndex = 0 then begin
-      ChartLineSeries1.clear;
-      m := mass1cache;
-      D := featherkonstant1cache;
-      y := elongation1cache;
-      v := 0;
-      tsum := 0;
-      for i:=0 to 19999 do begin
-             t := 0.005;
-             a := -(D/m)*y;
-             v := v+a*t;
-             y := y+v*t;
-             tsum := tsum + t;
-             function1table[0, i] := tsum;
-             function1table[1, i] := y;
-             function1table[2, i] := v;
-             function1table[3, i] := a;
-             if i <= Chart.width then begin
-               ChartLineSeries1.AddXY(i,(y+v*t));
-             end;
-        end;
-    end;
-    if setType1.ItemIndex = 1 then begin
-      ChartLineSeries1.clear;
-      m := mass1cache;
-      D := featherkonstant1cache;
-      y := elongation1cache;
-      k := damping1cache;
-      v := 0;
-      tsum := 0;
-      for i:=0 to 19998 do begin
-             t := 0.005;
-             a := -(D*y+k*v)/m;
-             v := v+a*t;
-             y := y+v*t;
-             tsum := tsum + t;
-             function1table[0, i] := tsum;
-             function1table[1, i] := y;
-             function1table[2, i] := v;
-             function1table[3, i] := a;
-             if i <= Chart.width then begin
-               ChartLineSeries1.AddXY(i,(y+v*t));
-             end;
-        end;
-    end;
-    if setType1.ItemIndex = 2 then begin
-      ChartLineSeries1.clear;
-      m := mass1cache;
-      y := elongation1cache;
-      l := length1cache;
-      g := locationfactor1cache;
-      v := 0;
-      D := (m*g)/l;
-      tsum := 0;
-      for i:=0 to 19999 do begin
-             t := 0.005;
-             a := -(D/m)*y;
-             v := v+a*t;
-             y := y+v*t;
-             tsum := tsum + t;
-             function1table[0, i] := tsum;
-             function1table[1, i] := y;
-             function1table[2, i] := v;
-             function1table[3, i] := a;
-             if i <= Chart.width then begin
-               ChartLineSeries1.AddXY(i,(y+v*t));
-             end;
-        end;
-    end;
-    if setType1.ItemIndex = 3 then begin
-      ChartLineSeries1.clear;
-      m := mass1cache;
-      y := elongation1cache;
-      k := damping1cache;
-      l := length1cache;
-      g := locationfactor1cache;
-      D := (m*g)/l;
-      v := 0;
-      tsum := 0;
-      for i:=0 to 19998 do begin
-             t := 0.005;
-             a := -(D*y+k*v)/m;
-             v := v+a*t;
-             y := y+v*t;
-             tsum := tsum + t;
-             function1table[0, i] := tsum;
-             function1table[1, i] := y;
-             function1table[2, i] := v;
-             function1table[3, i] := a;
-             if i <= Chart.width then begin
-               ChartLineSeries1.AddXY(i,(y+v*t));
-             end;
-        end;
-    end;
+   //if (mass1cache > 0) and (elongation1cache > 0) and (featherkonstant1cache > 0) and (locationfactor1cache > 0) and (damping1cache > 0) and (length1cache > 0) then begin
 
-    func1.visible := true;
-    eye1.visible := true;
-    generated1 := true;
-    func1.text := function1.caption;
-    createTable.visible :=true;
-    chart.visible := true;
-end;
+     if (setType1.ItemIndex = 0) and (elongation1cache > 0) and (mass1cache > 0) and (featherkonstant1cache > 0) then begin
+        ChartLineSeries1.clear;
+        m := mass1cache;
+        D := featherkonstant1cache;
+        y := elongation1cache;
+        v := 0;
+        tsum := 0;
+        for i:=0 to 19998 do begin
+               t := 0.005;
+               a := -(D/m)*y;
+               v := v+a*t;
+               y := y+v*t;
+               tsum := tsum + t;
+               function1table[0, i] := tsum;
+               function1table[1, i] := y;
+               function1table[2, i] := v;
+               function1table[3, i] := a;
+               if i <= Chart.width then begin
+                 ChartLineSeries1.AddXY(i,(y+v*t));
+               end;
+          end;
+         func1.visible := true;
+         eye1.visible := true;
+         generated1 := true;
+         func1.text := function1.caption;
+         createTable.visible :=true;
+         chart.visible := true;
+      end
+     else if (setType1.ItemIndex = 1) and (elongation1cache > 0) and (mass1cache > 0) and (featherkonstant1cache > 0) and (damping1cache > 0) then begin
+        ChartLineSeries1.clear;
+        m := mass1cache;
+        D := featherkonstant1cache;
+        y := elongation1cache;
+        k := damping1cache;
+        v := 0;
+        tsum := 0;
+        for i:=0 to 19998 do begin
+               t := 0.005;
+               a := -(D*y+k*v)/m;
+               v := v+a*t;
+               y := y+v*t;
+               tsum := tsum + t;
+               function1table[0, i] := tsum;
+               function1table[1, i] := y;
+               function1table[2, i] := v;
+               function1table[3, i] := a;
+               if i <= Chart.width then begin
+                 ChartLineSeries1.AddXY(i,(y+v*t));
+               end;
+          end;
+         func1.visible := true;
+         eye1.visible := true;
+         generated1 := true;
+         func1.text := function1.caption;
+         createTable.visible :=true;
+         chart.visible := true;
+      end
+     else if (setType1.ItemIndex = 2) and (mass1cache > 0) and (elongation1cache > 0) and (length1cache > 0) and (locationfactor1cache > 0) then begin
+        ChartLineSeries1.clear;
+        m := mass1cache;
+        y := elongation1cache;
+        l := length1cache;
+        g := locationfactor1cache;
+        v := 0;
+        D := (m*g)/l;
+        tsum := 0;
+        for i:=0 to 19998 do begin
+               t := 0.005;
+               a := -(D/m)*y;
+               v := v+a*t;
+               y := y+v*t;
+               tsum := tsum + t;
+               function1table[0, i] := tsum;
+               function1table[1, i] := y;
+               function1table[2, i] := v;
+               function1table[3, i] := a;
+               if i <= Chart.width then begin
+                 ChartLineSeries1.AddXY(i,(y+v*t));
+               end;
+          end;
+         func1.visible := true;
+         eye1.visible := true;
+         generated1 := true;
+         func1.text := function1.caption;
+         createTable.visible :=true;
+         chart.visible := true;
+      end
+     else if (setType1.ItemIndex = 3) and (mass1cache > 0) and (elongation1cache > 0) and (length1cache > 0) and (locationfactor1cache > 0) and (length1cache > 0) then begin
+        ChartLineSeries1.clear;
+        m := mass1cache;
+        y := elongation1cache;
+        k := damping1cache;
+        l := length1cache;
+        g := locationfactor1cache;
+        D := (m*g)/l;
+        v := 0;
+        tsum := 0;
+        for i:=0 to 19998 do begin
+               t := 0.005;
+               a := -(D*y+k*v)/m;
+               v := v+a*t;
+               y := y+v*t;
+               tsum := tsum + t;
+               function1table[0, i] := tsum;
+               function1table[1, i] := y;
+               function1table[2, i] := v;
+               function1table[3, i] := a;
+               if i <= Chart.width then begin
+                 ChartLineSeries1.AddXY(i,(y+v*t));
+               end;
+          end;
+         func1.visible := true;
+         eye1.visible := true;
+         generated1 := true;
+         func1.text := function1.caption;
+         createTable.visible :=true;
+         chart.visible := true;
+      end
+     else begin
+          showmessage('Please make sure that every field is filled with a value higher than 0!');
+     end;
+
+     end;
 procedure TmainProgram.calculate2Click(Sender: TObject);
 var
   m, D, y, v, t, a, k, l, g, tsum: real;
   i, j: integer;
 begin
-  if setType2.ItemIndex = 0 then begin
+  if (setType2.ItemIndex = 0) and (elongation2cache > 0) and (mass2cache > 0) and (featherkonstant2cache > 0) then begin
     ChartLineSeries2.clear;
     m := mass2cache;
     D := featherkonstant2cache;
@@ -989,8 +1010,17 @@ begin
              ChartLineSeries2.AddXY(i,(y+v*t));
            end;
       end;
+      func2.visible := true;
+      eye2.visible := true;
+      generated2 := true;
+      func2.text := function2.caption;
+      createTable.visible :=true;
+      chart.visible := true;
+  end
+  else begin
+       showmessage('Please make sure that every field is filled with a value higher than 0!');
   end;
-  if setType2.ItemIndex = 1 then begin
+  if (setType2.ItemIndex = 1) and (elongation2cache > 0) and (mass2cache > 0) and (featherkonstant2cache > 0) and (damping2cache > 0) then begin
     ChartLineSeries2.clear;
     m := mass2cache;
     D := featherkonstant2cache;
@@ -1012,70 +1042,93 @@ begin
              ChartLineSeries2.AddXY(i,(y+v*t));
            end;
       end;
-  end;
-  if setType2.ItemIndex = 2 then begin
-    ChartLineSeries2.clear;
-    m := mass2cache;
-    y := elongation2cache;
-    l := length2cache;
-    g := locationfactor2cache;
-    v := 0;
-    D := (m*g)/l;
-    tsum := 0;
-    for i:=0 to 19999 do begin
-           t := 0.005;
-           a := -(D/m)*y;
-           v := v+a*t;
-           y := y+v*t;
-           tsum := tsum + t;
-           function2table[0, i] := tsum;
-           function2table[1, i] := y;
-           function2table[2, i] := v;
-           function2table[3, i] := a;
-           if i <= Chart.width then begin
-             ChartLineSeries2.AddXY(i,(y+v*t));
-           end;
-      end;
-  end;
-  if setType2.ItemIndex = 3 then begin
-    ChartLineSeries2.clear;
-    m := mass2cache;
-    y := elongation2cache;
-    k := damping2cache;
-    l := length2cache;
-    g := locationfactor2cache;
-    D := (m*g)/l;
-    v := 0;
-    tsum := 0;
-    for i:=0 to 19998 do begin
-           t := 0.005;
-           a := -(D*y+k*v)/m;
-           v := v+a*t;
-           y := y+v*t;
-           tsum := tsum + t;
-           function2table[0, i] := tsum;
-           function2table[1, i] := y;
-           function2table[2, i] := v;
-           function2table[3, i] := a;
-           if i <= Chart.width then begin
-             ChartLineSeries2.AddXY(i,(y+v*t));
-           end;
-      end;
-  end;
+      func2.visible := true;
+      eye2.visible := true;
+      generated2 := true;
+      func2.text := function2.caption;
+      createTable.visible :=true;
+      chart.visible := true;
+  end
 
-  func2.visible := true;
-  eye2.visible := true;
-  generated2 := true;
-  func2.text := function2.caption;
-  createTable.visible :=true;
-  chart.visible := true;
+  else begin
+      showmessage('Please make sure that every field is filled with a value higher than 0!');
+  end;
+  if (setType2.ItemIndex = 2) and (mass2cache > 0) and (elongation2cache > 0) and (length2cache > 0) and (locationfactor2cache > 0) then begin
+    ChartLineSeries2.clear;
+    m := mass2cache;
+    y := elongation2cache;
+    l := length2cache;
+    g := locationfactor2cache;
+    v := 0;
+    D := (m*g)/l;
+    tsum := 0;
+    for i:=0 to 19999 do begin
+           t := 0.005;
+           a := -(D/m)*y;
+           v := v+a*t;
+           y := y+v*t;
+           tsum := tsum + t;
+           function2table[0, i] := tsum;
+           function2table[1, i] := y;
+           function2table[2, i] := v;
+           function2table[3, i] := a;
+           if i <= Chart.width then begin
+             ChartLineSeries2.AddXY(i,(y+v*t));
+           end;
+      end;
+      func2.visible := true;
+      eye2.visible := true;
+      generated2 := true;
+      func2.text := function2.caption;
+      createTable.visible :=true;
+      chart.visible := true;
+  end
+
+  else begin
+     showmessage('Please make sure that every field is filled with a value higher than 0!');
+  end;
+  if (setType2.ItemIndex = 3) and (mass2cache > 0) and (elongation2cache > 0) and (length2cache > 0) and (locationfactor2cache > 0) and (length2cache > 0) then begin
+    ChartLineSeries2.clear;
+    m := mass2cache;
+    y := elongation2cache;
+    k := damping2cache;
+    l := length2cache;
+    g := locationfactor2cache;
+    D := (m*g)/l;
+    v := 0;
+    tsum := 0;
+    for i:=0 to 19998 do begin
+           t := 0.005;
+           a := -(D*y+k*v)/m;
+           v := v+a*t;
+           y := y+v*t;
+           tsum := tsum + t;
+           function2table[0, i] := tsum;
+           function2table[1, i] := y;
+           function2table[2, i] := v;
+           function2table[3, i] := a;
+           if i <= Chart.width then begin
+             ChartLineSeries2.AddXY(i,(y+v*t));
+           end;
+      end;
+      func2.visible := true;
+      eye2.visible := true;
+      generated2 := true;
+      func2.text := function2.caption;
+      createTable.visible :=true;
+      chart.visible := true;
+  end
+
+  else begin
+     showmessage('Please make sure that every field is filled with a value higher than 0!');
+  end;
 end;
 procedure TmainProgram.calculate3Click(Sender: TObject);
 var
   m, D, y, v, t, a, k, l, g, tsum: real;
   i, j: integer;
 begin
-  if setType3.ItemIndex = 0 then begin
+  if (setType3.ItemIndex = 0) and (elongation3cache > 0) and (mass3cache > 0) and (featherkonstant3cache > 0) then begin
     ChartLineSeries3.clear;
     m := mass3cache;
     D := featherkonstant3cache;
@@ -1096,8 +1149,17 @@ begin
              ChartLineSeries3.AddXY(i,(y+v*t));
            end;
       end;
+      func3.visible := true;
+      eye3.visible := true;
+      generated3 := true;
+      func3.text := function3.caption;
+      createTable.visible :=true;
+      chart.visible := true;
+  end
+  else begin
+      showmessage('Please make sure that every field is filled with a value higher than 0!');
   end;
-  if setType3.ItemIndex = 1 then begin
+  if (setType3.ItemIndex = 1) and (elongation3cache > 0) and (mass3cache > 0) and (featherkonstant3cache > 0) and (damping3cache > 0) then begin
     ChartLineSeries3.clear;
     m := mass3cache;
     D := featherkonstant3cache;
@@ -1119,8 +1181,17 @@ begin
              ChartLineSeries3.AddXY(i,(y+v*t));
            end;
       end;
+      func3.visible := true;
+      eye3.visible := true;
+      generated3 := true;
+      func3.text := function3.caption;
+      createTable.visible :=true;
+      chart.visible := true;
+  end
+  else begin
+      showmessage('Please make sure that every field is filled with a value higher than 0!');
   end;
-  if setType3.ItemIndex = 2 then begin
+  if (setType3.ItemIndex = 2) and (mass3cache > 0) and (elongation3cache > 0) and (length3cache > 0) and (locationfactor3cache > 0) then begin
     ChartLineSeries3.clear;
     m := mass3cache;
     y := elongation3cache;
@@ -1143,8 +1214,17 @@ begin
              ChartLineSeries3.AddXY(i,(y+v*t));
            end;
       end;
+      func3.visible := true;
+      eye3.visible := true;
+      generated3 := true;
+      func3.text := function3.caption;
+      createTable.visible :=true;
+      chart.visible := true;
+  end
+  else begin
+       showmessage('Please make sure that every field is filled with a value higher than 0!');
   end;
-  if setType3.ItemIndex = 3 then begin
+  if (setType3.ItemIndex = 3) and (mass3cache > 0) and (elongation3cache > 0) and (length3cache > 0) and (locationfactor3cache > 0) and (length3cache > 0) then begin
     ChartLineSeries3.clear;
     m := mass3cache;
     y := elongation3cache;
@@ -1168,19 +1248,18 @@ begin
              ChartLineSeries3.AddXY(i,(y+v*t));
            end;
       end;
+      func3.visible := true;
+      eye3.visible := true;
+      generated3 := true;
+      func3.text := function3.caption;
+      createTable.visible :=true;
+      chart.visible := true;
+  end
+  else begin
+     showmessage('Please make sure that every field is filled with a value higher than 0!');
   end;
 
-  func3.visible := true;
-  eye3.visible := true;
-  generated3 := true;
-  func3.text := function3.caption;
-  createTable.visible :=true;
-  chart.visible := true;
-end;
 
-procedure TmainProgram.ChartExtentChanged(ASender: TChart);
-begin
-  showmessage('Works');
 end;
 
 //Visualization: Turn graph on and off

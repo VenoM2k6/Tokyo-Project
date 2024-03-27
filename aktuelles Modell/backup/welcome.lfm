@@ -1,7 +1,7 @@
 object welcomescreen: Twelcomescreen
-  Left = 428
+  Left = 444
   Height = 788
-  Top = 95
+  Top = 263
   Width = 1635
   BorderStyle = bsNone
   Caption = 'welcomescreen'
@@ -12,12 +12,13 @@ object welcomescreen: Twelcomescreen
   OnShow = FormShow
   LCLVersion = '2.2.4.0'
   object sign1: TEdit
-    Left = 608
+    Left = 616
     Height = 83
-    Top = 354
+    Top = 296
     Width = 749
     Alignment = taCenter
     AutoSize = False
+    Enabled = False
     Font.CharSet = GB2312_CHARSET
     Font.Height = -64
     Font.Name = '@STCaiyun'
@@ -29,27 +30,10 @@ object welcomescreen: Twelcomescreen
     TabOrder = 0
     Text = 'Oscillation Visualizer'
   end
-  object tutorial: TButton
-    Left = 797
-    Height = 57
-    Top = 438
-    Width = 352
-    Caption = 'Tutorial / Handbook'
-    Enabled = False
-    Font.CharSet = ANSI_CHARSET
-    Font.Height = -32
-    Font.Name = 'Yu Gothic UI Semibold'
-    Font.Pitch = fpVariable
-    Font.Quality = fqDraft
-    Font.Style = [fsBold]
-    OnClick = tutorialClick
-    ParentFont = False
-    TabOrder = 1
-  end
   object continueButton: TButton
-    Left = 608
-    Height = 65
-    Top = 507
+    Left = 632
+    Height = 49
+    Top = 432
     Width = 720
     Caption = 'Continue'
     Color = clScrollBar
@@ -61,41 +45,12 @@ object welcomescreen: Twelcomescreen
     Font.Style = [fsBold]
     OnClick = continueButtonClick
     ParentFont = False
-    TabOrder = 3
-  end
-  object tutorialPanel: TPanel
-    Left = 584
-    Height = 586
-    Top = 136
-    Width = 779
-    ClientHeight = 586
-    ClientWidth = 779
-    Color = clInactiveBorder
-    ParentColor = False
-    TabOrder = 4
-    Visible = False
-    object continueButton2: TButton
-      Left = 32
-      Height = 57
-      Top = 504
-      Width = 720
-      Caption = 'Continue'
-      Font.CharSet = ANSI_CHARSET
-      Font.Height = -32
-      Font.Name = 'Yu Gothic UI'
-      Font.Pitch = fpVariable
-      Font.Quality = fqDraft
-      Font.Style = [fsBold]
-      OnClick = continueButton2Click
-      ParentFont = False
-      TabOrder = 0
-      Visible = False
-    end
+    TabOrder = 2
   end
   object exitButton: TButton
-    Left = 608
-    Height = 65
-    Top = 578
+    Left = 632
+    Height = 48
+    Top = 480
     Width = 720
     Caption = 'Exit'
     Font.CharSet = ANSI_CHARSET
@@ -106,6 +61,25 @@ object welcomescreen: Twelcomescreen
     Font.Style = [fsBold]
     OnClick = exitButtonClick
     ParentFont = False
-    TabOrder = 2
+    TabOrder = 1
+  end
+  object sign2: TEdit
+    Left = 624
+    Height = 37
+    Top = 376
+    Width = 736
+    Alignment = taCenter
+    AutoSize = False
+    Enabled = False
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -19
+    Font.Name = 'Yu Gothic UI Light'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsItalic]
+    ParentFont = False
+    ReadOnly = True
+    TabOrder = 3
+    Text = 'by Vincent & Irena'
   end
 end

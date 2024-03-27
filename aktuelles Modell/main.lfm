@@ -1,7 +1,7 @@
 object mainProgram: TmainProgram
-  Left = 505
+  Left = 965
   Height = 705
-  Top = 84
+  Top = 297
   Width = 1283
   BorderStyle = bsNone
   Caption = 'Main Program'
@@ -1669,7 +1669,7 @@ object mainProgram: TmainProgram
     TabOrder = 9
     Visible = False
   end
-  object c: TRadioGroup
+  object functionFilter: TRadioGroup
     Left = 1030
     Height = 105
     Top = 77
@@ -1690,6 +1690,7 @@ object mainProgram: TmainProgram
       'Green'
       'Purple'
     )
+    OnClick = functionFilterClick
     TabOrder = 10
     Visible = False
   end
@@ -1698,6 +1699,7 @@ object mainProgram: TmainProgram
     Height = 435
     Top = 192
     Width = 685
+    AllowPanning = False
     AxisList = <    
       item
         Marks.LabelBrush.Style = bsClear
@@ -1748,12 +1750,6 @@ object mainProgram: TmainProgram
   object MainMenu1: TMainMenu
     Left = 1491
     Top = 13
-    object Tutorial: TMenuItem
-      Caption = 'Tutorial'
-    end
-    object Settings: TMenuItem
-      Caption = 'Settings'
-    end
     object Programcontrol: TMenuItem
       Caption = 'Programcontrol'
       object CloseMenu: TMenuItem
